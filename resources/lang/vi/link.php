@@ -1,0 +1,7 @@
+<?php
+
+return [
+    'create_user' => 'Tạo tài khoản',
+];
+
+?>
