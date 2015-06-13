@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Storage;
 use App\Http\Requests\ProductRequest;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -38,8 +40,13 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        Storage::put('products/' . );
+        $filename = Carbon::now();
+        Storage::put('products/' . $filename, file_get_contents($request->file('image')->getRealPath()));
         $input = $request->all();
+        $input['image'] = $filename;
+        Product::create($input);
+
+        return redirect()->action('Admin\ProductController@index');
     }
 
     /**

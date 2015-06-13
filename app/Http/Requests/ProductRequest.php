@@ -13,7 +13,7 @@ class ProductRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,30 @@ class ProductRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE': {
+                return [];
+            }
+            case 'POST': {
+                return [
+                    'name'          => 'required|min:1|max:50|unique:products,name',
+                    'image'         => 'required',
+                    'price'         => 'required|numeric|min:0',
+                    'manufacturer'  => 'required',
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'name'          => 'required|min:1|max:50|unique:products,name,' . $this->get('id'),
+                    'image'         => 'required',
+                    'price'         => 'required|numeric|min:0',
+                    'manufacturer'  => 'required',
+                ];
+            }
+            default:break;
+        }
     }
 }
