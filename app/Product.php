@@ -12,4 +12,12 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = ['name', 'image', 'price', 'manufacturer'];
+
+    public function getImageAttribute(){
+        return config('app.image_upload_path') . "products/" . $this->attributes['id'] . ".jpg";
+    }
+
+    public function getPriceAttribute(){
+        return number_format($this->attributes['price'], 0, ',', '.');
+    }
 }

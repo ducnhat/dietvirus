@@ -41,7 +41,6 @@ class ProductRequest extends Request
             {
                 return [
                     'name'          => 'required|min:1|max:50|unique:products,name,' . $this->get('id'),
-                    'image'         => 'required',
                     'price'         => 'required|numeric|min:0',
                     'manufacturer'  => 'required',
                 ];

@@ -7,12 +7,12 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        Tao tai khoan
+                        Thêm sản phẩm
                     </div>
                     <div class="panel-body">
-                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\UserController@update', $data->id]]) !!}
+                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\ProductController@update', $data->id], 'files' => true]) !!}
 
-                        @include('admin.user.form')
+                        @include('admin.product.form')
 
                         {!! Form::Hidden('id', $data->id) !!}
 

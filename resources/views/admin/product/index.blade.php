@@ -1,7 +1,7 @@
 @extends('_layout.admin')
 
 @section('content')
-    @include('admin.user.topbar')
+    @include('admin.product.topbar')
     <section id="content" class="table-layout animated fadeIn">
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
@@ -18,16 +18,16 @@
                                     </div>
                                 </th>
                                 <th>
-                                    Họ và tên
+                                    Tên sản phẩm
                                 </th>
                                 <th>
-                                    Điện thoại
+                                    Hình ảnh
                                 </th>
                                 <th>
-                                    Địa chỉ email
+                                    Giá bán
                                 </th>
                                 <th class="text-right">
-                                    Tình trạng
+                                    Nhà sản xuất
                                 </th>
                                 <th class="text-right">
                                     Công cụ
@@ -49,29 +49,14 @@
                                 <td>
                                     {{ $row->name }}
                                 </td>
-                                <td>
-                                    {{ $row->phone }}
+                                <td class="text-center">
+                                    <img height="80px" src="{{ $row->image }}" />
                                 </td>
-                                <td>
-                                    {{ $row->email }}
-                                </td>
-                                <?php
-                                    if($row->status){
-                                        $text = 'Kích hoạt';
-                                        $updateStatus = 0;
-                                        $class = 'success';
-                                    }else{
-                                        $text = 'Khóa';
-                                        $updateStatus = 1;
-                                        $class = 'danger';
-                                    }
-                                ?>
                                 <td class="text-right">
-                                    {{--{!! Form::open(['action' => ['Admin\UserController@updateStatus', 0, 1], 'id' => 'row-' . $row->id]) !!}--}}
-                                    <button type="submit" class="btn btn-{{ $class }} br2 btn-xs fs12">
-                                        {{ $text }}
-                                    </button>
-                                    {{--{!! Form::close() !!}--}}
+                                    {{ $row->price }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $row->manufacturer }}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group text-right">
@@ -81,12 +66,12 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="{{ action('Admin\UserController@edit', $row->id) }}">
+                                                <a href="{{ action('Admin\ProductController@edit', $row->id) }}">
                                                     Sửa
                                                 </a>
                                             </li>
                                             <li>
-                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\UserController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
+                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\ProductController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
                                                 {!! Form::close() !!}
                                                 <a href="#" data-id="{{ $row->id }}" id="delete">Xóa</a>
                                             </li>

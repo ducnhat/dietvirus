@@ -1,18 +1,18 @@
 @extends('_layout.admin')
 
 @section('content')
-@include('admin.lesson.topbar')
+    @include('admin.product-key.topbar')
     <div id="content" class="animated fadeIn">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        Sửa bài học
+                        Thêm sản phẩm
                     </div>
                     <div class="panel-body">
-                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\LessonController@update', $data->id]]) !!}
+                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\ProductController@update', $data->id], 'files' => true]) !!}
 
-                        @include('admin.lesson.form')
+                        @include('admin.product.form')
 
                         {!! Form::Hidden('id', $data->id) !!}
 
@@ -21,5 +21,5 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 @stop
