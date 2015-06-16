@@ -4,16 +4,13 @@
             <a href="{{ url('/admin-ant') }}">Trang chủ</a>
         </li>
         <li>
-            <a href="{{ action('Admin\UserController@index') }}">Tài khoản</a>
+            <a href="{{ action('Admin\UserController@index') }}">{{ trans('link.user') }}</a>
         </li>
         <li>
-            <a href="{{ action('Admin\ProductController@index') }}">Sản phẩm</a>
+            <a href="{{ action('Admin\ProductController@index') }}">{{ trans('link.product') }}</a>
         </li>
         <li>
-            <a href="{{ action('Admin\ProductController@index') }}">Tài khoản</a>
-        </li>
-        <li>
-            <a href="{{ action('Admin\ProductController@index') }}">Tài khoản</a>
+            <a href="{{ action('Admin\ProductKeyController@index') }}">{{ trans('link.product_key') }}</a>
         </li>
 
     </ul>

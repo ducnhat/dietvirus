@@ -1,7 +1,7 @@
 @extends('_layout.admin')
 
 @section('content')
-    @include('admin.product.topbar')
+    @include('admin.product-key.topbar')
     <section id="content" class="table-layout animated fadeIn">
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
@@ -66,12 +66,12 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="{{ action('Admin\ProductController@edit', $row->id) }}">
+                                                <a href="{{ action('Admin\ProductKeyController@edit', $row->id) }}">
                                                     Sửa
                                                 </a>
                                             </li>
                                             <li>
-                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\ProductController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
+                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\ProductKeyController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
                                                 {!! Form::close() !!}
                                                 <a href="#" data-id="{{ $row->id }}" id="delete">Xóa</a>
                                             </li>
@@ -96,25 +96,13 @@
 
 $(document).ready(function(){
     $('a#delete').click(function(){
-        var ok = confirm('{{ trans('message.delete_user') }}');
+        var ok = confirm('{{ trans('message.delete_product_key') }}');
 
         if(!ok)
             return false;
 
         var id = $(this).attr('data-id');
         $('form#row-' + id).submit();
-    });
-
-    $('a#update-status-disable').click(function(){
-        var id = $(this).attr('data-id');
-        $('form#update-status-' + id).children('input#status').val(0);
-        $('form#update-status-' + id).submit();
-    });
-
-    $('a#update-status-enable').click(function(){
-        var id = $(this).attr('data-id');
-        $('form#update-status-' + id).children('input#status').val(1);
-        $('form#update-status-' + id).submit();
     });
 
     $('input#select-all').click(function(){

@@ -1,0 +1,14 @@
+#mainmenu{
+    margin-top: 10px;
+}
+
+#mainmenu .col-md-12{
+    background-color: #00a504;
+    line-height: 30px;
+}
+
+#content{
+    border-top: 1px solid #a39e9b;
+    margin-top: 20px;
+    padding-top: 10px;
+}

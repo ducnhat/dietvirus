@@ -23,8 +23,24 @@ class ProductKeyRequest extends Request
      */
     public function rules()
     {
-        return [
-            'key' => 'required|unique:product_keys,key'
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE': {
+                return [];
+            }
+            case 'POST': {
+                return [
+                    'key' => 'required|unique:product_keys,key'
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'key' => 'required|unique:product_keys,key,' . $this->get('id'),
+                ];
+            }
+            default:break;
+        }
     }
 }

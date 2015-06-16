@@ -50,17 +50,6 @@ class ProductKeyController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -68,7 +57,10 @@ class ProductKeyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::lists('name', 'id')->sortBy('name')->all();
+        $data = ProductKey::findOrFail($id);
+
+        return view('admin.product-key.edit', compact(['products', 'data']));
     }
 
     /**
@@ -77,9 +69,14 @@ class ProductKeyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, ProductKeyRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = ProductKey::findOrFail($id);
+        $data->update($input);
+        $data->save();
+
+        return redirect()->action('Admin\ProductKeyController@index');
     }
 
     /**
@@ -90,6 +87,9 @@ class ProductKeyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = ProductKey::findOrFail($id);
+        $data->delete();
+
+        return redirect()->action('Admin\ProductKeyController@index');
     }
 }

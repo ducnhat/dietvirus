@@ -47,72 +47,54 @@
             <li>
                 <a class="accordion-toggle" href="#">
                     <span class="glyphicons glyphicons-user"></span>
-                    <span class="sidebar-title">Tài khoản</span>
+                    <span class="sidebar-title">{{ trans('link.user') }}</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
                     <li>
                         <a href="{{ action('Admin\UserController@create') }}">
-                            <span class="glyphicons glyphicons-circle_plus"></span> Tạo tài khoản </a>
+                            <span class="glyphicons glyphicons-circle_plus"></span> {{ trans('link.create_user') }} </a>
                     </li>
                     <li>
                         <a href="{{ action('Admin\UserController@index') }}">
-                            <span class="glyphicons glyphicons-list"></span> Quản lý tài khoản </a>
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.manage_user') }} </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="sidebar-label pt20">Khóa học</li>
+            <li class="sidebar-label pt20">{{ trans('link.product') }}</li>
             <li>
                 <a class="accordion-toggle" href="#">
                     <span class="glyphicons glyphicons-book"></span>
-                    <span class="sidebar-title">Khóa học</span>
+                    <span class="sidebar-title">{{ trans('link.product') }}</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
                     <li>
-                        <a href="{{ url('/admin-ant/course/create') }}">
-                            <span class="glyphicons glyphicons-circle_plus"></span> Tạo khóa học </a>
+                        <a href="{{ action('Admin\ProductController@create') }}">
+                            <span class="glyphicons glyphicons-circle_plus"></span> {{ trans('link.create_product') }} </a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin-ant/course') }}">
-                            <span class="glyphicons glyphicons-list"></span> Quản lý khóa học </a>
+                        <a href="{{ action('Admin\ProductController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.manage_product') }} </a>
                     </li>
                 </ul>
             </li>
 
             <li>
                 <a class="accordion-toggle" href="#">
-                    <span class="glyphicons glyphicons-notes_2"></span>
-                    <span class="sidebar-title">Danh mục</span>
+                    <span class="glyphicons glyphicons-book"></span>
+                    <span class="sidebar-title">{{ trans('link.product_key') }}</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
                     <li>
-                        <a href="{{ url('/admin-ant/section/create') }}">
-                            <span class="glyphicons glyphicons-circle_plus"></span> Tạo danh mục </a>
+                        <a href="{{ action('Admin\ProductKeyController@create') }}">
+                            <span class="glyphicons glyphicons-circle_plus"></span> {{ trans('link.create_product_key') }} </a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin-ant/section') }}">
-                            <span class="glyphicons glyphicons-list"></span> Quản lý danh mục </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <a class="accordion-toggle" href="#">
-                    <span class="glyphicons glyphicons-book_open"></span>
-                    <span class="sidebar-title">Bài học</span>
-                    <span class="caret"></span>
-                </a>
-                <ul class="nav sub-nav">
-                    <li>
-                        <a href="{{ url('/admin-ant/lesson/create') }}">
-                            <span class="glyphicons glyphicons-circle_plus"></span> Tạo bài học </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin-ant/lesson') }}">
-                            <span class="glyphicons glyphicons-list"></span> Quản lý bài học </a>
+                        <a href="{{ action('Admin\ProductKeyController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.manage_product_key') }} </a>
                     </li>
                 </ul>
             </li>
