@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Product;
+use App\Http\Requests\ProductKeyRequest;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
+use App\ProductKey;
 
 class ProductKeyController extends Controller
 {
@@ -16,7 +18,10 @@ class ProductKeyController extends Controller
      */
     public function index()
     {
-        //
+        $data = ProductKey::all();
+
+//        dd($data);
+        return view('admin.product-key.index', compact(['data']));
     }
 
     /**
@@ -26,7 +31,9 @@ class ProductKeyController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::lists('name', 'id')->sortBy('name')->all();
+
+        return view('admin.product-key.create', compact(['products']));
     }
 
     /**
@@ -34,9 +41,12 @@ class ProductKeyController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(ProductKeyRequest $request)
     {
-        //
+        $input = $request->all();
+        ProductKey::create($input);
+
+        return redirect()->action('Admin\ProductKeyController@index');
     }
 
     /**

@@ -6,12 +6,12 @@
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-heading">
-                    Thêm sản phẩm
+                    Thêm mã bản quyền
                 </div>
                 <div class="panel-body p20 pb10">
-                    {!! Form::open(['method' => 'post', 'action' => ['Admin\ProductController@store'], 'files' => true]) !!}
+                    {!! Form::open(['method' => 'post', 'action' => ['Admin\ProductKeyController@store'], 'files' => true]) !!}
 
-                    @include('admin.product.form')
+                    @include('admin.product-key.form')
 
                     {!! Form::close() !!}
                 </div>

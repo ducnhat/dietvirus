@@ -20,4 +20,8 @@ class Product extends Model
     public function getPriceAttribute(){
         return number_format($this->attributes['price'], 0, ',', '.');
     }
+
+    public function scopeProductsToArrayList($query){
+//        $query->
+    }
 }

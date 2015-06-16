@@ -11,6 +11,13 @@ return [
     'image'         => 'Hình ảnh',
     'price'         => 'Giá',
     'manufacturer'  => 'Nhà sản xuất',
+    'product_key'   => 'Mã bản quyền',
+    'remember_me'   => 'Lưu phiên đăng nhập',
+    'yes'           => 'Có',
+    'no'            => 'Không',
+    'created_at'    => 'Ngày thêm',
+    'created_by_user'   => 'Người thêm',
+    'tools'             => 'Công cụ',
 ];
 
 ?>

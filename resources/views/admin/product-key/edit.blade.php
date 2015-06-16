@@ -7,12 +7,12 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        Thêm sản phẩm
+                        Thêm mã bản quyền
                     </div>
                     <div class="panel-body">
-                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\ProductController@update', $data->id], 'files' => true]) !!}
+                        {!! Form::model($data, ['method' => 'PATCH', 'action' => ['Admin\ProductKeyController@update', $data->id], 'files' => true]) !!}
 
-                        @include('admin.product.form')
+                        @include('admin.product-key.form')
 
                         {!! Form::Hidden('id', $data->id) !!}
 

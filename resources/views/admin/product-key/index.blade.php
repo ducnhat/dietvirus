@@ -18,19 +18,19 @@
                                     </div>
                                 </th>
                                 <th>
-                                    Tên sản phẩm
+                                    {{ trans('form.product_key') }}
                                 </th>
                                 <th>
-                                    Hình ảnh
+                                    {{ trans('form.product_name') }}
                                 </th>
                                 <th>
-                                    Giá bán
+                                    {{ trans('form.created_by_user') }}
                                 </th>
                                 <th class="text-right">
-                                    Nhà sản xuất
+                                    {{ trans('form.created_at') }}
                                 </th>
                                 <th class="text-right">
-                                    Công cụ
+                                    {{ trans('form.tools') }}
                                 </th>
                             </tr>
                         </thead>
@@ -47,16 +47,16 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {{ $row->name }}
+                                    {{ $row->key }}
+                                </td>
+                                <td class="text-left">
+                                    {{ $row->product_id }}
+                                </td>
+                                <td class="text-left">
+                                    {{ $row->user_id }}
                                 </td>
                                 <td class="text-center">
-                                    <img height="80px" src="{{ $row->image }}" />
-                                </td>
-                                <td class="text-right">
-                                    {{ $row->price }}
-                                </td>
-                                <td class="text-center">
-                                    {{ $row->manufacturer }}
+                                    {{ $row->created_at->format('d/m/Y') }}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group text-right">

@@ -8,35 +8,22 @@
 
 <div class="form-group">
 
-    {!! Form::Label('name', trans('form.product_name')) !!}
-    {!! Form::Text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::Label('key', trans('form.product_key')) !!}
+    {!! Form::Text('key', null, ['class' => 'form-control']) !!}
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::Label('image', trans('form.image')) !!}
-    {!! Form::File('image') !!}
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::Label('price', trans('form.price')) !!}
-    {!! Form::Text('price', null, ['class' => 'form-control']) !!}
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::Label('manufacturer', trans('form.manufacturer')) !!}
-    {!! Form::Text('manufacturer', null, ['class' => 'form-control']) !!}
+    {!! Form::Label('product_id', trans('form.product_name')) !!}
+    {!! Form::Select('product_id', $products, null, ['class' => 'form-control']) !!}
 
 </div>
 
 <div class="form-group">
 
     <div class="col-md-3">
+        {!! Form::hidden('user_id', $currentUser->id) !!}
         {!! Form::Submit('Lưu lại', ['class' => 'btn btn-primary form-control']) !!}
     </div>
 

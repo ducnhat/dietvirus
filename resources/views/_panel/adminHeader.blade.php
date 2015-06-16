@@ -133,7 +133,7 @@
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="{{ asset('admin/img/avatars/1.jpg')}}" alt="avatar" class="mw30 br64 mr15">
-                <span>Nhật Đỗ</span>
+                <span>{{ $currentUser->name }}</span>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
             <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
@@ -177,7 +177,7 @@
                         <span class="fa fa-gear pr5"></span> Account Settings </a>
                 </li>
                 <li class="br-t of-h">
-                    <a href="{{ url('/auth/logout') }}" class="fw600 p12 animated animated-short fadeInDown">
+                    <a href="{{ action('Admin\Auth\AuthController@getLogout') }}" class="fw600 p12 animated animated-short fadeInDown">
                         <span class="fa fa-power-off pr5"></span> Logout </a>
                 </li>
             </ul>
