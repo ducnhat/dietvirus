@@ -34,21 +34,10 @@
 			<![endif]-->
         <!--markup header-->
         @include('_panel.frontendHeader')
-        <!--slider-->
-        {{--<section class="revolution_slider">--}}
-            {{--@include('_panel.frontendSlider')--}}
-        {{--</section>--}}
         <!--content-->
         <div class="page_content_offset">
             <div class="container">
-                <!--banners-->
-                @include('_panel.frontendBannerTop')
-
-                <!--carousel with filter-->
-                <div class="wfilter_carousel m_bottom_30 m_xs_bottom_15">
-                    @yield('content')
-                </div>
-
+                @yield('content')
             </div>
         </div>
         <!--markup footer-->
@@ -57,6 +46,7 @@
     <button class="t_align_c r_corners type_2 tr_all_hover animate_ftl" id="go_to_top"><i class="fa fa-angle-up"></i></button>
     <!--scripts include-->
     @include('_panel.frontendJS')
+    @yield('scripts')
 </body>
 
 </html>

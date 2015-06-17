@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bbf7876874c93c00e6d917d69cbd7a9a",
+    "hash": "98137ed25ecc503ff8ac4c3b0f8b98e1",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -121,6 +121,54 @@
                 "utils"
             ],
             "time": "2015-02-10 06:19:18"
+        },
+        {
+            "name": "darryldecode/cart",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/darryldecode/laravelshoppingcart.git",
+                "reference": "73a6b8f9919816a6638b2da41f38692bf735b977"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/darryldecode/laravelshoppingcart/zipball/73a6b8f9919816a6638b2da41f38692bf735b977",
+                "reference": "73a6b8f9919816a6638b2da41f38692bf735b977",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.0.x|5.1.x",
+                "illuminate/validation": "5.0.x|5.1.x",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "symfony/var-dumper": "2.7.*@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Darryldecode\\": "src/Darryldecode"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Darryl Fernandez",
+                    "email": "engrdarrylfernandez@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Shopping cart",
+            "keywords": [
+                "cart",
+                "laravel",
+                "shopping cart"
+            ],
+            "time": "2015-06-16 07:29:38"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3086,7 +3134,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "illuminate/html": 20,
-        "intervention/image": 20
+        "intervention/image": 20,
+        "darryldecode/cart": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

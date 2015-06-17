@@ -2,9 +2,9 @@
     <a role="button" href="#" class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
         <span class="d_inline_middle shop_icon">
             <i class="fa fa-shopping-cart"></i>
-            <span class="count tr_delay_hover type_2 circle t_align_c">3</span>
+            <span class="count tr_delay_hover type_2 circle t_align_c">{{ $cart->count() }}</span>
         </span>
-        <b>$355</b>
+        <b>{{ $cart->count() }}</b>
     </a>
     <div class="shopping_cart top_arrow tr_all_hover r_corners">
         <div class="f_size_medium sc_header">Recently added item(s)</div>

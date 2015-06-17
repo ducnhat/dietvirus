@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::resource('cart', 'CartController');
 
 //Admin prefix
 $admin_prefix = $_ENV['ADMIN_PREFIX'];
