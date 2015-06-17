@@ -13,6 +13,8 @@ return [
     'create_product_key' => 'Thêm mã bản quyền',
     'manage_product_key' => 'Quản lý mã bản quyền',
     'add_to_cart' => 'Đặt mua',
+    'view_cart' => 'Xem giỏ hàng',
+    'cart_checkout' => 'Thanh toán',
 ];
 
 ?>

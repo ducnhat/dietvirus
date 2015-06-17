@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-17 08:24:05
+Date: 2015-06-17 13:20:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -94,10 +94,10 @@ CREATE TABLE `products` (
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\php21B3.tmp', '130000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-17 08:08:31', null);
-INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php5DC7.tmp', '100000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-15 08:06:15', null);
-INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php58EE.tmp', '170000', 'Bkav', '2015-06-15 08:26:58', '2015-06-15 08:29:34', null);
-INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\phpB04E.tmp', '160000', 'Symantec', '2015-06-17 08:07:57', '2015-06-17 08:07:57', null);
+INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\phpB948.tmp', '130000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-17 12:19:22', null);
+INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php28EB.tmp', '100000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-17 12:19:50', null);
+INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php1338.tmp', '170000', 'Bkav', '2015-06-15 08:26:58', '2015-06-17 12:21:55', null);
+INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\php347F.tmp', '160000', 'Symantec', '2015-06-17 08:07:57', '2015-06-17 12:25:21', null);
 
 -- ----------------------------
 -- Table structure for `users`

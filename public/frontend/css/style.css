@@ -87,9 +87,9 @@ html,body{
 ------------------------------------- */
 
 body{
-	font:300 14px/21px 'Roboto', 'sans-serif';
+	font:300 14px/21px 'Tahoma', 'sans-serif';
 	color:#696e6e;
-	background:#232830;
+	background:#292f38;
 	letter-spacing: 0.1px;
 	overflow-x: hidden;
 	-webkit-backface-visibility:hidden;
@@ -538,6 +538,7 @@ a,.tr_hover{
 a:hover,.color_dark,.bc_list a[class*="color"]:hover,.bc_list > li.current > a,
 .tweet_list a{
 	color:#292f38;
+    font-size: 16px;
 }
 .color_grey{
 	color:#838a8f;
@@ -2277,7 +2278,7 @@ hr{
 	padding:14px 15px 20px;
 }
 .page_content_offset{
-	padding:60px 0;
+	padding:30px 0;
 }
 .product_item,.owl-item > .photoframe{
 	margin:15px;
@@ -3097,7 +3098,7 @@ fieldset legend .close_fieldset{
 
 #footer{
 	color:#bdc3c7;
-	padding:45px 0 0;
+	padding:0px 0 0;
 }
 #footer.type_2{
 	padding-top:25px;
