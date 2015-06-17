@@ -1,9 +1,22 @@
 #mainmenu{
     margin-top: 10px;
+    height: 30px;
 }
 
 #mainmenu .col-md-12{
-    background-color: #00a504;
+    height: 30px;
+}
+
+#mainmenu .col-md-12 ul{
+    background: #323a45 none repeat scroll 0 0;
+}
+
+#mainmenu .col-md-12 ul > li{
+    display: inline;
+}
+
+#mainmenu .col-md-12 ul > li > a{
+    margin: 10px 10px;
     line-height: 30px;
 }
 
