@@ -20,7 +20,7 @@
                             <!--main menu-->
                             <nav role="navigation" class="f_left f_xs_none d_xs_none m_right_35 m_md_right_30 m_sm_right_0">
                                 <ul class="horizontal_list main_menu type_2 clearfix">
-                                    <li class="current relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="index.html" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>Home</b></a>
+                                    <li class="current relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="{{ action('HomeController@index') }}" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>{{ trans('menu.home') }}</b></a>
 
                                     </li>
 
@@ -46,30 +46,8 @@
                                     <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="contact.html" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>Contact</b></a></li>
                                 </ul>
                             </nav>
-                            {{--<button class="f_right search_button tr_all_hover f_xs_none d_xs_none">--}}
-                                {{--<i class="fa fa-search"></i>--}}
-                            {{--</button>--}}
-                            <!--search form-->
-                            {{--<div class="searchform_wrap type_2 bg_tr tf_xs_none tr_all_hover w_inherit">--}}
-                                {{--<div class="container vc_child h_inherit relative w_inherit">--}}
-                                    {{--<form role="search" class="d_inline_middle full_width">--}}
-                                        {{--<input type="text" name="search" placeholder="Type text and hit enter" class="f_size_large p_hr_0">--}}
-                                    {{--</form>--}}
-                                    {{--<button class="close_search_form tr_all_hover d_xs_none color_dark">--}}
-                                        {{--<i class="fa fa-times"></i>--}}
-                                    {{--</button>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
                         </div>
                         <ul class="f_right horizontal_list d_sm_inline_b f_sm_none clearfix t_align_l site_settings">
-                            <!--like-->
-                            {{--<li>--}}
-                                {{--<a role="button" href="#" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-heart-o f_size_ex_large"></i><span class="count circle t_align_c">12</span></a>--}}
-                            {{--</li>--}}
-                            {{--<li class="m_left_5">--}}
-                                {{--<a role="button" href="#" class="button_type_1 color_dark d_block bg_light_color_1 r_corners tr_delay_hover box_s_none"><i class="fa fa-files-o f_size_ex_large"></i><span class="count circle t_align_c">3</span></a>--}}
-                            {{--</li>--}}
-                            <!--shopping cart-->
                             @include('_panel.frontendHeaderCart')
                         </ul>
                     </div>

@@ -2,40 +2,38 @@
     <a role="button" href="#" class="button_type_3 color_light bg_scheme_color d_block r_corners tr_delay_hover box_s_none">
         <span class="d_inline_middle shop_icon">
             <i class="fa fa-shopping-cart"></i>
-            <span class="count tr_delay_hover type_2 circle t_align_c">{{ $cart->count() }}</span>
+            <span class="count tr_delay_hover type_2 circle t_align_c">{{ (!Cart::isEmpty()) ? $cart::getContent()->count() : 0 }}</span>
         </span>
-        <b>{{ $cart->count() }}</b>
+        <b>{{ (!Cart::isEmpty()) ? money_format($cart::getTotal()) : 0 }}</b>
     </a>
     <div class="shopping_cart top_arrow tr_all_hover r_corners">
-        <div class="f_size_medium sc_header">Recently added item(s)</div>
+        <div class="f_size_medium sc_header">{{ trans((!Cart::isEmpty()) ? 'cart.list_items' : 'cart.empty') }}</div>
+
+        @if(!Cart::isEmpty())
         <ul class="products_list">
+            @foreach(Cart::getContent() as $item)
             <li>
                 <div class="clearfix">
-                    <!--product image-->
-                    <img class="f_left m_right_10" src="{{ asset('frontend/images/shopping_c_img_1.jpg') }}" alt="">
                     <!--product description-->
                     <div class="f_left product_description">
-                        <a href="#" class="color_dark m_bottom_5 d_block">Cursus eleifend elit aenean auctor wisi et urna</a>
-                        <span class="f_size_medium">Product Code PS34</span>
+                        <a href="#" class="color_dark m_bottom_5 d_block">{{ $item->name }}</a>
+                        {{--<span class="f_size_medium">Product Code PS34</span>--}}
+                        <a href="#">{{ trans('cart.delete') }}</a>
                     </div>
                     <!--product price-->
                     <div class="f_left f_size_medium">
                         <div class="clearfix">
-                            1 x <b class="color_dark">$99.00</b>
+                            {{ $item->quantity }} x <b class="color_dark">{{ money_format($item->price) }}</b>
+
                         </div>
-                        <button class="close_product color_dark tr_hover"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
             </li>
+            @endforeach
         </ul>
+
         <!--total price-->
         <ul class="total_price bg_light_color_1 t_align_r color_dark">
-            <li class="m_bottom_10">
-                Tax:
-                <span class="f_size_large sc_price t_align_l d_inline_b m_left_15">
-                    $0.00
-                </span>
-            </li>
             <li class="m_bottom_10">
                 Discount:
                 <span class="f_size_large sc_price t_align_l d_inline_b m_left_15">
@@ -43,19 +41,20 @@
                 </span>
             </li>
             <li>
-                Total:
+                {{ trans('cart.total') }}:
                 <b class="f_size_large bold scheme_color sc_price t_align_l d_inline_b m_left_15">
-                    $999.00
+                    {{ (!Cart::isEmpty()) ? money_format($cart::getTotal()) : 0 }}
                 </b>
             </li>
         </ul>
         <div class="sc_footer t_align_c">
             <a href="#" role="button" class="button_type_4 d_inline_middle bg_light_color_2 r_corners color_dark t_align_c tr_all_hover m_mxs_bottom_5">
-                {{ trans('link.view_cart') }}
+                {{ trans('cart.view_cart') }}
             </a>
             <a href="#" role="button" class="button_type_4 bg_scheme_color d_inline_middle r_corners tr_all_hover color_light">
-                {{ trans('link.cart_checkout') }}
+                {{ trans('cart.checkout') }}
             </a>
         </div>
+        @endif
     </div>
 </li>

@@ -56,7 +56,9 @@ class CartController extends Controller
      */
     public function show()
     {
+        Cart::clear();
 
+        return redirect()->action('HomeController@index');
     }
 
     /**
@@ -87,8 +89,10 @@ class CartController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Cart::clear();
+
+        return redirect()->action('HomeController@index');
     }
 }

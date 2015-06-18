@@ -17,11 +17,7 @@ class Product extends Model
         return config('app.image_upload_path') . "products/" . $this->attributes['id'] . ".jpg";
     }
 
-    public function getPriceAttribute(){
-        return number_format($this->attributes['price'], 0, ',', '.');
-    }
-
-    public function scopeProductsToArrayList($query){
-//        $query->
-    }
+//    public function getPriceAttribute(){
+//        return number_format($this->attributes['price'], 0, '.', ',');
+//    }
 }

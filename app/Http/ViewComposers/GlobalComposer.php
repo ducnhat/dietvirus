@@ -19,7 +19,7 @@ class GlobalComposer {
         $view->with('currentUser', Auth::user());
 
         if(!Cart::isEmpty()){
-            $view->with('cart', Cart::getContent());
+            $view->with('cart', Cart::class);
         }
     }
 

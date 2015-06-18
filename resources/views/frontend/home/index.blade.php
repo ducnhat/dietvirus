@@ -19,7 +19,7 @@
             <figcaption>
                 <h5 class="m_bottom_10"><a href="#" class="color_dark ellipsis">{{ $row->name }}</a></h5>
                 <div class="clearfix">
-                    <p class="scheme_color f_left f_size_large m_bottom_15">{{ $row->price }}đ</p>
+                    <p class="scheme_color f_left f_size_large m_bottom_15">{{ money_format($row->price) }}</p>
                     <!--rating-->
                     <ul class="horizontal_list f_right clearfix rating_list tr_all_hover">
                         <li class="active">
