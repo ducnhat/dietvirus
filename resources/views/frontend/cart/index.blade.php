@@ -13,34 +13,57 @@
             <thead>
                 <tr class="f_size_large">
                     <!--titles for td-->
-                    <th class="t_align_c">Sản phẩm</th>
-                    <th class="t_align_c">Giá</th>
-                    <th class="t_align_c">Số lượng</th>
-                    <th class="t_align_c">Thành tiền</th>
+                    <th class="t_align_c">{{ trans('cart.product_name') }}</th>
+                    <th class="t_align_c">{{ trans('cart.price') }}</th>
+                    <th class="t_align_c">{{ trans('cart.quantity') }}</th>
+                    <th class="t_align_c">{{ trans('cart.subtotal') }}</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach(Cart::getContent() as $item)
                 <tr>
                     <!--Product name and image-->
-                    <td data-title="Product Image &amp; name" class="t_md_align_c">
-                        <a href="#" class="d_inline_b m_left_5 color_dark">Kaspersky Internet Security</a>
+                    <td data-title="Product name" class="t_md_align_c">
+                        <a href="#" class="d_inline_b m_left_5 color_dark">{{ $item->name }}</a>
                     </td>
 
                     <!--product price-->
                     <td class="t_align_r" data-title="Price">
                         {{--<s>150.000đ</s>--}}
-                        <p class="f_size_large color_dark">130.000đ</p>
+                        <p class="f_size_large color_dark">{{ money_format($item->price) }}</p>
                     </td>
                     <!--quanity-->
                     <td data-title="Quantity">
-                        <input type="text" class="r_corners full_width" name="quantity">
+                        <div class="clearfix quantity r_corners d_inline_middle f_size_medium color_dark m_bottom_10">
+                        <button class="bg_tr d_block f_left" data-direction="down">-</button>
+                        <input class="f_left f_left t_align_c" type="text" value="{{ $item->quantity }}" readonly="" id="quantity[{{ $item->id }}][]" />
+                        <button class="bg_tr d_block f_left" data-direction="up">+</button>
+                        </div>
                     </td>
                     <!--subtotal-->
                     <td class="t_align_r" data-title="Subtotal">
-                        <p class="f_size_large fw_medium scheme_color">130.000đ</p>
+                        <p class="f_size_large fw_medium scheme_color">{{ money_format($item->getPriceSum()) }}</p>
                     </td>
                 </tr>
+                @endforeach
                 <!--prices-->
+                <tr>
+                    <td colspan="1">
+                        {!! Form::open(['method' => 'PATCH', 'action' => ['CartController@update'], 'id' => 'cart_items']) !!}
+                        @foreach(Cart::getContent() as $item)
+                            {!! Form::hidden('quantity[' . $item->id . '][]') !!}
+                        @endforeach
+                        <button id="updateCart" type="submit" class="tr_delay_hover r_corners button_type_16 f_size_medium bg_dark_color bg_cs_hover color_light m_xs_bottom_5">Cập nhật đơn hàng</button>
+                        {!! Form::close() !!}
+                    </td>
+                    <td colspan="2">
+                        <p class="fw_medium f_size_large t_align_r t_xs_align_c">{{ trans('cart.subtotal') }}:</p>
+                    </td>
+                    <td class="t_align_r" colspan="1">
+                        <p class="fw_medium f_size_large color_dark">{{ money_format(Cart::getSubtotal()) }}</p>
+                    </td>
+
+                </tr>
                 <tr>
                     <td colspan="3">
                         <p class="fw_medium f_size_large t_align_r t_xs_align_c">Coupon Discount:</p>
@@ -49,29 +72,27 @@
                         <p class="fw_medium f_size_large color_dark">-30.000đ</p>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3">
-                        <p class="fw_medium f_size_large t_align_r t_xs_align_c">Subtotal:</p>
-                    </td>
-                    <td class="t_align_r" colspan="1">
-                        <p class="fw_medium f_size_large color_dark">100.000đ</p>
-                    </td>
-                </tr>
                 <!--total-->
                 <tr>
-                    <td colspan="2" class="v_align_m d_ib_offset_large t_xs_align_l">
+                    <td colspan="2" class="v_align_m t_xs_align_l">
                         <!--coupon-->
                         {{-- class="d_ib_offset_0 d_inline_middle half_column d_xs_block w_xs_full m_xs_bottom_5"--}}
-                        <form>
-                            <input type="text" placeholder="Enter your coupon code" name="" class="r_corners f_size_medium">
-                            <button class="button_type_4 r_corners bg_light_color_2 m_left_5 mw_0 tr_all_hover color_dark">Save</button>
-                        </form>
+                        {!! Form::open(['method' => 'post', 'action' => ['CartController@coupon'], 'id' => 'coupon']) !!}
+                            <input type="text" placeholder="{{ trans('cart.enter_coupon') }}" name="coupon" class="r_corners f_size_medium">
+                            <button class="button_type_4 r_corners bg_light_color_2 m_left_5 mw_0 tr_all_hover color_dark">{{ trans('cart.apply') }}</button>
+                        {!! Form::close() !!}
                     </td>
                     <td class="t_align_r">
-                        <p class="fw_medium f_size_large t_align_r scheme_color p_xs_hr_0 d_inline_middle half_column d_ib_offset_normal d_xs_block w_xs_full t_xs_align_c">Total:</p>
+                        <p class="fw_medium f_size_large t_align_r scheme_color p_xs_hr_0 d_ib_offset_normal d_xs_block w_xs_full t_xs_align_c">{{ trans('cart.total') }}:</p>
                     </td>
-                    <td colspan="1" class="v_align_m">
-                        <p class="fw_medium f_size_large scheme_color m_xs_bottom_10">100.000đ</p>
+                    <td colspan="1" class="t_align_r">
+                        <p class="fw_medium f_size_large scheme_color m_xs_bottom_10">{{ money_format(Cart::getTotal()) }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_align_r" colspan="4">
+                        <button class="tr_delay_hover r_corners button_type_14 color_dark bg_light_color_2" type="submit">{{ trans('cart.continue') }}</button>
+                        <button class="tr_delay_hover r_corners button_type_14 bg_scheme_color color_light" type="submit">{{ trans('cart.checkout') }}</button>
                     </td>
                 </tr>
             </tbody>
@@ -82,7 +103,7 @@
         <!--widgets-->
             <figure class="widget shadow r_corners wrapper m_bottom_30">
                 <figcaption>
-                    <h3 class="color_light">Thông tin người mua</h3>
+                    <h3 class="color_light">{{ trans('cart.customer_info') }}</h3>
                 </figcaption>
                 <div class="widget_content">
                     <div class="row clearfix">
@@ -90,16 +111,16 @@
                             <form>
                                 <ul>
                                     <li class="m_bottom_15">
-                                        <label for="c_name_1" class="d_inline_b m_bottom_5 required">Họ tên</label>
+                                        <label for="c_name_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_name') }}</label>
                                         <input type="text" id="c_name_1" name="" class="r_corners full_width">
                                     </li>
 
                                     <li class="m_bottom_15">
-                                        <label for="address_1" class="d_inline_b m_bottom_5 required">Địa chỉ email</label>
+                                        <label for="address_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_email') }}</label>
                                         <input type="text" id="address_1" name="" class="r_corners full_width">
                                     </li>
                                     <li class="m_bottom_15">
-                                        <label for="address_1_1" class="d_inline_b m_bottom_5 required">Điện thoại</label>
+                                        <label for="address_1_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_phone') }}</label>
                                         <input type="text" id="address_1_1" name="" class="r_corners full_width">
                                     </li>
                                 </ul>
@@ -116,5 +137,15 @@
 @section('scripts')
 
 <script src="{{ asset('frontend/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#updateCart").click(function(){
+        $('input[id^="quantity"]').each(function(){
+            var inputName = $(this).attr('id');
+            $('input[name="' + inputName + '"]').val($(this).val());
+        });
+    });
+});
+</script>
 
 @endsection

@@ -78,9 +78,27 @@ class CartController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+
+        foreach($input['quantity'] as $id => $val){
+            $newQuantity = $val[0];
+            $oldQuantity = Cart::get($id)->quantity;
+            Cart::update($id, array('quantity' => $newQuantity - $oldQuantity));
+        }
+
+        return redirect()->action('CartController@index');
+    }
+
+    /**
+     * Update discount for user
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function coupon(Request $request){
+
     }
 
     /**

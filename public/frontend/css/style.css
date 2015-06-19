@@ -2279,6 +2279,7 @@ hr{
 }
 .page_content_offset{
 	padding:30px 0;
+    min-height: 700px;
 }
 .product_item,.owl-item > .photoframe{
 	margin:15px;
@@ -3058,7 +3059,7 @@ input::-ms-clear {
 }
 .quantity button{
 	height:26px;
-	width:27px;
+	width:22px;
 }
 .review_tarea,#comments{
 	height:200px;

@@ -9,6 +9,18 @@ return [
     'total' => 'Thành tiền',
     'empty' => 'Bạn chưa có sản phẩm nào trong giỏ hàng',
     'delete' => 'Xóa',
+    'product_name' => 'Tên sản phẩm',
+    'price' => 'Giá',
+    'quantity' => 'Số lượng',
+    'subtotal' => 'Tổng cộng',
+    'total' => 'Thành tiền',
+    'continue' => 'Tiếp tục mua hàng',
+    'customer_info' => 'Thông tin khách hàng',
+    'customer_name' => 'Họ tên',
+    'customer_email' => 'Địa chỉ email',
+    'customer_phone' => 'Điện thoại',
+    'apply' => 'Áp dụng',
+    'enter_coupon' => 'Nhập mã giảm giá'
 ];
 
 ?>

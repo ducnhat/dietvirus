@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::resource('cart', 'CartController');
+Route::post('cart/coupon', 'CartController@coupon');
 
 //Admin prefix
 $admin_prefix = $_ENV['ADMIN_PREFIX'];
