@@ -22,7 +22,6 @@
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('frontend/css/style.css') }}">
     <!--font include-->
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
