@@ -37,6 +37,27 @@ class Coupon extends Model
         $this->attributes['end_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->toDateTimeString();;
     }
 
+    public function getTargetAttribute($value){
+
+        switch($value){
+            case 1:
+                $target = 'subtotal';
+                break;
+            default:
+                $target = 'subtotal';
+        }
+
+        return $target;
+    }
+
+    public function getValueAttribute($value){
+        if($value <= 100){
+            return "$value%";
+        }
+
+        return money_format($value, env('MONEY_SUFFIX'));
+    }
+
     public function scopeCheck($query, $coupon){
         $now = Carbon::now()->toDateTimeString();
 

@@ -12,6 +12,8 @@ return [
     'start_date' => 'Ngày bắt đầu',
     'end_date' => 'Ngày kết thúc',
     'is_used' => 'Đã sử dụng',
+    'coupon_error' => 'Mã khuyến mãi không đúng hoặc đơn hàng của bạn chưa đủ điều kiện!',
+    'discount' => 'Khuyến mãi',
 ]
 
 ?>

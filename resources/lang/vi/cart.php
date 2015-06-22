@@ -20,7 +20,9 @@ return [
     'customer_email' => 'Địa chỉ email',
     'customer_phone' => 'Điện thoại',
     'apply' => 'Áp dụng',
-    'enter_coupon' => 'Nhập mã giảm giá'
+    'enter_coupon' => 'Nhập mã giảm giá',
+    'remove' => 'Hủy',
+    'payment' => 'Thanh toán',
 ];
 
 ?>

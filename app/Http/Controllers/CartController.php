@@ -16,25 +16,15 @@ class CartController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(Cart::isEmpty()){
-            $data = false;
+        if($request->session()->has('error')){
+            $error = $request->session()->get('error');
         }else{
-            $data = Cart::getContent();
+            $error = false;
         }
 
-        return view('frontend.cart.index', compact(['data']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
+        return view('frontend.cart.index', compact(['error']));
     }
 
     /**
@@ -49,6 +39,11 @@ class CartController extends Controller
         return redirect()->action('CartController@index');
     }
 
+    public function cartReview(){
+        return 'asdasd';
+//        return view('frontend.cart.review');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -57,20 +52,10 @@ class CartController extends Controller
      */
     public function show()
     {
-        Cart::clear();
+//        Cart::clear();
+        Cart::clearCartConditions();
 
         return redirect()->action('HomeController@index');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -89,7 +74,18 @@ class CartController extends Controller
             Cart::update($id, array('quantity' => $newQuantity - $oldQuantity));
         }
 
+        $this->checkCouponCondition();
+
         return redirect()->action('CartController@index');
+    }
+
+    private function checkCouponCondition(){
+        if(count(Cart::getConditions()) > 0){
+            $condition = Cart::getCondition('promo')->getAttributes()['condition'];
+            if($condition >= Cart::getSubtotal()){
+                Cart::clearCartConditions();
+            }
+        }
     }
 
     /**
@@ -99,11 +95,30 @@ class CartController extends Controller
      * @return Response
      */
     public function coupon(Request $request){
-        echo $coupon = $request->get('coupon');
+        $coupon = $request->get('coupon');
 
         $data = Coupon::check($coupon)->first();
 
-        dd($data);
+        $error = array('error' => 'false', 'message' => null);
+
+        if($data != null && $data->condition <= Cart::getTotal()){
+            $condition = new \Darryldecode\Cart\CartCondition(array(
+                'name' => $data->type,
+                'type' => $data->type,
+                'target' => $data->target,
+                'value' => "-$data->value",
+                'attributes' => ['coupon' => $data->coupon, 'condition' => $data->condition]
+            ));
+
+            Cart::condition($condition);
+        }else{
+            $error['error'] = true;
+            $error['message'] = trans('coupon.coupon_error');
+
+            $request->session()->flash('error', $error);
+        }
+
+        return redirect()->action('CartController@index');
     }
 
     /**
@@ -117,5 +132,11 @@ class CartController extends Controller
         Cart::clear();
 
         return redirect()->action('HomeController@index');
+    }
+
+    public function clearCoupon(){
+        Cart::clearCartConditions();
+
+        return redirect()->action('CartController@index');
     }
 }

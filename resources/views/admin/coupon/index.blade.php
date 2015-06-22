@@ -52,7 +52,7 @@
                                     {{ money_format($row->condition) }}
                                 </td>
                                 <td class="text-right">
-                                    {{ coupon_value($row->value) }}
+                                    {{ $row->value }}
                                 </td>
                                 <td class="text-right">
                                     {{ money_format($row->quantity, ' ') }}

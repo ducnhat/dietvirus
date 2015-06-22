@@ -118,6 +118,36 @@
     </section>
 
     <aside class="col-lg-3 col-md-3 col-sm-3 t_align_c">
+        {{--<!--widgets-->--}}
+            {{--<figure class="widget shadow r_corners wrapper m_bottom_30">--}}
+                {{--<figcaption>--}}
+                    {{--<h3 class="color_light">{{ trans('cart.payment') }}</h3>--}}
+                {{--</figcaption>--}}
+                {{--<div class="widget_content">--}}
+                    {{--<div class="row clearfix">--}}
+                        {{--<div class="col-lg-12 col-md-12 col-sm-12 m_xs_bottom_30">--}}
+                            {{--<form>--}}
+                                {{--<ul>--}}
+                                    {{--<li class="m_bottom_15">--}}
+                                        {{--<label for="c_name_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_name') }}</label>--}}
+                                        {{--<input type="text" id="c_name_1" name="" class="r_corners full_width">--}}
+                                    {{--</li>--}}
+
+                                    {{--<li class="m_bottom_15">--}}
+                                        {{--<label for="address_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_email') }}</label>--}}
+                                        {{--<input type="text" id="address_1" name="" class="r_corners full_width">--}}
+                                    {{--</li>--}}
+                                    {{--<li class="m_bottom_15">--}}
+                                        {{--<label for="address_1_1" class="d_inline_b m_bottom_5 required">{{ trans('cart.customer_phone') }}</label>--}}
+                                        {{--<input type="text" id="address_1_1" name="" class="r_corners full_width">--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
+                            {{--</form>--}}
+                            {{----}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</figure>--}}
         <a class="d_block r_corners m_bottom_30" href="#">
             <img width="100%" alt="" src="{{ asset('upload/images/logo/bannershield.png') }}">
         </a>
