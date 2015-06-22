@@ -11,6 +11,7 @@ return [
     'quantity' => 'Số lượng',
     'start_date' => 'Ngày bắt đầu',
     'end_date' => 'Ngày kết thúc',
+    'is_used' => 'Đã sử dụng',
 ]
 
 ?>

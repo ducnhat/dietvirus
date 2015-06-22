@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -98,7 +99,11 @@ class CartController extends Controller
      * @return Response
      */
     public function coupon(Request $request){
+        echo $coupon = $request->get('coupon');
 
+        $data = Coupon::check($coupon)->first();
+
+        dd($data);
     }
 
     /**

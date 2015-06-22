@@ -94,8 +94,8 @@ $(document).ready(function(){
                 inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
             }
         },
-        onClose: function( selectedDate ) {
-            $( "#end_date" ).datepicker( "option", "minDate", selectedDate );
+        onClose: function( selectedDateTime ) {
+            $( "#end_date" ).datepicker( "option", "minDateTime", selectedDate );
         }
     });
 
@@ -111,8 +111,8 @@ $(document).ready(function(){
                 inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
             }
         },
-        onClose: function( selectedDate ) {
-            $( "#start_date" ).datepicker( "option", "maxDate", selectedDate );
+        onClose: function( selectedDateTime ) {
+            $( "#start_date" ).datepicker( "option", "maxDateTime", selectedDate );
         }
     });
 });

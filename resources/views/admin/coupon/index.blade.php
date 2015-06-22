@@ -6,17 +6,9 @@
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-body p20 pb10">
-                    <table id="datatable" class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <table id="datatable" class="table table-striped table-hover dataTable">
                         <thead>
                             <tr class="bg-light">
-                                <th class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select-all">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
-                                </th>
                                 <th>
                                     {{ trans('coupon.name') }}
                                 </th>
@@ -33,6 +25,9 @@
                                     {{ trans('coupon.quantity') }}
                                 </th>
                                 <th>
+                                    {{ trans('coupon.is_used') }}
+                                </th>
+                                <th>
                                     {{ trans('coupon.start_date') }}
                                 </th>
                                 <th class="text-right">
@@ -47,14 +42,6 @@
                         <tbody>
                             @foreach($data as $row)
                             <tr>
-                                <td class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select" name="{{ $row->id }}">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
-                                </td>
                                 <td>
                                     {{ $row->name }}
                                 </td>
@@ -69,6 +56,9 @@
                                 </td>
                                 <td class="text-right">
                                     {{ money_format($row->quantity, ' ') }}
+                                </td>
+                                <td class="text-right">
+                                    {{ money_format($row->is_used, ' ') }}
                                 </td>
                                 <td class="text-left">
                                     {{ $row->start_date->format('d/m/Y') }}

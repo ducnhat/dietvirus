@@ -10,10 +10,38 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-18 07:33:11
+Date: 2015-06-22 07:48:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for `coupon`
+-- ----------------------------
+DROP TABLE IF EXISTS `coupon`;
+CREATE TABLE `coupon` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `coupon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'promo',
+  `target` tinyint(4) NOT NULL DEFAULT '1',
+  `condition` int(11) DEFAULT '0',
+  `value` int(11) NOT NULL DEFAULT '0',
+  `quantity` int(11) DEFAULT '0',
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `is_used` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `coupon_coupon_unique` (`coupon`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of coupon
+-- ----------------------------
+INSERT INTO `coupon` VALUES ('1', 'Mừng khai trương', 'KHAITRUONG20%', 'promo', '1', '100000', '20', '100', '2015-06-18 00:00:00', '2015-07-01 00:00:00', '2015-06-20 14:43:04', '2015-06-22 07:35:20', null, '0');
+
 -- ----------------------------
 -- Table structure for `migrations`
 -- ----------------------------
@@ -30,6 +58,8 @@ INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table', '1');
 INSERT INTO `migrations` VALUES ('2014_10_12_100000_create_password_resets_table', '1');
 INSERT INTO `migrations` VALUES ('2015_06_13_145141_create_products_table', '2');
 INSERT INTO `migrations` VALUES ('2015_06_13_150729_create_product_keys_table', '2');
+INSERT INTO `migrations` VALUES ('2015_06_20_105930_create_coupon_table', '3');
+INSERT INTO `migrations` VALUES ('2015_06_22_070117_edit_coupon_table', '4');
 
 -- ----------------------------
 -- Table structure for `password_resets`
