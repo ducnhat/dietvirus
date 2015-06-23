@@ -25,6 +25,13 @@
                     <!--Product name and image-->
                     <td data-title="Product name" class="t_md_align_c">
                         <a href="#" class="d_inline_b m_left_5 color_dark">{{ $item->name }}</a>
+                        {!! Form::open(['method' => 'post', 'action' => ['CartController@removeItem'], 'id' => 'item-' . $item->id]) !!}
+                        {!! Form::hidden('id', $item->id) !!}
+                        <a id="remove-item" data-id="{{ $item->id }}" class="color_dark d_inline_middle" href="#">
+                            <i class="fa fa-times m_right_5"></i>
+                            {{ trans('cart.remove_item') }}
+                        </a>
+                        {!! Form::close() !!}
                     </td>
 
                     <!--product price-->
@@ -109,8 +116,8 @@
                 @endif
                 <tr>
                     <td class="t_align_r" colspan="4">
-                        <button class="tr_delay_hover r_corners button_type_14 color_dark bg_light_color_2" type="submit">{{ trans('cart.continue') }}</button>
-                        <button class="tr_delay_hover r_corners button_type_14 bg_scheme_color color_light" type="submit">{{ trans('cart.checkout') }}</button>
+                        <button id="continue" class="tr_delay_hover r_corners button_type_14 color_dark bg_light_color_2" type="submit">{{ trans('cart.continue') }}</button>
+                        <button id="checkout" class="tr_delay_hover r_corners button_type_14 bg_scheme_color color_light" type="submit">{{ trans('cart.checkout') }}</button>
                     </td>
                 </tr>
             </tbody>
@@ -139,6 +146,19 @@ $(document).ready(function(){
             var inputName = $(this).attr('id');
             $('input[name="' + inputName + '"]').val($(this).val());
         });
+    });
+
+    $("button#continue").click(function(){
+        window.location.href="{{ action('HomeController@index') }}";
+    });
+
+    $("button#checkout").click(function(){
+        window.location.href="{{ action('CartController@show') }}";
+    });
+
+    $("a#remove-item").click(function(){
+        var id = $(this).attr('data-id');
+        $("form#item-" + id).submit();
     });
 });
 </script>

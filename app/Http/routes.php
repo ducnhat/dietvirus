@@ -19,12 +19,13 @@ Route::resource('cart', 'CartController');
 Route::get('cart/review', 'CartController@show');
 Route::post('cart/coupon', 'CartController@coupon');
 Route::post('cart/clear-coupon', 'CartController@clearCoupon');
+Route::post('cart/remove-items', 'CartController@removeItem');
 
 //Order Controller
 Route::resource('order', 'OrderController');
 
 //Admin prefix
-$admin_prefix = $_ENV['ADMIN_PREFIX'];
+$admin_prefix = env('ADMIN_PREFIX');
 
 // Authentication routes...
 Route::get($admin_prefix . '/auth/login', 'Admin\Auth\AuthController@getLogin');

@@ -11,7 +11,11 @@ class Order extends Model
 
     public $table = 'orders';
 
-    public $fillable = ['name', 'email', 'phone', 'subtotal', 'discount', 'total', 'is_paid'];
+    public $fillable = ['name', 'email', 'phone', 'subtotal', 'discount', 'total', 'is_paid', 'coupon'];
 
     public $dates = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function orderItems(){
+        return $this->hasMany('App\OrderItems', 'order_id', 'id');
+    }
 }

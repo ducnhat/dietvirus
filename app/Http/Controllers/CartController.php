@@ -142,4 +142,17 @@ class CartController extends Controller
 
         return redirect()->action('CartController@index');
     }
+
+    /**
+     * Remove an item from cart
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeItem(Request $request){
+        $id = $request->get('id');
+        Cart::remove($id);
+
+        return redirect()->action('CartController@index');
+    }
 }

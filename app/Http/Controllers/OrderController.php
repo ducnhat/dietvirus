@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Cart;
+use App\OrderItems as OrderItem;
+use App\Jobs\SendOrderConfirmEmail;
 
 class OrderController extends Controller
 {
@@ -45,11 +47,27 @@ class OrderController extends Controller
 
         if(count(Cart::getConditions()) > 0){
             $input['discount'] = Cart::getCondition('promo')->getCalculatedValue(Cart::getSubtotal());
+            $input['coupon'] = Cart::getCondition('promo')->getAttributes()['coupon'];
         }
 
         $order = Order::create($input);
 
-        dd($order);
+        $items = Cart::getContent();
+
+        foreach($items as $item) {
+            $item = new OrderItem(array(
+                'product_id' => $item->id,
+                'name' => $item->name,
+                'price' => $item->price,
+                'quantity' => $item->quantity
+            ));
+
+            $order->orderItems()->save($item);
+        }
+
+        $this->dispatch(new SendOrderConfirmEmail($order));
+
+        return redirect()->action('CartController@index');
     }
 
     /**

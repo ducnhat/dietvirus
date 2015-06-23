@@ -24,6 +24,7 @@ return [
     'remove' => 'Hủy',
     'payment' => 'Thanh toán',
     'confirm_payment' => 'Xác nhận thanh toán',
+    'remove_item' => 'xóa',
 ];
 
 ?>
