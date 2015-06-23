@@ -23,6 +23,7 @@ return [
     'enter_coupon' => 'Nhập mã giảm giá',
     'remove' => 'Hủy',
     'payment' => 'Thanh toán',
+    'confirm_payment' => 'Xác nhận thanh toán',
 ];
 
 ?>

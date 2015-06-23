@@ -39,29 +39,21 @@ class CartController extends Controller
         return redirect()->action('CartController@index');
     }
 
-    public function cartReview(){
-        return 'asdasd';
-//        return view('frontend.cart.review');
-    }
-
     /**
-     * Display the specified resource.
+     * Review cart items and checkout
      *
-     * @param  int  $id
+     * @param  no
      * @return Response
      */
     public function show()
     {
-//        Cart::clear();
-        Cart::clearCartConditions();
-
-        return redirect()->action('HomeController@index');
+        return view('frontend.cart.review');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  Request $request
      * @return Response
      */
     public function update(Request $request)
@@ -79,6 +71,12 @@ class CartController extends Controller
         return redirect()->action('CartController@index');
     }
 
+    /**
+     * Check cart condition to apply coupon
+     *
+     * @param no
+     * @return no
+     */
     private function checkCouponCondition(){
         if(count(Cart::getConditions()) > 0){
             $condition = Cart::getCondition('promo')->getAttributes()['condition'];
@@ -124,7 +122,7 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  no
      * @return Response
      */
     public function destroy()
@@ -134,6 +132,11 @@ class CartController extends Controller
         return redirect()->action('HomeController@index');
     }
 
+    /**
+     * Clear current coupon is being used
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function clearCoupon(){
         Cart::clearCartConditions();
 

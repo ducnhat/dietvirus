@@ -11,10 +11,17 @@
 |
 */
 
+//Homepage
 Route::get('/', 'HomeController@index');
+
+//Cart Controller
 Route::resource('cart', 'CartController');
+Route::get('cart/review', 'CartController@show');
 Route::post('cart/coupon', 'CartController@coupon');
 Route::post('cart/clear-coupon', 'CartController@clearCoupon');
+
+//Order Controller
+Route::resource('order', 'OrderController');
 
 //Admin prefix
 $admin_prefix = $_ENV['ADMIN_PREFIX'];

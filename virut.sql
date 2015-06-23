@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-23 00:33:00
+Date: 2015-06-23 08:44:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,6 +60,31 @@ INSERT INTO `migrations` VALUES ('2015_06_13_145141_create_products_table', '2')
 INSERT INTO `migrations` VALUES ('2015_06_13_150729_create_product_keys_table', '2');
 INSERT INTO `migrations` VALUES ('2015_06_20_105930_create_coupon_table', '3');
 INSERT INTO `migrations` VALUES ('2015_06_22_070117_edit_coupon_table', '4');
+INSERT INTO `migrations` VALUES ('2015_06_23_081951_create_orders_table', '4');
+
+-- ----------------------------
+-- Table structure for `orders`
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
+  `discount` int(11) DEFAULT '0',
+  `total` int(11) NOT NULL,
+  `is_paid` tinyint(4) DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES ('1', 'Nhật', 'ddnhat@gmail.com', '1229012202', '850000', '170000', '680000', '0', '2015-06-23 08:43:28', '2015-06-23 08:43:28', null);
 
 -- ----------------------------
 -- Table structure for `password_resets`
