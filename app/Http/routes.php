@@ -38,5 +38,6 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('product', 'ProductController');
     Route::resource('product-key', 'ProductKeyController');
     Route::resource('coupon', 'CouponController');
+    Route::resource('order', 'OrderController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });

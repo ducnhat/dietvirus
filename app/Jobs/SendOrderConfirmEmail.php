@@ -36,8 +36,8 @@ class SendOrderConfirmEmail extends Job implements SelfHandling, ShouldQueue
     {
         Mail::send('emails.order', ['order' => $this->order->toArray()], function($message){
             $message->from('ddnhat@gmail.com', 'Nhật Đỗ');
-            $message->to('ddnhat@gmail.com')->cc('ddnhat@gmail.com');
-            $message->subject('Test thử coi sao');
+            $message->to('nhatdo@outlook.com')->cc('ddnhat@gmail.com');
+            $message->subject('Xác nhận đơn hàng');
         });
     }
 }
