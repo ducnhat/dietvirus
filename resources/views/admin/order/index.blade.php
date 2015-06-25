@@ -6,36 +6,25 @@
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-body p20 pb10">
-                    <table id="datatable" class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <table id="datatable" class="table admin-form theme-warning fs13">
                         <thead>
                             <tr class="bg-light">
                                 <th class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select-all">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
+                                    {{ trans('order.customer_name') }}
                                 </th>
-                                <th>
-                                    {{ trans('form.name') }}
-                                </th>
-                                <th>
-                                    {{ trans('form.email') }}
-                                </th>
-                                <th>
-                                    {{ trans('form.phone') }}
+                                <th class="text-center">
+                                    {{ trans('order.customer_email') }}
                                 </th>
                                 <th class="text-right">
-                                    {{ trans('form.subtotal') }}
+                                    {{ trans('order.customer_phone') }}
                                 </th>
                                 <th class="text-right">
-                                    {{ trans('form.total') }}
+                                    {{ trans('order.total') }}
                                 </th>
-                                <th class="text-right">
-                                    {{ trans('form.name') }}
+                                <th class="text-center">
+                                    {{ trans('order.payment') }}
                                 </th>
-                                <th class="text-right">
+                                <th class="text-center">
                                     Công cụ
                                 </th>
                             </tr>
@@ -44,47 +33,34 @@
                         <tbody>
                             @foreach($data as $row)
                             <tr>
-                                <td class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select" name="{{ $row->id }}">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
-                                </td>
                                 <td>
                                     {{ $row->name }}
                                 </td>
                                 <td class="text-center">
-                                    <img height="80px" src="{{ $row->image }}" />
+                                    {{ $row->email }}
                                 </td>
                                 <td class="text-right">
-                                    {{ $row->price }}
-                                </td>
-                                <td class="text-center">
-                                    {{ $row->manufacturer }}
+                                    {{ $row->phone }}
                                 </td>
                                 <td class="text-right">
-                                    <div class="btn-group text-right">
-                                        <button type="button" class="btn btn-info br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            Công cụ
-                                            <span class="caret ml5"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{{ action('Admin\ProductController@edit', $row->id) }}">
-                                                    Sửa
-                                                </a>
-                                            </li>
-                                            <li>
-                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\ProductController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
-                                                {!! Form::close() !!}
-                                                <a href="#" data-id="{{ $row->id }}" id="delete">Xóa</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    {{ money_format($row->total) }}
                                 </td>
-
+                                <td class="text-right">
+                                    @if(!$row->is_paid)
+                                        <div class="bg-warning pv5 text-white fw600 text-center">
+                                            {{ trans('order.not_yet') }}
+                                        </div>
+                                    @else
+                                        <div class="bg-warning pv5 text-white fw600 text-center">
+                                            {{ $row->paid_at }}
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ action('Admin\OrderController@show', $row->id) }}" class="btn btn-sm btn-info btn-block">
+                                        {{ trans('order.view_detail') }}
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -101,32 +77,7 @@
 <script>
 
 $(document).ready(function(){
-    $('a#delete').click(function(){
-        var ok = confirm('{{ trans('message.delete_user') }}');
 
-        if(!ok)
-            return false;
-
-        var id = $(this).attr('data-id');
-        $('form#row-' + id).submit();
-    });
-
-    $('a#update-status-disable').click(function(){
-        var id = $(this).attr('data-id');
-        $('form#update-status-' + id).children('input#status').val(0);
-        $('form#update-status-' + id).submit();
-    });
-
-    $('a#update-status-enable').click(function(){
-        var id = $(this).attr('data-id');
-        $('form#update-status-' + id).children('input#status').val(1);
-        $('form#update-status-' + id).submit();
-    });
-
-    $('input#select-all').click(function(){
-        var f = $(this).prop('checked');
-        $('input#select').prop('checked', f);
-    });
 });
 
 </script>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-23 08:44:01
+Date: 2015-06-25 23:57:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,28 @@ CREATE TABLE `coupon` (
 -- ----------------------------
 -- Records of coupon
 -- ----------------------------
-INSERT INTO `coupon` VALUES ('1', 'Mừng khai trương', 'KHAITRUONG20%', 'promo', '1', '500000', '20', '100', '2015-06-18 00:00:00', '2015-07-01 00:00:00', '2015-06-20 14:43:04', '2015-06-23 00:04:52', null, '0');
+INSERT INTO `coupon` VALUES ('1', 'Mừng khai trương', 'KHAITRUONG20%', 'promo', '1', '100000', '20', '100', '2015-06-18 00:00:00', '2015-07-01 00:00:00', '2015-06-20 14:43:04', '2015-06-23 22:28:16', null, '0');
+
+-- ----------------------------
+-- Table structure for `jobs`
+-- ----------------------------
+DROP TABLE IF EXISTS `jobs`;
+CREATE TABLE `jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `attempts` tinyint(3) unsigned NOT NULL,
+  `reserved` tinyint(3) unsigned NOT NULL,
+  `reserved_at` int(10) unsigned DEFAULT NULL,
+  `available_at` int(10) unsigned NOT NULL,
+  `created_at` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of jobs
+-- ----------------------------
+INSERT INTO `jobs` VALUES ('2', 'default', '{\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"data\":{\"command\":\"O:30:\\\"App\\\\Jobs\\\\SendOrderConfirmEmail\\\":4:{s:8:\\\"\\u0000*\\u0000order\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:9:\\\"App\\\\Order\\\";s:2:\\\"id\\\";i:1;}s:5:\\\"queue\\\";N;s:5:\\\"delay\\\";N;s:6:\\\"\\u0000*\\u0000job\\\";N;}\"}}', '1', '1', '1435247243', '1435247242', '1435247242');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -61,6 +82,30 @@ INSERT INTO `migrations` VALUES ('2015_06_13_150729_create_product_keys_table', 
 INSERT INTO `migrations` VALUES ('2015_06_20_105930_create_coupon_table', '3');
 INSERT INTO `migrations` VALUES ('2015_06_22_070117_edit_coupon_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_081951_create_orders_table', '4');
+INSERT INTO `migrations` VALUES ('2015_06_23_221652_create_order_items_table', '4');
+INSERT INTO `migrations` VALUES ('2015_06_23_233916_create_jobs_table', '4');
+
+-- ----------------------------
+-- Table structure for `order_items`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_items`;
+CREATE TABLE `order_items` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of order_items
+-- ----------------------------
+INSERT INTO `order_items` VALUES ('1', '1', '7', 'Bkav Pro Internet Security', '170000', '1', '2015-06-25 22:43:09', '2015-06-25 22:43:09', null);
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -73,8 +118,10 @@ CREATE TABLE `orders` (
   `phone` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `discount` int(11) DEFAULT '0',
+  `coupon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` int(11) NOT NULL,
   `is_paid` tinyint(4) DEFAULT '0',
+  `paid_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -84,7 +131,7 @@ CREATE TABLE `orders` (
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', 'Nhật', 'ddnhat@gmail.com', '1229012202', '850000', '170000', '680000', '0', '2015-06-23 08:43:28', '2015-06-23 08:43:28', null);
+INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', '0', null, '2015-06-25 22:43:09', '2015-06-25 23:56:22', null);
 
 -- ----------------------------
 -- Table structure for `password_resets`

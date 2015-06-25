@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\Http\Requests\OrderRequest;
 
 class OrderController extends Controller
 {
@@ -50,7 +51,11 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Order::findOrFail($id);
+
+//        dd($data->orderItems);
+
+        return view('admin.order.edit', compact(['data']));
     }
 
     /**
@@ -70,9 +75,14 @@ class OrderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, OrderRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = Order::findOrFail($id);
+        $data->update($input);
+        $data->save();
+
+        return redirect()->action('Admin\OrderController@index');
     }
 
     /**
