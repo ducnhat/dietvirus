@@ -15,6 +15,8 @@ return [
     'add_to_cart' => 'Đặt mua',
     'view_cart' => 'Xem giỏ hàng',
     'cart_checkout' => 'Thanh toán',
+    'order' => 'Đơn hàng',
+    'view_orders' => 'Xem tất cả đơn hàng',
 ];
 
 ?>

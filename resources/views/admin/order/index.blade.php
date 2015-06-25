@@ -40,7 +40,7 @@
                                     {{ $row->email }}
                                 </td>
                                 <td class="text-right">
-                                    {{ $row->phone }}
+                                    {{ phone_format($row->phone) }}
                                 </td>
                                 <td class="text-right">
                                     {{ money_format($row->total) }}
