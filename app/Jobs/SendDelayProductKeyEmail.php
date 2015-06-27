@@ -3,19 +3,17 @@
 namespace App\Jobs;
 
 use App\Jobs\Job;
-use App\Order;
-use App\OrderItems;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
+use App\Order;
+use App\ProductKey;
 
-class SendOrderConfirmEmail extends Job implements SelfHandling, ShouldQueue
+class SendDelayProductKeyEmail extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
-
-    protected $order;
+    private $order;
 
     /**
      * Create a new job instance.
@@ -34,10 +32,6 @@ class SendOrderConfirmEmail extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        Mail::send('emails.invoice', ['order' => $this->order], function($message){
-            $message->from('order@phanmemquetvirut.com', 'Phần mềm quét virut');
-            $message->to($this->order->email);
-            $message->subject(trans('order.confirm_email_title'));
-        });
+        //
     }
 }

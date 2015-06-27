@@ -20,6 +20,7 @@ return [
     'order_detail' => 'Thông tin đơn hàng',
     'coupon' => 'Mã khuyến mãi',
     'order_items' => 'Sản phẩm',
+    'confirm_email_title' => 'Xác nhận đơn hàng',
 ];
 
 ?>
