@@ -72,18 +72,18 @@ function buildCheckoutUrl($transaction_info, $order_code, $price)
     return $redirect_url.$url;
 }
 
-/**
- * HÀM KIỂM TRA TÍNH ĐÚNG ĐẮN CỦA ĐƯỜNG LINK KẾT QUẢ TRẢ VỀ TỪ NGÂNLƯỢNG.VN
- *
- * @param string $transaction_info: Thông tin về giao dịch, Giá trị do website gửi sang
- * @param string $order_code: Mã hoá đơn/tên sản phẩm
- * @param string $price: Tổng tiền đã thanh toán
- * @param string $payment_id: Mã giao dịch tại NgânLượng.vn
- * @param int $payment_type: Hình thức thanh toán: 1 - Thanh toán ngay (tiền đã chuyển vào tài khoản NgânLượng.vn của người bán); 2 - Thanh toán Tạm giữ (tiền người mua đã thanh toán nhưng NgânLượng.vn đang giữ hộ)
- * @param string $error_text: Giao dịch thanh toán có bị lỗi hay không. $error_text == "" là không có lỗi. Nếu có lỗi, mô tả lỗi được chứa trong $error_text
- * @param string $secure_code: Mã checksum (mã kiểm tra)
- * @return unknown
- */
+/**  * HÀM KIỂM TRA TÍNH ĐÚNG ĐẮN CỦA ĐƯỜNG LINK KẾT QUẢ TRẢ VỀ TỪ
+NGÂNLƯỢNG.VN  *  * @param string $transaction_info: Thông tin về giao
+dịch, Giá trị do website gửi sang  * @param string $order_code: Mã hoá
+đơn/tên sản phẩm  * @param string $price: Tổng tiền đã thanh toán  *
+@param string $payment_id: Mã giao dịch tại NgânLượng.vn  * @param int
+$payment_type: Hình thức thanh toán: 1 - Thanh toán ngay (tiền đã
+chuyển vào tài khoản NgânLượng.vn của người bán); 2 - Thanh toán Tạm
+giữ (tiền người mua đã thanh toán nhưng NgânLượng.vn đang giữ hộ)  *
+@param string $error_text: Giao dịch thanh toán có bị lỗi hay không.
+$error_text == "" là không có lỗi. Nếu có lỗi, mô tả lỗi được chứa
+trong $error_text  * @param string $secure_code: Mã checksum (mã kiểm
+tra)  * @return unknown  */
 
 function verifyPaymentUrl($transaction_info, $order_code, $price, $payment_id, $payment_type, $error_text, $secure_code)
 {
