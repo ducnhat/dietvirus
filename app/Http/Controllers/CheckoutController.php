@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderWasPurchased;
 use App\Jobs\SendDelayProductKeyEmail;
 use App\Jobs\SendProductKeyEmail;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
+use Event;
 
 class CheckoutController extends Controller
 {
@@ -29,11 +31,12 @@ class CheckoutController extends Controller
 
         if($f){
 //            $this->dispatch(new SendProductKeyEmail($order));
-            $keys = $order->getProductKeys();
-
-            foreach($keys as $key){
-
-            }
+//            $keys = $order->getProductKeys();
+//
+//            foreach($keys as $key){
+//
+//            }
+            Event::fire(new OrderWasPurchased($order));
         }else{
 //            $this->dispatch(new SendDelayProductKeyEmail($order))->delay(7200);
         }

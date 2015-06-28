@@ -14,7 +14,7 @@ class SendProductKeyEmail extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
-    private $order;
+    protected $order;
     /**
      * Create a new job instance.
      *
