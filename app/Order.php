@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\ProductKey;
+use Carbon\Carbon;
+use DB;
 
 class Order extends Model
 {
@@ -48,9 +50,9 @@ class Order extends Model
         $f = true;
 
         foreach($this->orderItems as $item){
-            $count = ProductKey::countProductkey($item->product_id)->first();
+            $count = ProductKey::countProductKey($item->product_id)->get();
 
-            if($count->quantity < $item->quantity){
+            if($count->isEmpty() || ($count->quantity < $item->quantity)){
                 $f = false;
             }
         }
@@ -59,16 +61,25 @@ class Order extends Model
     }
 
     public function getProductKeys(){
-        $keys = array();
+        $order_keys = array();
+        $result = array();
 
         foreach($this->orderItems as $item){
-            $keys[$item->product_id] = ProductKey::where('product_id', $item->product_id)
+            $order_keys[$item->product_id] = ProductKey::where('product_id', $item->product_id)
                 ->whereNull('sold_at')
                 ->whereNull('return_at')
                 ->take($item->quantity)
                 ->get();
         }
 
-        return $keys;
+        foreach($order_keys as $keys){
+            foreach($keys as $key){
+                $result[] = $key;
+                $key->sold_at = Carbon::now()->toDateTimeString();
+                $key->save();
+            }
+        }
+
+        return $result;
     }
 }

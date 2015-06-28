@@ -21,7 +21,14 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        //
+
+
+    }
+
+    public function test($id){
+        $order = Order::findOrFail($id);
+
+        return view('emails.product_keys', compact(['order']));
     }
 
     public function confirm($id){
@@ -30,14 +37,10 @@ class CheckoutController extends Controller
         $f = $order->checkProductKeyQuantity();
 
         if($f){
-//            $this->dispatch(new SendProductKeyEmail($order));
-//            $keys = $order->getProductKeys();
-//
-//            foreach($keys as $key){
-//
-//            }
+//            echo 'đủ hàng';
             Event::fire(new OrderWasPurchased($order));
         }else{
+            echo 'không đủ hàng';
 //            $this->dispatch(new SendDelayProductKeyEmail($order))->delay(7200);
         }
     }

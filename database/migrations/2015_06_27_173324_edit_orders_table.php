@@ -14,7 +14,9 @@ class EditOrdersTable extends Migration
     {
         Schema::table('orders', function(Blueprint $table){
             $table->integer('payment_id')->nullable();
-            $table->integer('payment_type')->nullable();
+            $table->tinyInteger('payment_type')->nullable();
+            $table->tinyInteger('sent_key')->default(0)->nullable();
+            $table->dateTime('sent_at')->nullable();
         });
     }
 
@@ -25,6 +27,11 @@ class EditOrdersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('orders', function(Blueprint $table){
+            $table->dropColumn('payment_id');
+            $table->dropColumn('payment_type');
+            $table->dropColumn('sent_key');
+            $table->dropColumn('sent_at');
+        });
     }
 }

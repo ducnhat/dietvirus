@@ -21,6 +21,7 @@ return [
     'coupon' => 'Mã khuyến mãi',
     'order_items' => 'Sản phẩm',
     'confirm_email_title' => 'Xác nhận đơn hàng',
+    'product_key' => 'Mã bản quyền',
 ];
 
 ?>

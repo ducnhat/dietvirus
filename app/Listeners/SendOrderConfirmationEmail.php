@@ -31,7 +31,7 @@ class SendOrderConfirmationEmail implements ShouldQueue
         $this->order = $event->order;
 
         Mail::send('emails.invoice', ['order' => $this->order], function($message){
-            $message->from('order@phanmemquetvirut.com', 'Phần mềm quét virut');
+            $message->from('dondathang@phanmemquetvirut.com', 'Phần mềm quét virut');
             $message->to($this->order->email);
             $message->subject(trans('order.confirm_email_title'));
         });
