@@ -8,6 +8,8 @@ use App\Events\OrderWasAdded;
 use App\Listeners\SendOrderConfirmationEmail;
 use App\Events\OrderWasPurchased;
 use App\Listeners\SendProductKeyEmail;
+use App\Events\DelaySendProductKey;
+use App\Listeners\SendDelayProductKeyEmail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderWasPurchased::class => [
             SendProductKeyEmail::class
+        ],
+        DelaySendProductKey::class => [
+            SendDelayProductKeyEmail::class
         ]
     ];
 

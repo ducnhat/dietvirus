@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\OrderWasPurchased;
+use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
@@ -37,5 +38,8 @@ class SendProductKeyEmail implements ShouldQueue
             $message->to($this->order->email);
             $message->subject(trans('order.confirm_email_title'));
         });
+
+        $this->order->sent_at = Carbon::now()->toDateTimeString();
+        $this->order->save();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DelaySendProductKey;
 use App\Events\OrderWasPurchased;
 use App\Jobs\SendDelayProductKeyEmail;
 use App\Jobs\SendProductKeyEmail;
@@ -40,8 +41,8 @@ class CheckoutController extends Controller
 //            echo 'đủ hàng';
             Event::fire(new OrderWasPurchased($order));
         }else{
-            echo 'không đủ hàng';
-//            $this->dispatch(new SendDelayProductKeyEmail($order))->delay(7200);
+//            echo 'không đủ hàng';
+            Event::fire(new DelaySendProductKey($order));
         }
     }
 }

@@ -50,11 +50,12 @@ class Order extends Model
         $f = true;
 
         foreach($this->orderItems as $item){
-            $count = ProductKey::countProductKey($item->product_id)->get();
+            $count = ProductKey::countProductKey($item->product_id)->first();
 
-            if($count->isEmpty() || ($count->quantity < $item->quantity)){
+            if(empty($count) || ($count->quantity < $item->quantity)){
                 $f = false;
             }
+//            dd($count);
         }
 
         return $f;
