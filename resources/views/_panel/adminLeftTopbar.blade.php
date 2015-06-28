@@ -12,6 +12,9 @@
         <li>
             <a href="{{ action('Admin\ProductKeyController@index') }}">{{ trans('link.product_key') }}</a>
         </li>
+<li>
+            <a href="{{ action('Admin\OrderController@index') }}">{{ trans('link.order') }}</a>
+        </li>
 
     </ul>
 </div>

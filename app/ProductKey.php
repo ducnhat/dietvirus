@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Product;
+use DB;
 
 class ProductKey extends Model
 {
@@ -26,5 +27,13 @@ class ProductKey extends Model
         $user = User::where('id', $value)->first();
 
         return $user->name;
+    }
+
+    public function scopeCountProductKey($query, $product_id){
+        return $query->select(DB::raw('count(`key`) as quantity'))
+            ->where('product_id', $product_id)
+            ->whereNull('sold_at')
+            ->whereNull('return_at')
+            ->groupBy('product_id');
     }
 }

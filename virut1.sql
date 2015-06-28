@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-28 01:42:03
+Date: 2015-06-25 00:17:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `coupon` (
 -- ----------------------------
 -- Records of coupon
 -- ----------------------------
-INSERT INTO `coupon` VALUES ('1', 'Mừng khai trương', 'KHAITRUONG20%', 'promo', '1', '100000', '20', '100', '2015-06-18 00:00:00', '2015-07-01 00:00:00', '2015-06-20 14:43:04', '2015-06-23 22:28:16', null, '0');
+INSERT INTO `coupon` VALUES ('1', 'Mừng khai trương', 'KHAITRUONG20%', 'promo', '1', '500000', '20', '100', '2015-06-18 00:00:00', '2015-07-01 00:00:00', '2015-06-20 14:43:04', '2015-06-23 00:04:52', null, '0');
 
 -- ----------------------------
 -- Table structure for `jobs`
@@ -56,7 +56,7 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
@@ -81,8 +81,8 @@ INSERT INTO `migrations` VALUES ('2015_06_13_150729_create_product_keys_table', 
 INSERT INTO `migrations` VALUES ('2015_06_20_105930_create_coupon_table', '3');
 INSERT INTO `migrations` VALUES ('2015_06_22_070117_edit_coupon_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_081951_create_orders_table', '4');
-INSERT INTO `migrations` VALUES ('2015_06_23_221652_create_order_items_table', '4');
-INSERT INTO `migrations` VALUES ('2015_06_23_233916_create_jobs_table', '4');
+INSERT INTO `migrations` VALUES ('2015_06_23_221652_create_order_items_table', '5');
+INSERT INTO `migrations` VALUES ('2015_06_23_233916_create_jobs_table', '5');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -104,9 +104,9 @@ CREATE TABLE `order_items` (
 -- ----------------------------
 -- Records of order_items
 -- ----------------------------
-INSERT INTO `order_items` VALUES ('1', '1', '7', 'Bkav Pro Internet Security', '170000', '1', '2015-06-25 22:43:09', '2015-06-25 22:43:09', null);
-INSERT INTO `order_items` VALUES ('2', '2', '7', 'Bkav Pro Internet Security', '170000', '2', '2015-06-27 23:55:20', '2015-06-27 23:55:20', null);
-INSERT INTO `order_items` VALUES ('3', '2', '5', 'Kaspersky Internet Security', '130000', '2', '2015-06-27 23:55:20', '2015-06-27 23:55:20', null);
+INSERT INTO `order_items` VALUES ('1', '3', '6', 'Kaspersky Antivirus', '100000', '3', '2015-06-24 23:06:35', '2015-06-24 23:06:35', null);
+INSERT INTO `order_items` VALUES ('2', '4', '6', 'Kaspersky Antivirus', '100000', '3', '2015-06-24 23:14:07', '2015-06-24 23:14:07', null);
+INSERT INTO `order_items` VALUES ('3', '5', '6', 'Kaspersky Antivirus', '100000', '3', '2015-06-24 23:22:13', '2015-06-24 23:22:13', null);
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -119,21 +119,22 @@ CREATE TABLE `orders` (
   `phone` int(11) NOT NULL,
   `subtotal` int(11) NOT NULL,
   `discount` int(11) DEFAULT '0',
-  `coupon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` int(11) NOT NULL,
   `is_paid` tinyint(4) DEFAULT '0',
-  `paid_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '906578610', '170000', '0', null, '170000', '0', null, '2015-06-25 22:43:09', '2015-06-26 00:05:19', null);
-INSERT INTO `orders` VALUES ('2', 'Đức Nhật', 'nhatdo@outlook.com', '906578610', '600000', '120000', 'KHAITRUONG20%', '480000', '0', null, '2015-06-27 23:55:20', '2015-06-27 23:55:20', null);
+INSERT INTO `orders` VALUES ('1', 'Nhật', 'ddnhat@gmail.com', '1229012202', '850000', '170000', '680000', '0', '2015-06-23 08:43:28', '2015-06-23 08:43:28', null);
+INSERT INTO `orders` VALUES ('2', 'Nhật', 'ddnhat@gmail.com', '1229012202', '300000', '0', '300000', '0', '2015-06-24 23:04:25', '2015-06-24 23:04:25', null);
+INSERT INTO `orders` VALUES ('3', 'Nhật', 'ddnhat@gmail.com', '1229012202', '300000', '0', '300000', '0', '2015-06-24 23:06:35', '2015-06-24 23:06:35', null);
+INSERT INTO `orders` VALUES ('4', 'Nhật', 'nhatdo@outlook.com', '906578610', '300000', '0', '300000', '0', '2015-06-24 23:14:07', '2015-06-24 23:14:07', null);
+INSERT INTO `orders` VALUES ('5', 'Nhật', 'nhatdo@outlook.com', '1229012202', '300000', '0', '300000', '0', '2015-06-24 23:22:13', '2015-06-24 23:22:13', null);
 
 -- ----------------------------
 -- Table structure for `password_resets`
@@ -170,7 +171,7 @@ CREATE TABLE `product_keys` (
   KEY `product_keys_user_id_foreign` (`user_id`),
   CONSTRAINT `product_keys_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `product_keys_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of product_keys
@@ -178,8 +179,6 @@ CREATE TABLE `product_keys` (
 INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', null, null, '2015-06-16 08:03:49', '2015-06-16 08:03:49', null);
 INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null);
 INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 22:27:01', null);
-INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 22:27:01', null);
-INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 08:21:23', null);
 
 -- ----------------------------
 -- Table structure for `products`

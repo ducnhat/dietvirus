@@ -20,6 +20,7 @@ Route::get('cart/review', 'CartController@show');
 Route::post('cart/coupon', 'CartController@coupon');
 Route::post('cart/clear-coupon', 'CartController@clearCoupon');
 Route::post('cart/remove-items', 'CartController@removeItem');
+Route::get('checkout/confirm/{id}', 'CheckoutController@confirm');
 
 //Order Controller
 Route::resource('order', 'OrderController');
@@ -38,5 +39,6 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('product', 'ProductController');
     Route::resource('product-key', 'ProductKeyController');
     Route::resource('coupon', 'CouponController');
+    Route::resource('order', 'OrderController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });
