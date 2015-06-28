@@ -11,6 +11,8 @@ use App\Http\Requests\OrderRequest;
 use Cart;
 use App\OrderItems as OrderItem;
 use App\Jobs\SendOrderConfirmEmail;
+use Event;
+use App\Events\OrderWasAdded;
 
 class OrderController extends Controller
 {
@@ -65,7 +67,7 @@ class OrderController extends Controller
             $order->orderItems()->save($item);
         }
 
-        $this->dispatch(new SendOrderConfirmEmail($order));
+        Event::fire(new OrderWasAdded($order));
 
         return redirect()->action('CartController@index');
     }

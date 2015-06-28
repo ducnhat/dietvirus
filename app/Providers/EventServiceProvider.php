@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use App\Events\OrderWasAdded;
+use App\Listeners\SendOrderConfirmationEmail;
+use App\Events\OrderWasPurchased;
+use App\Listeners\SendProductKeyEmail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,9 +17,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        OrderWasAdded::class => [
+            SendOrderConfirmationEmail::class
         ],
+        OrderWasPurchased::class => [
+            SendProductKeyEmail::class
+        ]
     ];
 
     /**
@@ -27,7 +34,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
-        //
     }
 }
