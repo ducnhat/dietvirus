@@ -3,15 +3,14 @@
 namespace App\Listeners;
 
 use App\Events\OrderWasPurchased;
-use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
+use App\Jobs\SendProductKeyEmail as SendProductKey;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class SendProductKeyEmail implements ShouldQueue
 {
-
-    public $order;
+    use DispatchesJobs;
 
     /**
      * Create the event listener.
@@ -31,15 +30,10 @@ class SendProductKeyEmail implements ShouldQueue
      */
     public function handle(OrderWasPurchased $event)
     {
-        $this->order = $event->order;
+        $order = $event->order;
 
-        Mail::send('emails.product_keys', ['order' => $this->order], function($message){
-            $message->from('dondathang@phanmemquetvirut.com', 'Phần mềm quét virut');
-            $message->to($this->order->email);
-            $message->subject(trans('order.confirm_email_title'));
-        });
+        $job = (new SendProductKey($order));
 
-        $this->order->sent_at = Carbon::now()->toDateTimeString();
-        $this->order->save();
+        $this->dispatch($job);
     }
 }

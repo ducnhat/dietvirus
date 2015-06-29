@@ -24,9 +24,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderWasPurchased::class => [
             SendProductKeyEmail::class
-        ],
-        DelaySendProductKey::class => [
-            SendDelayProductKeyEmail::class
         ]
     ];
 

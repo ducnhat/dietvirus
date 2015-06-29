@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
 use Event;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -32,17 +33,18 @@ class CheckoutController extends Controller
         return view('emails.product_keys', compact(['order']));
     }
 
+    /**
+     * Xác nhận thanh toán
+     * Cập nhật trạng thái đơn hàng là đã thanh toán
+     * Gủi email kèm mã bản quyền
+     *
+     * @param $id
+     */
     public function confirm($id){
         $order = Order::findOrFail($id);
+        $order->paid_at = Carbon::now()->toDateTimeString();
+        $order->save();
 
-        $f = $order->checkProductKeyQuantity();
-
-        if($f){
-//            echo 'đủ hàng';
-            Event::fire(new OrderWasPurchased($order));
-        }else{
-//            echo 'không đủ hàng';
-            Event::fire(new DelaySendProductKey($order));
-        }
+        Event::fire(new OrderWasPurchased($order));
     }
 }

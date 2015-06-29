@@ -16,6 +16,7 @@ class EditOrdersTable extends Migration
             $table->integer('payment_id')->nullable();
             $table->tinyInteger('payment_type')->nullable();
             $table->dateTime('sent_at')->nullable();
+            $table->dropColumn('is_paid');
         });
     }
 
@@ -30,6 +31,7 @@ class EditOrdersTable extends Migration
             $table->dropColumn('payment_id');
             $table->dropColumn('payment_type');
             $table->dropColumn('sent_at');
+            $table->tinyInteger('is_paid')->default(0)->nullable();
         });
     }
 }

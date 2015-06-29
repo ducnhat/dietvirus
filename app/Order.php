@@ -61,6 +61,11 @@ class Order extends Model
         return $f;
     }
 
+    /**
+     * Lấy danh sách keys theo đơn hàng
+     *
+     * @return array
+     */
     public function getProductKeys(){
         $order_keys = array();
         $result = array();
@@ -82,5 +87,21 @@ class Order extends Model
         }
 
         return $result;
+    }
+
+    public function checkOrderIsSentKeys(){
+        if(is_null($this->sent_at)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function checkOrderIsPaid(){
+        if(is_null($this->paid_at)){
+            return false;
+        }
+
+        return true;
     }
 }
