@@ -41,7 +41,7 @@ class SendProductKeyEmail extends Job implements SelfHandling, ShouldQueue
                 Mail::send('emails.product_keys', ['order' => $this->order], function ($message) {
                     $message->from('dondathang@phanmemquetvirut.com', 'Phần mềm quét virut');
                     $message->to($this->order->email);
-                    $message->subject(trans('order.confirm_email_title'));
+                    $message->subject(trans('order.product_key_email_title'));
                 });
 
                 $this->order->sent_at = Carbon::now()->toDateTimeString();

@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50621
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-06-29 08:16:16
+Date: 2015-06-29 20:29:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,7 +56,7 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
@@ -84,6 +84,7 @@ INSERT INTO `migrations` VALUES ('2015_06_23_081951_create_orders_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_221652_create_order_items_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_233916_create_jobs_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_27_173324_edit_orders_table', '5');
+INSERT INTO `migrations` VALUES ('2015_06_29_195923_create_order_sent_keys_table', '6');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -126,6 +127,28 @@ INSERT INTO `order_items` VALUES ('18', '16', '5', 'Kaspersky Internet Security'
 INSERT INTO `order_items` VALUES ('19', '16', '7', 'Bkav Pro Internet Security', '170000', '2', '2015-06-28 23:09:25', '2015-06-28 23:09:25', null);
 
 -- ----------------------------
+-- Table structure for `order_sent_keys`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_sent_keys`;
+CREATE TABLE `order_sent_keys` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_key_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of order_sent_keys
+-- ----------------------------
+INSERT INTO `order_sent_keys` VALUES ('1', '16', '4', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('2', '16', '6', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('3', '16', '2', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('4', '16', '5', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+
+-- ----------------------------
 -- Table structure for `orders`
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
@@ -166,7 +189,7 @@ INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012
 INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null);
 INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-28 11:20:59', null, null, null, null);
 INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', null, null, null, null);
-INSERT INTO `orders` VALUES ('16', 'Nhật Đỗ', 'nhatdo@outlook.com', '906578610', '600000', '0', null, '600000', '2015-06-29 08:14:28', '2015-06-28 23:09:25', '2015-06-29 08:14:28', null, null, null, null);
+INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
 -- Table structure for `password_resets`
@@ -208,12 +231,12 @@ CREATE TABLE `product_keys` (
 -- ----------------------------
 -- Records of product_keys
 -- ----------------------------
-INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 07:42:18', null, '2015-06-16 08:03:49', '2015-06-29 07:42:18', null);
+INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:03:49', '2015-06-29 20:25:22', null);
 INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null);
-INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 07:42:17', null, '2015-06-16 08:21:23', '2015-06-29 07:42:17', null);
-INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 07:42:18', null, '2015-06-16 08:21:23', '2015-06-29 07:42:18', null);
-INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 07:42:17', null, '2015-06-16 08:21:23', '2015-06-29 07:42:17', null);
-INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', '2015-06-29 07:43:18', null, '2015-06-16 08:21:23', '2015-06-29 07:43:18', null);
+INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, null, '2015-06-16 08:21:23', '2015-06-29 07:43:18', null);
 
 -- ----------------------------
 -- Table structure for `products`

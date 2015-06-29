@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\ProductKey;
 use Carbon\Carbon;
 use DB;
+use App\OrderSentKey;
 
 class Order extends Model
 {
@@ -83,6 +83,7 @@ class Order extends Model
                 $result[] = $key;
                 $key->sold_at = Carbon::now()->toDateTimeString();
                 $key->save();
+                OrderSentKey::create(['order_id' => $this->id, 'product_key_id' => $key->id]);
             }
         }
 

@@ -22,6 +22,7 @@ return [
     'order_items' => 'Sản phẩm',
     'confirm_email_title' => 'Xác nhận đơn hàng',
     'product_key' => 'Mã bản quyền',
+    'product_key_email_title' => 'Mã bản quyền',
 ];
 
 ?>
