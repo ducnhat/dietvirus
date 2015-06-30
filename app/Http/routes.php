@@ -20,6 +20,8 @@ Route::get('cart/review', 'CartController@show');
 Route::post('cart/coupon', 'CartController@coupon');
 Route::post('cart/clear-coupon', 'CartController@clearCoupon');
 Route::post('cart/remove-items', 'CartController@removeItem');
+
+//Confirm Order
 Route::get('checkout/confirm/{id}', 'CheckoutController@confirm');
 Route::get('checkout/test/{id}', 'CheckoutController@test');
 

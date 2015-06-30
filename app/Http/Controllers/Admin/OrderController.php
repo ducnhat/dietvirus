@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Http\Requests\OrderRequest;
+use Route;
 
 class OrderController extends Controller
 {
@@ -30,7 +31,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $routes = Route::getRoutes();
+
+        dd($routes);
     }
 
     /**
