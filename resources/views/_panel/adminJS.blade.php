@@ -173,7 +173,7 @@
                             '<option value="-1">Tất cả</option>' +
                             '</select>';
 
-        $('table#datatable').dataTable({
+        $.extend( $.fn.dataTable.defaults, {
             'language': {
                 'info': 'Trang _PAGE_/_PAGES_',
                 'paginate': {
@@ -186,9 +186,15 @@
                 'searchPlaceholder': 'Tìm kiếm',
                 'lengthMenu': 'Hiển thị ' + datatableMenu + ' dòng mỗi trang',
                 'emptyTable': 'Có gì đâu mà đòi xem!',
-                'infoEmpty': 'Không có gì xem đâu!',
+                'infoEmpty': 'Không có gì xem đâu!'
             }
-        });
+        } );
+
+        $('table#datatable').dataTable();
+
+        $('table#datatable1').dataTable( {
+            "order": [[ 0, "desc" ]]
+        } );
 
         $("input[type='search']").addClass('form-control');
 

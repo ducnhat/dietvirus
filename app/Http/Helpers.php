@@ -9,6 +9,8 @@ function money_format($number, $suffix = null){
 }
 
 function phone_format($number){
+    $result = $number;
+
     if(  preg_match( '/9(\d{2})(\d{3})(\d{3})$/', $number,  $matches ) )
     {
         $result = "9" . $matches[1] . '-' .$matches[2] . '-' . $matches[3];

@@ -82,7 +82,18 @@
     {!! Form::Label('payment', trans('order.payment'), ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-5">
         <p class="form-control-static text-muted">
-            <strong>{{ (!$data->is_paid) ? trans('order.not_yet') : $data->paid_at }}</strong>
+            <strong>{{ (is_null($data->paid_at)) ? trans('order.not_yet') : $data->paid_at->format('H:i d/m/Y') }}</strong>
+        </p>
+    </div>
+
+</div>
+
+<div class="form-group">
+
+    {!! Form::Label('sent_key', trans('order.sent_key'), ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-5">
+        <p class="form-control-static text-muted">
+            <strong>{{ (is_null($data->sent_at)) ? trans('order.not_yet') : $data->sent_at->format('H:i d/m/Y') }}</strong>
         </p>
     </div>
 
@@ -95,7 +106,15 @@
     </div>
 
     <div class="col-lg-2">
-        {!! Form::button('Hủy', ['class' => 'btn btn-default form-control']) !!}
+        {!! Form::button('Hủy', ['class' => 'btn btn-default form-control', 'id' => 'go-back']) !!}
     </div>
 
 </div>
+
+@section('script')
+    <script>
+        $('button#go-back').click(function(){
+            window.location.href="{{ action('Admin\OrderController@index') }}";
+        });
+    </script>
+@endsection

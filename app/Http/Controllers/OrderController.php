@@ -23,7 +23,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        echo 'asd';
     }
 
     /**
@@ -80,7 +80,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        return view('emails.invoice', compact(['order']));
     }
 
     /**

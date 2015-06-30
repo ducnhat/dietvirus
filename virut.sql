@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-29 20:29:22
+Date: 2015-06-30 08:20:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,7 +56,7 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
@@ -187,8 +187,8 @@ INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '12290
 INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null);
 INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null, null, null, null);
 INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null);
-INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-28 11:20:59', null, null, null, null);
-INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', null, null, null, null);
+INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com1', '987654321', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-30 07:18:20', null, null, null, null);
+INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', '2015-06-30 07:02:07', null, null, null);
 INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
@@ -257,10 +257,10 @@ CREATE TABLE `products` (
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\phpB948.tmp', '130000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-17 12:19:22', null);
-INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php28EB.tmp', '100000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-17 12:19:50', null);
-INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php1338.tmp', '170000', 'Bkav', '2015-06-15 08:26:58', '2015-06-17 12:21:55', null);
-INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\php347F.tmp', '160000', 'Symantec', '2015-06-17 08:07:57', '2015-06-17 12:25:21', null);
+INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\phpB948.tmp', '125000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-30 08:00:48', null);
+INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php28EB.tmp', '95000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-30 08:01:00', null);
+INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php1338.tmp', '165000', 'Bkav', '2015-06-15 08:26:58', '2015-06-30 08:01:14', null);
+INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\php347F.tmp', '150000', 'Symantec', '2015-06-17 08:07:57', '2015-06-30 08:01:29', null);
 
 -- ----------------------------
 -- Table structure for `users`
