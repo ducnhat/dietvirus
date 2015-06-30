@@ -8,7 +8,7 @@
 <script type="text/javascript" src="{{ asset('admin/js/bootstrap/bootstrap.min.js') }}"></script>
 
 <!-- Sparklines CDN -->
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+{{--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>--}}
 
 <!-- Chart Plugins -->
 <script type="text/javascript" src="{{ asset('vendor/plugins/highcharts/highcharts.js') }}"></script>
@@ -195,6 +195,23 @@
         $('table#datatable1').dataTable( {
             "order": [[ 0, "desc" ]]
         } );
+
+        // DataTable
+        var table5 = $('#datatable5').DataTable({
+            "sDom": 't<"dt-panelfooter clearfix"ip>',
+//            "order": [[ 0, "desc" ]],
+            "ordering": false
+        });
+
+        // Apply the search
+        table5.columns().eq(0).each(function(colIdx) {
+            $('input', table5.column(colIdx).header()).on('keyup change', function() {
+                table5
+                    .column(colIdx)
+                    .search(this.value)
+                    .draw();
+            });
+        });
 
         $("input[type='search']").addClass('form-control');
 
