@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DelaySendProductKey;
 use App\Events\OrderWasPurchased;
 use App\Jobs\SendDelayProductKeyEmail;
 use App\Jobs\SendProductKeyEmail;
@@ -11,6 +12,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Order;
 use Event;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -21,24 +23,28 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        //
+
+
     }
 
-    public function confirm($id){
+    public function test($id){
         $order = Order::findOrFail($id);
 
-        $f = $order->checkProductKeyQuantity();
+        return view('emails.product_keys', compact(['order']));
+    }
 
-        if($f){
-//            $this->dispatch(new SendProductKeyEmail($order));
-//            $keys = $order->getProductKeys();
-//
-//            foreach($keys as $key){
-//
-//            }
-            Event::fire(new OrderWasPurchased($order));
-        }else{
-//            $this->dispatch(new SendDelayProductKeyEmail($order))->delay(7200);
-        }
+    /**
+     * Xác nhận thanh toán
+     * Cập nhật trạng thái đơn hàng là đã thanh toán
+     * Gủi email kèm mã bản quyền
+     *
+     * @param $id
+     */
+    public function confirm($id){
+        $order = Order::findOrFail($id);
+        $order->paid_at = Carbon::now()->toDateTimeString();
+        $order->save();
+
+        Event::fire(new OrderWasPurchased($order));
     }
 }

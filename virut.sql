@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-06-28 11:31:58
+Date: 2015-06-30 18:13:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,12 +56,11 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
 -- ----------------------------
-INSERT INTO `jobs` VALUES ('2', 'default', '{\"job\":\"Illuminate\\\\Events\\\\CallQueuedHandler@call\",\"data\":{\"class\":\"App\\\\Listeners\\\\SendOrderConfirmationEmail\",\"method\":\"handle\",\"data\":\"a:1:{i:0;O:24:\\\"App\\\\Events\\\\OrderWasAdded\\\":1:{s:5:\\\"order\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:9:\\\"App\\\\Order\\\";s:2:\\\"id\\\";i:14;}}}\"}}', '0', '1', '1435465262', '1435465259', '1435465259');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -84,6 +83,8 @@ INSERT INTO `migrations` VALUES ('2015_06_22_070117_edit_coupon_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_081951_create_orders_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_221652_create_order_items_table', '4');
 INSERT INTO `migrations` VALUES ('2015_06_23_233916_create_jobs_table', '4');
+INSERT INTO `migrations` VALUES ('2015_06_27_173324_edit_orders_table', '5');
+INSERT INTO `migrations` VALUES ('2015_06_29_195923_create_order_sent_keys_table', '6');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -100,7 +101,7 @@ CREATE TABLE `order_items` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of order_items
@@ -120,6 +121,32 @@ INSERT INTO `order_items` VALUES ('12', '11', '6', 'Kaspersky Antivirus', '10000
 INSERT INTO `order_items` VALUES ('13', '12', '6', 'Kaspersky Antivirus', '100000', '1', '2015-06-28 09:55:11', '2015-06-28 09:55:11', null);
 INSERT INTO `order_items` VALUES ('14', '13', '7', 'Bkav Pro Internet Security', '170000', '1', '2015-06-28 11:14:15', '2015-06-28 11:14:15', null);
 INSERT INTO `order_items` VALUES ('15', '14', '7', 'Bkav Pro Internet Security', '170000', '1', '2015-06-28 11:20:59', '2015-06-28 11:20:59', null);
+INSERT INTO `order_items` VALUES ('16', '15', '6', 'Kaspersky Antivirus', '100000', '3', '2015-06-28 15:02:26', '2015-06-28 15:02:26', null);
+INSERT INTO `order_items` VALUES ('17', '15', '5', 'Kaspersky Internet Security', '130000', '1', '2015-06-28 15:02:26', '2015-06-28 15:02:26', null);
+INSERT INTO `order_items` VALUES ('18', '16', '5', 'Kaspersky Internet Security', '130000', '2', '2015-06-28 23:09:25', '2015-06-28 23:09:25', null);
+INSERT INTO `order_items` VALUES ('19', '16', '7', 'Bkav Pro Internet Security', '170000', '2', '2015-06-28 23:09:25', '2015-06-28 23:09:25', null);
+
+-- ----------------------------
+-- Table structure for `order_sent_keys`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_sent_keys`;
+CREATE TABLE `order_sent_keys` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_key_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of order_sent_keys
+-- ----------------------------
+INSERT INTO `order_sent_keys` VALUES ('1', '16', '4', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('2', '16', '6', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('3', '16', '2', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
+INSERT INTO `order_sent_keys` VALUES ('4', '16', '5', '2015-06-29 20:25:22', '2015-06-29 20:25:22', null);
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -134,31 +161,35 @@ CREATE TABLE `orders` (
   `discount` int(11) DEFAULT '0',
   `coupon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` int(11) NOT NULL,
-  `is_paid` tinyint(4) DEFAULT '0',
   `paid_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `payment_type` tinyint(4) DEFAULT NULL,
+  `sent_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '906578610', '170000', '0', null, '170000', '0', null, '2015-06-25 22:43:09', '2015-06-26 00:05:19', null);
-INSERT INTO `orders` VALUES ('2', 'Đức Nhật', 'nhatdo@outlook.com', '906578610', '600000', '120000', 'KHAITRUONG20%', '480000', '0', null, '2015-06-27 23:55:20', '2015-06-27 23:55:20', null);
-INSERT INTO `orders` VALUES ('3', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:03:43', '2015-06-28 09:03:43', null);
-INSERT INTO `orders` VALUES ('4', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:11:35', '2015-06-28 09:11:35', null);
-INSERT INTO `orders` VALUES ('5', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:14:33', '2015-06-28 09:14:33', null);
-INSERT INTO `orders` VALUES ('6', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:16:11', '2015-06-28 09:16:11', null);
-INSERT INTO `orders` VALUES ('7', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:17:39', '2015-06-28 09:17:39', null);
-INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:25:28', '2015-06-28 09:25:28', null);
-INSERT INTO `orders` VALUES ('9', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:25:48', '2015-06-28 09:25:48', null);
-INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:28:02', '2015-06-28 09:28:02', null);
-INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:52:24', '2015-06-28 09:52:24', null);
-INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '0', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null);
-INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', '0', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null);
-INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', '0', null, '2015-06-28 11:20:59', '2015-06-28 11:20:59', null);
+INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '906578610', '170000', '0', null, '170000', null, '2015-06-25 22:43:09', '2015-06-26 00:05:19', null, null, null, null);
+INSERT INTO `orders` VALUES ('2', 'Đức Nhật', 'nhatdo@outlook.com', '906578610', '600000', '120000', 'KHAITRUONG20%', '480000', null, '2015-06-27 23:55:20', '2015-06-28 23:04:39', null, null, null, null);
+INSERT INTO `orders` VALUES ('3', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:03:43', '2015-06-28 09:03:43', null, null, null, null);
+INSERT INTO `orders` VALUES ('4', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:11:35', '2015-06-28 09:11:35', null, null, null, null);
+INSERT INTO `orders` VALUES ('5', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:14:33', '2015-06-28 09:14:33', null, null, null, null);
+INSERT INTO `orders` VALUES ('6', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:16:11', '2015-06-28 09:16:11', null, null, null, null);
+INSERT INTO `orders` VALUES ('7', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:17:39', '2015-06-28 09:17:39', null, null, null, null);
+INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:28', '2015-06-28 09:25:28', null, null, null, null);
+INSERT INTO `orders` VALUES ('9', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:48', '2015-06-28 09:25:48', null, null, null, null);
+INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:28:02', '2015-06-28 09:28:02', null, null, null, null);
+INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null);
+INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null, null, null, null);
+INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null);
+INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com1', '987654321', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-30 07:18:20', null, null, null, null);
+INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', '2015-06-30 07:02:07', null, null, null);
+INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
 -- Table structure for `password_resets`
@@ -195,16 +226,17 @@ CREATE TABLE `product_keys` (
   KEY `product_keys_user_id_foreign` (`user_id`),
   CONSTRAINT `product_keys_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `product_keys_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of product_keys
 -- ----------------------------
-INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', null, null, '2015-06-16 08:03:49', '2015-06-16 08:03:49', null);
+INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:03:49', '2015-06-29 20:25:22', null);
 INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null);
-INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 22:27:01', null);
-INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 22:27:01', null);
-INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', null, null, '2015-06-16 08:21:23', '2015-06-16 08:21:23', null);
+INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', null, '2015-06-16 08:21:23', '2015-06-29 20:25:22', null);
+INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, null, '2015-06-16 08:21:23', '2015-06-29 07:43:18', null);
 
 -- ----------------------------
 -- Table structure for `products`
@@ -225,10 +257,10 @@ CREATE TABLE `products` (
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\phpB948.tmp', '130000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-17 12:19:22', null);
-INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php28EB.tmp', '100000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-17 12:19:50', null);
-INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php1338.tmp', '170000', 'Bkav', '2015-06-15 08:26:58', '2015-06-17 12:21:55', null);
-INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\php347F.tmp', '160000', 'Symantec', '2015-06-17 08:07:57', '2015-06-17 12:25:21', null);
+INSERT INTO `products` VALUES ('5', 'Kaspersky Internet Security', 'D:\\xampp\\tmp\\phpB948.tmp', '125000', 'Kaspersky Lab', '2015-06-14 22:30:35', '2015-06-30 08:00:48', null);
+INSERT INTO `products` VALUES ('6', 'Kaspersky Antivirus', 'D:\\xampp\\tmp\\php28EB.tmp', '95000', 'Kaspersky Lab', '2015-06-15 07:52:30', '2015-06-30 08:01:00', null);
+INSERT INTO `products` VALUES ('7', 'Bkav Pro Internet Security', 'D:\\xampp\\tmp\\php1338.tmp', '165000', 'Bkav', '2015-06-15 08:26:58', '2015-06-30 08:01:14', null);
+INSERT INTO `products` VALUES ('8', 'Norton Internet Security', 'D:\\xampp\\tmp\\php347F.tmp', '150000', 'Symantec', '2015-06-17 08:07:57', '2015-06-30 08:01:29', null);
 
 -- ----------------------------
 -- Table structure for `users`

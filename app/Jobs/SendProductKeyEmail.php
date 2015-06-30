@@ -8,11 +8,15 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Order;
-use App\ProductKey;
+use Mail;
+use Carbon\Carbon;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+
 
 class SendProductKeyEmail extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
+    use DispatchesJobs;
 
     protected $order;
     /**
@@ -32,10 +36,20 @@ class SendProductKeyEmail extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        if($this->order->checkProductKeyQuantity()){
+        if($this->order->checkOrderIsPaid()) {
+            if ($this->order->checkOrderIsSentKeys() && $this->order->checkProductKeyQuantity()) {
+                Mail::send('emails.product_keys', ['order' => $this->order], function ($message) {
+                    $message->from('dondathang@phanmemquetvirut.com', 'Phần mềm quét virut');
+                    $message->to($this->order->email);
+                    $message->subject(trans('order.product_key_email_title'));
+                });
 
-        }else{
-            $this->dispatch(new SendDelayProductKeyEmail($this->order))->delay(7200);
+                $this->order->sent_at = Carbon::now()->toDateTimeString();
+                $this->order->save();
+            } else {
+                $job = (new SendDelayProductKeyEmail($this->order))->delay(1800);
+                $this->dispatch($job);
+            }
         }
     }
 }

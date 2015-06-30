@@ -5,9 +5,13 @@ namespace App\Listeners;
 use App\Events\OrderWasPurchased;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\SendProductKeyEmail as SendProductKey;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class SendProductKeyEmail
+class SendProductKeyEmail implements ShouldQueue
 {
+    use DispatchesJobs;
+
     /**
      * Create the event listener.
      *
@@ -26,6 +30,10 @@ class SendProductKeyEmail
      */
     public function handle(OrderWasPurchased $event)
     {
-        dd($event->order);
+        $order = $event->order;
+
+        $job = (new SendProductKey($order));
+
+        $this->dispatch($job);
     }
 }

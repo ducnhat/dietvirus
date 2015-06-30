@@ -17,6 +17,10 @@ class ProductKey extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+    public function product(){
+        return $this->belongsTo('App\Product', 'product_id');
+    }
+
     public function getProductIdAttribute($value){
         $product = Product::where('id', $value)->first();
 
