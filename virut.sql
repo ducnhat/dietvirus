@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-01 11:42:41
+Date: 2015-07-01 17:16:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,13 +80,14 @@ CREATE TABLE `key_warranty` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of key_warranty
 -- ----------------------------
-INSERT INTO `key_warranty` VALUES ('1', 'ducnhat@hoclaixethanhcong.com', '5', '01229012202', '0', 'asds', '0', null, null, null, '2015-07-01 11:06:36', '2015-07-01 11:06:36', 'Nhật Đỗ');
+INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '0', 'asdasd', '2015-07-01 16:47:07', '1', '2015-07-01 15:13:24', '2015-07-01 16:47:07', 'Nhật', null);
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -264,7 +265,7 @@ CREATE TABLE `product_keys` (
 INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:03:49', '2015-06-29 20:25:22', null, null, null);
 INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null, null, null);
 INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null);
-INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-07-01 11:06:36', null, null, '2015-07-01 11:06:36');
+INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-07-01 15:13:24', null, null, '2015-07-01 15:13:24');
 INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null);
 INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, '2015-06-16 08:21:23', '2015-06-29 07:43:18', null, null, null);
 

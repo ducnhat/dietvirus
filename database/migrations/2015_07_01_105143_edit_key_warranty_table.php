@@ -14,6 +14,7 @@ class EditKeyWarrantyTable extends Migration
     {
         Schema::table('key_warranty', function (Blueprint $table) {
             $table->string('name');
+            $table->softDeletes();
         });
     }
 
