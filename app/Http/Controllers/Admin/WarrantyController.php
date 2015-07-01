@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ProductKeyWasWarranted;
 use App\KeyWarranty;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WarrantyRequest;
+use Event;
 
 class WarrantyController extends Controller
 {
@@ -22,26 +24,6 @@ class WarrantyController extends Controller
         $data = KeyWarranty::all();
 
         return view('admin.warranty.index', compact(['data']));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
     }
 
     /**
@@ -85,20 +67,9 @@ class WarrantyController extends Controller
         $data->save();
 
         if($data->is_warranted){
-
+            Event::fire(new ProductKeyWasWarranted());
         }
 
         return redirect()->action('Admin\WarrantyController@index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
