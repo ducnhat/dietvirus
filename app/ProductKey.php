@@ -13,9 +13,9 @@ class ProductKey extends Model
 
     protected $table = 'product_keys';
 
-    protected $fillable = ['key', 'product_id', 'user_id', 'sold_at', 'return_at'];
+    protected $fillable = ['key', 'product_id', 'user_id', 'sold_at', 'return_at', 'warranty_at'];
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'warranty_at', 'return_at', 'sold_at'];
 
     /**
      * Chuyển key thành chữ hoa
@@ -44,6 +44,13 @@ class ProductKey extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    /**
+     * Đếm số lượng key còn lại theo sản phẩm
+     *
+     * @param $query
+     * @param $product_id
+     * @return mixed
+     */
     public function scopeCountProductKey($query, $product_id){
         return $query->select(DB::raw('count(`key`) as quantity'))
             ->where('product_id', $product_id)

@@ -28,6 +28,10 @@ Route::get('checkout/test/{id}', 'CheckoutController@test');
 //Order Controller
 Route::resource('order', 'OrderController');
 
+//Key Controller
+Route::get('key/warranty', 'KeyController@warranty');
+Route::resource('key', 'KeyController');
+
 //Admin prefix
 $admin_prefix = env('ADMIN_PREFIX');
 
