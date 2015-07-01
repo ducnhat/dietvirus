@@ -18,9 +18,8 @@ class ProductKeyController extends Controller
      */
     public function index()
     {
-        $data = ProductKey::all();
+        $data = ProductKey::orderBy('id', 'desc')->get();
 
-//        dd($data);
         return view('admin.product-key.index', compact(['data']));
     }
 

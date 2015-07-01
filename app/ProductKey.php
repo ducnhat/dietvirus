@@ -17,20 +17,31 @@ class ProductKey extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+    /**
+     * Chuyển key thành chữ hoa
+     *
+     * @param $value
+     */
+    public function setKeyAttribute($value){
+        $this->attributes['key'] = strtoupper($value);
+    }
+
+    /**
+     * 1 key thuộc 1 sản phẩm
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product(){
         return $this->belongsTo('App\Product', 'product_id');
     }
 
-    public function getProductIdAttribute($value){
-        $product = Product::where('id', $value)->first();
-
-        return $product->name;
-    }
-
-    public function getUserIdAttribute($value){
-        $user = User::where('id', $value)->first();
-
-        return $user->name;
+    /**
+     * 1 key được tạo bởi 1 user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function scopeCountProductKey($query, $product_id){
