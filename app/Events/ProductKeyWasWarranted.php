@@ -10,14 +10,15 @@ class ProductKeyWasWarranted extends Event
 {
     use SerializesModels;
 
+    public  $keyWarranty;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($keyWarranty)
     {
-        //
+        $this->keyWarranty = $keyWarranty;
     }
 
     /**

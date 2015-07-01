@@ -67,7 +67,7 @@ class WarrantyController extends Controller
         $data->save();
 
         if($data->is_warranted){
-            Event::fire(new ProductKeyWasWarranted());
+            Event::fire(new ProductKeyWasWarranted($data));
         }
 
         return redirect()->action('Admin\WarrantyController@index');

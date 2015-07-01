@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-01 17:16:56
+Date: 2015-07-01 23:29:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS `key_warranty`;
 CREATE TABLE `key_warranty` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `product_key_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `product_key_id` int(10) unsigned NOT NULL,
   `phone` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `error_message` text COLLATE utf8_unicode_ci NOT NULL,
@@ -81,13 +81,14 @@ CREATE TABLE `key_warranty` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
+  `new_product_key_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of key_warranty
 -- ----------------------------
-INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '0', 'asdasd', '2015-07-01 16:47:07', '1', '2015-07-01 15:13:24', '2015-07-01 16:47:07', 'Nhật', null);
+INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '0', 'asdasd', '2015-07-01 16:47:07', '1', '2015-07-01 15:13:24', '2015-07-01 16:47:07', '', null, '0');
 
 -- ----------------------------
 -- Table structure for `migrations`

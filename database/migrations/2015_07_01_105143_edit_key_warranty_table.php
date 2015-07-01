@@ -15,6 +15,8 @@ class EditKeyWarrantyTable extends Migration
         Schema::table('key_warranty', function (Blueprint $table) {
             $table->string('name');
             $table->softDeletes();
+            $table->integer('product_key_id')->unsigned()->change();
+            $table->integer('new_product_key_id')->unsigned();
         });
     }
 
@@ -27,6 +29,8 @@ class EditKeyWarrantyTable extends Migration
     {
         Schema::table('key_warranty', function (Blueprint $table) {
             $table->dropColumn('name');
+            $table->dropColumn('deleted_at');
+            $table->dropColumn('new_product_key_id');
         });
     }
 }

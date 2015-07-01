@@ -56,6 +56,22 @@ class ProductKey extends Model
             ->where('product_id', $product_id)
             ->whereNull('sold_at')
             ->whereNull('return_at')
+            ->whereNull('warranty_at')
             ->groupBy('product_id');
+    }
+
+    /**
+     * Lấy key mới theo key cũ khi bảo hành
+     *
+     * @param ProductKey $oldKey
+     * @return mixed
+     */
+    public function getNewProductKey(ProductKey $oldKey){
+        $newKey = $this->where('product_id', $oldKey->product_id)
+            ->whereNull('sold_at')
+            ->whereNull('warranty_at')
+            ->first();
+
+        return $newKey;
     }
 }
