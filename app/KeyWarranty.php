@@ -32,4 +32,21 @@ class KeyWarranty extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    /**
+     * Kiếm tra số lượng key cần sử dụng, nếu không đủ trả về false
+     *
+     * @return bool
+     */
+    public function checkProductKeyQuantity(){
+        $f = true;
+
+        $count = ProductKey::countProductKey($this->productKey->product_id)->first();
+
+        if(empty($count) || ($count->quantity < 1)){
+            $f = false;
+        }
+
+        return $f;
+    }
 }

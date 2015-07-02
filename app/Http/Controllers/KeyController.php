@@ -20,7 +20,15 @@ class KeyController extends Controller
      */
     public function index()
     {
-        //
+        $keyWarranty = KeyWarranty::findOrFail(1);
+
+        $count = ProductKey::countProductKey($keyWarranty->productKey->product_id)->first();
+
+        if($count->quantity > 0){
+            return view('emails.new_product_key', compact(['keyWarranty']));
+        }else{
+            echo 'không còn';
+        }
     }
 
     /**

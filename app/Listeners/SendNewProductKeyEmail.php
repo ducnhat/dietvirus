@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Jobs\SendNewProductKeyEmail as SendNewProductKey;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class SendNewProductKeyEmail
+class SendNewProductKeyEmail implements ShouldQueue
 {
     use DispatchesJobs;
 

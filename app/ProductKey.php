@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Product;
@@ -56,8 +57,7 @@ class ProductKey extends Model
             ->where('product_id', $product_id)
             ->whereNull('sold_at')
             ->whereNull('return_at')
-            ->whereNull('warranty_at')
-            ->groupBy('product_id');
+            ->whereNull('warranty_at');
     }
 
     /**
@@ -66,11 +66,18 @@ class ProductKey extends Model
      * @param ProductKey $oldKey
      * @return mixed
      */
-    public function getNewProductKey(ProductKey $oldKey){
-        $newKey = $this->where('product_id', $oldKey->product_id)
+    public function getNewProductKey(){
+        $newKey = $this->where('product_id', $this->product_id)
             ->whereNull('sold_at')
             ->whereNull('warranty_at')
             ->first();
+
+        if($newKey){
+            $newKey->sold_at = Carbon::now()->toDateTimeString();
+            $newKey->use_for = KEY_USE_FOR_WARRANTY;
+
+            $newKey->save();
+        }
 
         return $newKey;
     }

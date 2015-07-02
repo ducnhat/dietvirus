@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-01 23:29:33
+Date: 2015-07-02 07:54:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -116,6 +116,7 @@ INSERT INTO `migrations` VALUES ('2015_06_29_195923_create_order_sent_keys_table
 INSERT INTO `migrations` VALUES ('2015_07_01_000020_create_key_warranty_table', '7');
 INSERT INTO `migrations` VALUES ('2015_07_01_095823_edit_product_keys_table', '8');
 INSERT INTO `migrations` VALUES ('2015_07_01_105143_edit_key_warranty_table', '9');
+INSERT INTO `migrations` VALUES ('2015_07_02_070738_edit_product_keys_table', '10');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -252,23 +253,25 @@ CREATE TABLE `product_keys` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `return_at` datetime DEFAULT NULL,
+  `use_for` int(11) DEFAULT NULL,
   `warranty_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `product_keys_product_id_foreign` (`product_id`),
   KEY `product_keys_user_id_foreign` (`user_id`),
   CONSTRAINT `product_keys_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `product_keys_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of product_keys
 -- ----------------------------
-INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:03:49', '2015-06-29 20:25:22', null, null, null);
-INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null, null, null);
-INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null);
-INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-07-01 15:13:24', null, null, '2015-07-01 15:13:24');
-INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null);
-INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, '2015-06-16 08:21:23', '2015-06-29 07:43:18', null, null, null);
+INSERT INTO `product_keys` VALUES ('2', 'asdasdasd', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:03:49', '2015-06-29 20:25:22', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, '2015-06-16 08:05:27', '2015-06-16 22:23:52', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-07-01 15:13:24', null, null, null, '2015-07-02 07:33:59');
+INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, '2015-06-16 08:21:23', '2015-07-02 07:53:12', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('8', 'XXXXX-XXXXX-XXXXX-XXXXX', '6', '1', null, '2015-07-02 07:52:43', '2015-07-02 07:52:56', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `products`
