@@ -113,6 +113,44 @@
                 </ul>
             </li>
 
+            <li class="sidebar-label pt20">{{ trans('link.post') }}</li>
+            <li>
+                <a class="accordion-toggle" href="#">
+                    <span class="glyphicons glyphicons-book"></span>
+                    <span class="sidebar-title">{{ trans('link.post') }}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="{{ action('Admin\PostController@create') }}">
+                            <span class="glyphicons glyphicons-circle_plus"></span> {{ trans('link.create_post') }} </a>
+                    </li>
+                    <li>
+                        <a href="{{ action('Admin\PostController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.view_posts') }} </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="accordion-toggle" href="#">
+                    <span class="glyphicons glyphicons-book"></span>
+                    <span class="sidebar-title">{{ trans('link.post_category') }}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="{{ action('Admin\PostCategoryController@create') }}">
+                            <span class="glyphicons glyphicons-circle_plus"></span> {{ trans('link.create_post_category') }} </a>
+                    </li>
+                    <li>
+                        <a href="{{ action('Admin\PostCategoryController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.view_post_categories') }} </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-label pt20">{{ trans('link.support') }}</li>
             <li>
                 <a class="accordion-toggle" href="#">
                     <span class="glyphicons glyphicons-book"></span>

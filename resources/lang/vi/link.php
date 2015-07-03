@@ -21,6 +21,13 @@ return [
     'view_all_warranty' => 'Xem các yêu cầu bảo hành',
     'contact' => 'Liên hệ',
     'view_all_contact' => 'Xem các yêu cầu liên hệ',
+    'support' => 'Hỗ trợ',
+    'post' => 'Bài viết',
+    'create_post' => 'Viết bài mới',
+    'post_category' => 'Danh mục bài viết',
+    'create_post_category' => 'Tạo danh mục bài viết mới',
+    'view_posts' => 'Xem các bài viết',
+    'view_post_categories' => 'Xem các danh mục bài viết',
 ];
 
 ?>

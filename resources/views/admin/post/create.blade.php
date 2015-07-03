@@ -9,7 +9,7 @@
                     {{ trans('post.create') }}
                 </div>
                 <div class="panel-body p20 pb10">
-                    {!! Form::open(['method' => 'post', 'action' => ['Admin\PostController@store']]) !!}
+                    {!! Form::open(['method' => 'post', 'action' => ['Admin\PostController@store'], 'files' => true]) !!}
 
                     @include('admin.post.form')
 

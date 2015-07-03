@@ -6,14 +6,27 @@
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-body p20 pb10">
-                    <table id="datatable" class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <table id="datatable5" class="table table-bordered table-hover admin-form theme-warning tc-checkbox-1 fs13">
                         <thead>
                             <tr class="bg-light">
-                                <th>
-                                    {{ trans('post_category.name') }}
+                                <th class="text-center">
+{{--                                    {{ trans('post.title') }}--}}
+                                    <input class="form-control" placeholder="{{ trans('post.title') }}" />
                                 </th>
-                                <th>
-                                    {{ trans('post_category.slug') }}
+                                <th class="text-center">
+                                    {{ trans('post.image') }}
+                                </th>
+                                <th class="text-center">
+{{--                                    {{ trans('post.created_at') }}--}}
+                                    <input class="form-control" placeholder="{{ trans('post.created_at') }}" />
+                                </th>
+                                <th class="text-center">
+{{--                                    {{ trans('post.publish_at') }}--}}
+                                    <input class="form-control" placeholder="{{ trans('post.publish_at') }}" />
+                                </th>
+                                <th class="text-center">
+{{--                                    {{ trans('post.author') }}--}}
+                                    <input class="form-control" placeholder="{{ trans('post.author') }}" />
                                 </th>
                                 <th class="text-right">
                                     {{ trans('form.tools') }}
@@ -25,10 +38,19 @@
                             @foreach($data as $row)
                             <tr>
                                 <td class="text-left">
-                                    <strong>{{ $row->name }}</strong>
+                                    <strong>{{ $row->title }}</strong>
                                 </td>
-                                <td class="text-left">
-                                    {{ $row->slug }}
+                                <td class="text-center">
+                                    <img height="80px" src="{{ $row->image }}" />
+                                </td>
+                                <td data-search="{{ $row->created_at->format("H:i d/m/Y") }}" class="text-center">
+                                    {{ $row->created_at->format("H:i d/m/Y") }}
+                                </td>
+                                <td data-search="{{ $row->publish_at->format("H:i d/m/Y") }}" class="text-center">
+                                    {{ $row->publish_at->format("H:i d/m/Y") }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $row->user->name }}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group text-right">
@@ -38,12 +60,12 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="{{ action('Admin\PostCategoryController@edit', $row->id) }}">
+                                                <a href="{{ action('Admin\PostController@edit', $row->id) }}">
                                                     Sửa
                                                 </a>
                                             </li>
                                             <li>
-                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\PostCategoryController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
+                                                {!! Form::open(['method' => 'delete', 'action' => ['Admin\PostController@destroy', $row->id], 'id' => 'row-' . $row->id]) !!}
                                                 {!! Form::close() !!}
                                                 <a href="#" data-id="{{ $row->id }}" id="delete">Xóa</a>
                                             </li>
@@ -68,7 +90,7 @@
 
 $(document).ready(function(){
     $('a#delete').click(function(){
-        var ok = confirm('{{ trans('post_category.delete') }}');
+        var ok = confirm('{{ trans('post.delete') }}');
 
         if(!ok)
             return false;

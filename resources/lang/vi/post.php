@@ -6,9 +6,12 @@ return [
     'description' => 'Giới thiệu',
     'content' => 'Nội dung',
     'image' => 'Hình ảnh',
-    'publish_at' => 'Ngày xuất bản',
+    'publish_at' => 'Ngày đăng',
+    'created_at' => 'Ngày viết',
     'category' => 'Danh mục',
     'is_published' => 'Được hiển thị',
+    'author' => 'Người viết',
+    'delete' => 'Bạn muốn xóa bài viết này?',
 
 ];
 

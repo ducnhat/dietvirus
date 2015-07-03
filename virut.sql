@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-03 18:07:33
+Date: 2015-07-03 23:16:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -305,11 +305,12 @@ CREATE TABLE `posts` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of posts
 -- ----------------------------
+INSERT INTO `posts` VALUES ('1', 'Giới thiệu trang web', 'asasd asd asd asd asd asd asd\r\n as\r\nd \r\nasd\r\n a\r\nsd', '<p>test thử coi sao&nbsp;test thử coi<strong>&nbsp;sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa</strong>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa<em>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;t</em>est thử coi sa<s>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;te</s>st thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;</p>\r\n', '1.jpg', '1', '2015-07-23 23:09:00', '3', '1', '2015-07-03 22:09:29', '2015-07-03 23:09:25', null);
 
 -- ----------------------------
 -- Table structure for `product_keys`

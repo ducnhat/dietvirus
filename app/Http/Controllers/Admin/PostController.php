@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\PostCactegory;
+use App\Http\Requests\PostRequest;
+use App\Post;
+use Storage;
+use Image;
 
 class PostController extends Controller
 {
@@ -17,7 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data = Post::orderBy('created_at', 'desc')->get();
+
+        return view('admin.post.index', compact(['data']));
     }
 
     /**
@@ -37,20 +43,30 @@ class PostController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(PostRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = Post::create($input);
+        $this->uploadImage($request, $data);
+
+        return redirect()->action('Admin\PostController@index');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+     * Upload image from client to server
+     * @param ProductRequest $request
+     * @param Product $data
      */
-    public function show($id)
-    {
-        //
+    public function uploadImage(PostRequest $request, Post $data){
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $filename = $data->id;
+            $ext = $file->getClientOriginalExtension();
+            $image = Image::make($file)->resize(350, 220)->encode($ext);
+            Storage::put(config('app.image_upload_path') . "posts/$filename.jpg", (string) $image);
+            $data->image = "$filename.jpg";
+            $data->save();
+        }
     }
 
     /**
@@ -61,7 +77,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = PostCactegory::lists('name', 'id');
+        $data = Post::findOrFail($id);
+
+        return view('admin.post.edit', compact(['categories', 'data']));
     }
 
     /**
@@ -70,9 +89,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($id, PostRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = Post::findOrFail($id);
+        $data->update($input);
+        $this->uploadImage($request, $data);
+
+        return redirect()->action('Admin\PostController@index');
     }
 
     /**
@@ -83,6 +107,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Post::findOrFail($id);
+        $data->delete();
+
+        return redirect()->action('Admin\PostController@index');
     }
 }
