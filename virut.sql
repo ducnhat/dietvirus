@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-07-03 16:41:43
+Date: 2015-07-03 18:07:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -144,6 +144,8 @@ INSERT INTO `migrations` VALUES ('2015_07_01_095823_edit_product_keys_table', '8
 INSERT INTO `migrations` VALUES ('2015_07_01_105143_edit_key_warranty_table', '9');
 INSERT INTO `migrations` VALUES ('2015_07_02_070738_edit_product_keys_table', '10');
 INSERT INTO `migrations` VALUES ('2015_07_03_132850_create_contact_table', '11');
+INSERT INTO `migrations` VALUES ('2015_07_03_171250_create_post_categories_table', '12');
+INSERT INTO `migrations` VALUES ('2015_07_03_174856_create_posts_table', '13');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -264,6 +266,49 @@ CREATE TABLE `password_resets` (
 
 -- ----------------------------
 -- Records of password_resets
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `post_categories`
+-- ----------------------------
+DROP TABLE IF EXISTS `post_categories`;
+CREATE TABLE `post_categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of post_categories
+-- ----------------------------
+INSERT INTO `post_categories` VALUES ('3', 'giới thiệu', '', '2015-07-03 17:43:49', '2015-07-03 17:43:49', null);
+
+-- ----------------------------
+-- Table structure for `posts`
+-- ----------------------------
+DROP TABLE IF EXISTS `posts`;
+CREATE TABLE `posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `is_published` tinyint(4) DEFAULT '1',
+  `publish_at` datetime NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of posts
 -- ----------------------------
 
 -- ----------------------------

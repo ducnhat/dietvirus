@@ -43,6 +43,7 @@
                                             </ul>
                                         </div>
                                     </li>
+                                    <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="{{ action('KeyController@warranty') }}" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>{{ trans('link.warranty') }}</b></a></li>
                                     <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="{{ action('ContactController@index') }}" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>{{ trans('contact.contact') }}</b></a></li>
                                 </ul>
                             </nav>

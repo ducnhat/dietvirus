@@ -17,6 +17,10 @@ return [
     'cart_checkout' => 'Thanh toán',
     'order' => 'Đơn hàng',
     'view_orders' => 'Xem tất cả đơn hàng',
+    'warranty' => 'Bảo hành',
+    'view_all_warranty' => 'Xem các yêu cầu bảo hành',
+    'contact' => 'Liên hệ',
+    'view_all_contact' => 'Xem các yêu cầu liên hệ',
 ];
 
 ?>

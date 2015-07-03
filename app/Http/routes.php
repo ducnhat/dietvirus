@@ -29,7 +29,7 @@ Route::get('checkout/test/{id}', 'CheckoutController@test');
 Route::resource('order', 'OrderController');
 
 //Key Controller
-Route::get('key/warranty', 'KeyController@warranty');
+Route::get('warranty', 'KeyController@warranty');
 Route::resource('key', 'KeyController');
 
 //Contact Controller
@@ -52,5 +52,7 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('order', 'OrderController');
     Route::resource('warranty', 'WarrantyController');
     Route::resource('contact', 'ContactController');
+    Route::resource('post-category', 'PostCategoryController');
+    Route::resource('post', 'PostController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });

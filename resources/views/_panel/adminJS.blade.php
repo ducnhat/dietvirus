@@ -203,15 +203,17 @@
             "ordering": false
         });
 
-        // Apply the search
-        table5.columns().eq(0).each(function(colIdx) {
-            $('input', table5.column(colIdx).header()).on('keyup change', function() {
-                table5
-                    .column(colIdx)
-                    .search(this.value)
-                    .draw();
+        if($('#datatable5').length) {
+            // Apply the search
+            table5.columns().eq(0).each(function (colIdx) {
+                $('input', table5.column(colIdx).header()).on('keyup change', function () {
+                    table5
+                            .column(colIdx)
+                            .search(this.value)
+                            .draw();
+                });
             });
-        });
+        }
 
         $("input[type='search']").addClass('form-control');
 

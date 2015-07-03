@@ -99,7 +99,6 @@
                 </ul>
             </li>
 
-            <li class="sidebar-label pt20">{{ trans('link.order') }}</li>
             <li>
                 <a class="accordion-toggle" href="#">
                     <span class="glyphicons glyphicons-book"></span>
@@ -110,6 +109,34 @@
                     <li>
                         <a href="{{ action('Admin\OrderController@index') }}">
                             <span class="glyphicons glyphicons-list"></span> {{ trans('link.view_orders') }} </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="accordion-toggle" href="#">
+                    <span class="glyphicons glyphicons-book"></span>
+                    <span class="sidebar-title">{{ trans('link.warranty') }}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="{{ action('Admin\WarrantyController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.view_all_warranty') }} </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="accordion-toggle" href="#">
+                    <span class="glyphicons glyphicons-book"></span>
+                    <span class="sidebar-title">{{ trans('link.contact') }}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="{{ action('Admin\ContactController@index') }}">
+                            <span class="glyphicons glyphicons-list"></span> {{ trans('link.view_all_contact') }} </a>
                     </li>
                 </ul>
             </li>
