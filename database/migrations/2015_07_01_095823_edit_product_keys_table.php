@@ -14,6 +14,7 @@ class EditProductKeysTable extends Migration
     {
         Schema::table('product_keys', function (Blueprint $table) {
             $table->dateTime('warranty_at')->nullable();
+            $table->integer('use_for')->nullable();
         });
     }
 
@@ -26,6 +27,7 @@ class EditProductKeysTable extends Migration
     {
         Schema::table('product_keys', function (Blueprint $table) {
             $table->dropColumn('warranty_at');
+            $table->dropColumn('use_for');
         });
     }
 }

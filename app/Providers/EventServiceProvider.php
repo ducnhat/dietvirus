@@ -10,6 +10,10 @@ use App\Events\OrderWasPurchased;
 use App\Listeners\SendProductKeyEmail;
 use App\Events\DelaySendProductKey;
 use App\Listeners\SendDelayProductKeyEmail;
+use App\Events\ProductKeyWasWarranted;
+use App\Listeners\SendNewProductKeyEmail;
+use App\Events\ContactWasReplied;
+use App\Listeners\SendReplyContactMessageEmail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderWasPurchased::class => [
             SendProductKeyEmail::class
+        ],
+        ProductKeyWasWarranted::class => [
+            SendNewProductKeyEmail::class
+        ],
+        ContactWasReplied::class => [
+            SendReplyContactMessageEmail::class
         ]
     ];
 

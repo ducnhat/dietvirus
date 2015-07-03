@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ProductKeyWasWarranted;
-use App\KeyWarranty;
-use App\Listeners\SendNewProductKeyEmail;
-use App\ProductKey;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\KeyRequest;
-use Event;
+use App\Http\Requests\ContactRequest;
+use App\Contact;
 
-class KeyController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->session()->has('message')){
+            return view('frontend.contact.success');
+        }
 
+        return view('frontend.contact.index');
     }
 
     /**
@@ -41,19 +40,13 @@ class KeyController extends Controller
      *
      * @return Response
      */
-    public function store(KeyRequest $request)
+    public function store(ContactRequest $request)
     {
         $input = $request->all();
-        $key = ProductKey::where('key', $request->get('product_key_id'))->first();
-        $input['product_key_id'] = $key->id;
-        $input['status'] = 0;
+        Contact::create($input);
+        $request->session()->flash('message', trans('contact.submitted'));
 
-        KeyWarranty::create($input);
-
-        $key->warranty_at = Carbon::now()->toDateTimeString();
-        $key->save();
-
-        return redirect()->action('KeyController@index');
+        return redirect()->action('ContactController@index');
     }
 
     /**
@@ -98,9 +91,5 @@ class KeyController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function warranty(){
-        return view('frontend.key.warranty');
     }
 }

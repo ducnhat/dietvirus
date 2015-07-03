@@ -294,54 +294,20 @@
 
 <body bgcolor="#f7f7f7">
 <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
-    {{--<tr>--}}
-        {{--<td align="left" valign="top" width="100%" style="background:repeat-x url(http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg) #ffffff;">--}}
-            {{--<center>--}}
-                {{--<img src="http://s3.amazonaws.com/swu-filepicker/SBb2fQPrQ5ezxmqUTgCr_transparent.png" class="force-width-gmail">--}}
-                {{--<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff" background="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" style="background-color:transparent">--}}
-                    {{--<tr>--}}
-                        {{--<td width="100%" height="80" valign="top" style="text-align: center; vertical-align:middle;">--}}
-                            {{--<!--[if gte mso 9]>--}}
-                            {{--<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:80px; v-text-anchor:middle;">--}}
-                                {{--<v:fill type="tile" src="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" color="#ffffff" />--}}
-                                {{--<v:textbox inset="0,0,0,0">--}}
-                            {{--<![endif]-->--}}
-                            {{--<center>--}}
-                                {{--<table cellpadding="0" cellspacing="0" width="600" class="w320">--}}
-                                    {{--<tr>--}}
-                                        {{--<td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">--}}
-                                            {{--<a href=""><img width="167" height="35" src="img/logo.png" alt="logo"></a>--}}
-                                        {{--</td>--}}
-                                        {{--<td class="pull-right mobile-header-padding-right" style="color: #4d4d4d;">--}}
-                                            {{--<a href=""><img width="40" height="47" src="img/social-twitter.png" alt="twitter" /></a>--}}
-                                            {{--<a href=""><img width="40" height="47" src="img/social-fb.png" alt="facebook" /></a>--}}
-                                            {{--<a href=""><img width="40" height="47" src="img/social-feed.png" alt="rss" /></a>--}}
-                                        {{--</td>--}}
-                                    {{--</tr>--}}
-                                {{--</table>--}}
-                            {{--</center>--}}
-                            {{--<!--[if gte mso 9]>--}}
-                            {{--</v:textbox>--}}
-                            {{--</v:rect>--}}
-                            {{--<![endif]-->--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                {{--</table>--}}
-            {{--</center>--}}
-        {{--</td>--}}
-    {{--</tr>--}}
     <tr>
         <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
             <center>
                 <table cellspacing="0" cellpadding="0" width="600" class="w320">
                     <tr>
                         <td class="header-lg">
-                            {{ trans('new_product_key_email.title') }}
+                            {{ trans('contact_email.title') }}
                         </td>
                     </tr>
                     <tr>
                         <td class="free-text">
-                            {{ trans('new_product_key_email.message') }}
+                            <p>
+                                {{ $contact->message }}
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -352,12 +318,12 @@
                                         <table cellpadding="0" cellspacing="0" width="100%">
                                             <tr>
                                                 <td style="padding-bottom: 30px;">
-                                                    {{ trans('new_product_key_email.description') }}
+                                                    {{ $contact->user->name . trans('contact_email.is_reply') }}:
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="code-block">
-                                                    {{ $key->key }}
+                                                    {{ $contact->reply_message }}
                                                 </td>
                                             </tr>
                                             {{--<tr>--}}

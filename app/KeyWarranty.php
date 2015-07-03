@@ -43,7 +43,7 @@ class KeyWarranty extends Model
 
         $count = ProductKey::countProductKey($this->productKey->product_id)->first();
 
-        if(empty($count) || ($count->quantity < 1)){
+        if($count->quantity < 1){
             $f = false;
         }
 

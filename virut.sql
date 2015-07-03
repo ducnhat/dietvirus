@@ -2,18 +2,44 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50621
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-07-02 07:54:09
+Date: 2015-07-03 16:41:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for `contacts`
+-- ----------------------------
+DROP TABLE IF EXISTS `contacts`;
+CREATE TABLE `contacts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `reply_message` text COLLATE utf8_unicode_ci,
+  `is_reply` tinyint(4) DEFAULT '0',
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `reply_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of contacts
+-- ----------------------------
+INSERT INTO `contacts` VALUES ('1', 'Thùy Trang', 'letrang580@gmail.com', 'asdasd', 'test\r\nthử coi\r\nsao\r\nnè', 'asdasdasd', '1', '1', '2015-07-03 16:11:38', '2015-07-03 15:57:08', '2015-07-03 16:11:38');
+INSERT INTO `contacts` VALUES ('2', 'Thùy Trang', 'ddnhat@gmail.com', 'asdasd', 'asd\r\nas\r\nda\r\ns\r\nd', null, '0', null, null, '2015-07-03 16:12:58', '2015-07-03 16:12:58');
+INSERT INTO `contacts` VALUES ('3', 'Nhật', 'nhatdo@Outlook.com', 'test thử', 'test thử\r\ntest thửtest thử\r\ntest thử', 'e bị khùng khùng khùng khùng khùng khùng khùng khùng', '1', '1', '2015-07-03 16:40:03', '2015-07-03 16:13:47', '2015-07-03 16:40:03');
+
 -- ----------------------------
 -- Table structure for `coupon`
 -- ----------------------------
@@ -88,7 +114,7 @@ CREATE TABLE `key_warranty` (
 -- ----------------------------
 -- Records of key_warranty
 -- ----------------------------
-INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '0', 'asdasd', '2015-07-01 16:47:07', '1', '2015-07-01 15:13:24', '2015-07-01 16:47:07', '', null, '0');
+INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '1', '', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, '7');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -117,6 +143,7 @@ INSERT INTO `migrations` VALUES ('2015_07_01_000020_create_key_warranty_table', 
 INSERT INTO `migrations` VALUES ('2015_07_01_095823_edit_product_keys_table', '8');
 INSERT INTO `migrations` VALUES ('2015_07_01_105143_edit_key_warranty_table', '9');
 INSERT INTO `migrations` VALUES ('2015_07_02_070738_edit_product_keys_table', '10');
+INSERT INTO `migrations` VALUES ('2015_07_03_132850_create_contact_table', '11');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -270,8 +297,8 @@ INSERT INTO `product_keys` VALUES ('3', 'test lại 1', '6', '1', null, '2015-06
 INSERT INTO `product_keys` VALUES ('4', 'test lại', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null, null);
 INSERT INTO `product_keys` VALUES ('5', '123asda', '7', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-07-01 15:13:24', null, null, null, '2015-07-02 07:33:59');
 INSERT INTO `product_keys` VALUES ('6', 'asd123432', '5', '1', '2015-06-29 20:25:22', '2015-06-16 08:21:23', '2015-06-29 20:25:22', null, null, null, null);
-INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', null, '2015-06-16 08:21:23', '2015-07-02 07:53:12', null, null, null, null);
-INSERT INTO `product_keys` VALUES ('8', 'XXXXX-XXXXX-XXXXX-XXXXX', '6', '1', null, '2015-07-02 07:52:43', '2015-07-02 07:52:56', null, null, null, null);
+INSERT INTO `product_keys` VALUES ('7', 'test thử coi sao', '7', '1', '2015-07-03 12:09:25', '2015-06-16 08:21:23', '2015-07-03 12:09:25', null, null, '1', null);
+INSERT INTO `product_keys` VALUES ('8', 'XXXXX-XXXXX-XXXXX-XXXXX', '7', '1', null, '2015-07-02 07:52:43', '2015-07-02 07:52:56', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `products`

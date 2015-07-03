@@ -32,6 +32,9 @@ Route::resource('order', 'OrderController');
 Route::get('key/warranty', 'KeyController@warranty');
 Route::resource('key', 'KeyController');
 
+//Contact Controller
+Route::resource('contact', 'ContactController');
+
 //Admin prefix
 $admin_prefix = env('ADMIN_PREFIX');
 
@@ -48,5 +51,6 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('coupon', 'CouponController');
     Route::resource('order', 'OrderController');
     Route::resource('warranty', 'WarrantyController');
+    Route::resource('contact', 'ContactController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });

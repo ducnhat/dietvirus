@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\ProductKeyWasWarranted;
+use App\Events\ContactWasReplied;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Jobs\SendNewProductKeyEmail as SendNewProductKey;
+use App\Jobs\SendReplyContactMessageEmail as SendReplyContactMessage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class SendNewProductKeyEmail implements ShouldQueue
+class SendReplyContactMessageEmail
 {
     use DispatchesJobs;
 
@@ -25,14 +25,14 @@ class SendNewProductKeyEmail implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  ProductKeyWasWarranted  $event
+     * @param  Events  $event
      * @return void
      */
-    public function handle(ProductKeyWasWarranted $event)
+    public function handle(ContactWasReplied $event)
     {
-        $keyWarranty = $event->keyWarranty;
+        $contact = $event->contact;
 
-        $job = (new SendNewProductKey($keyWarranty));
+        $job = (new SendReplyContactMessage($contact));
 
         $this->dispatch($job);
     }
