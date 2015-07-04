@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-04 10:23:58
+Date: 2015-07-05 00:06:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -147,6 +147,7 @@ INSERT INTO `migrations` VALUES ('2015_07_03_132850_create_contact_table', '11')
 INSERT INTO `migrations` VALUES ('2015_07_03_171250_create_post_categories_table', '12');
 INSERT INTO `migrations` VALUES ('2015_07_03_174856_create_posts_table', '13');
 INSERT INTO `migrations` VALUES ('2015_07_04_080915_create_post_comments_table', '14');
+INSERT INTO `migrations` VALUES ('2015_07_04_231251_create_pages_table', '15');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -254,6 +255,28 @@ INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '90930
 INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
+-- Table structure for `pages`
+-- ----------------------------
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE `pages` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `show_on_menu` tinyint(4) DEFAULT '0',
+  `is_published` tinyint(4) DEFAULT '1',
+  `publish_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of pages
+-- ----------------------------
+INSERT INTO `pages` VALUES ('1', 'Quy định bảo hành', '<ol>\r\n	<li>C&aacute;c trường hợp kh&ocirc;ng bảo h&agrave;nh:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lượng m&aacute;y quy định</li>\r\n		<li>Hết thời gian sử dụng</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh c&oacute; ph&iacute;:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lần cho ph&eacute;p (3 lần) th&igrave; t&iacute;nh theo bảng ph&iacute; sau:</li>\r\n		<li>\r\n		<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n			<tbody>\r\n				<tr>\r\n					<td><strong>Thời gian đ&atilde; sử dụng</strong></td>\r\n					<td><strong>Ph&iacute; bảo h&agrave;nh</strong></td>\r\n				</tr>\r\n				<tr>\r\n					<td>Dưới 1 th&aacute;ng</td>\r\n					<td>Miễn ph&iacute;</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ 1 đến 11 th&aacute;ng</td>\r\n					<td>(8% gi&aacute; mua mới) x (số th&aacute;ng sử dụng)</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ th&aacute;ng 12</td>\r\n					<td>100% gi&aacute; mua mới</td>\r\n				</tr>\r\n			</tbody>\r\n		</table>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh miễn ph&iacute;:\r\n	<ul>\r\n		<li>​M&atilde; bị lỗi\r\n		<p>&nbsp;</p>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n</ol>\r\n', '0', '1', '2015-07-04 23:52:00', '2015-07-04 23:56:43', '2015-07-05 00:05:26', null);
+
+-- ----------------------------
 -- Table structure for `password_resets`
 -- ----------------------------
 DROP TABLE IF EXISTS `password_resets`;
@@ -312,7 +335,7 @@ CREATE TABLE `post_comments` (
 -- ----------------------------
 -- Records of post_comments
 -- ----------------------------
-INSERT INTO `post_comments` VALUES ('1', '2', 'Trang', 'letrang508@gmail.com', 'test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, ', '0', '1', '', '2015-07-04 10:22:09', '2015-07-04 09:51:38', '2015-07-04 10:22:09', null);
+INSERT INTO `post_comments` VALUES ('1', '2', 'Trang', 'letrang508@gmail.com', 'test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, ', '1', '1', '', '2015-07-04 23:04:31', '2015-07-04 09:51:38', '2015-07-04 23:04:31', null);
 INSERT INTO `post_comments` VALUES ('2', '2', 'Nhật Đỗ ', 'ddnhat@gmail.com1', 'asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das ', '0', '1', 'trả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nè', '2015-07-04 10:10:05', '2015-07-04 09:52:06', '2015-07-04 10:10:05', null);
 
 -- ----------------------------

@@ -62,5 +62,6 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('post-category', 'PostCategoryController');
     Route::resource('post', 'PostController');
     Route::resource('post-comment', 'PostCommentController');
+    Route::resource('page', 'PageController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });

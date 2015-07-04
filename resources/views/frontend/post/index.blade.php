@@ -22,7 +22,7 @@
                 <p class="f_size_medium m_bottom_10">
                     {{ $row->publish_at->format('H:i, d M Y') }},
                     <a href="#" class="color_dark">
-                        33 comments
+                        {{ ($row->getComments()) ? $row->getComments()->count() : 0 }} {{ trans('post.comment') }}
                     </a>
                 </p>
                 <hr>
