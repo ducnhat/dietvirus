@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\PostCactegory;
+use App\PostCategory;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Storage;
@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = PostCactegory::lists('name', 'id');
+        $categories = PostCategory::lists('name', 'id');
 
         return view('admin.post.create', compact(['categories']));
     }
@@ -77,7 +77,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $categories = PostCactegory::lists('name', 'id');
+        $categories = PostCategory::lists('name', 'id');
         $data = Post::findOrFail($id);
 
         return view('admin.post.edit', compact(['categories', 'data']));

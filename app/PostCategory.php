@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PostCactegory extends Model
+class PostCategory extends Model
 {
     use SoftDeletes;
 

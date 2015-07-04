@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-03 23:16:26
+Date: 2015-07-04 10:23:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -146,6 +146,7 @@ INSERT INTO `migrations` VALUES ('2015_07_02_070738_edit_product_keys_table', '1
 INSERT INTO `migrations` VALUES ('2015_07_03_132850_create_contact_table', '11');
 INSERT INTO `migrations` VALUES ('2015_07_03_171250_create_post_categories_table', '12');
 INSERT INTO `migrations` VALUES ('2015_07_03_174856_create_posts_table', '13');
+INSERT INTO `migrations` VALUES ('2015_07_04_080915_create_post_comments_table', '14');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -288,6 +289,33 @@ CREATE TABLE `post_categories` (
 INSERT INTO `post_categories` VALUES ('3', 'giới thiệu', '', '2015-07-03 17:43:49', '2015-07-03 17:43:49', null);
 
 -- ----------------------------
+-- Table structure for `post_comments`
+-- ----------------------------
+DROP TABLE IF EXISTS `post_comments`;
+CREATE TABLE `post_comments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `is_display` tinyint(4) DEFAULT '0',
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `reply_message` text COLLATE utf8_unicode_ci,
+  `reply_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `post_comments_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of post_comments
+-- ----------------------------
+INSERT INTO `post_comments` VALUES ('1', '2', 'Trang', 'letrang508@gmail.com', 'test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, ', '0', '1', '', '2015-07-04 10:22:09', '2015-07-04 09:51:38', '2015-07-04 10:22:09', null);
+INSERT INTO `post_comments` VALUES ('2', '2', 'Nhật Đỗ ', 'ddnhat@gmail.com1', 'asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das ', '0', '1', 'trả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nè', '2015-07-04 10:10:05', '2015-07-04 09:52:06', '2015-07-04 10:10:05', null);
+
+-- ----------------------------
 -- Table structure for `posts`
 -- ----------------------------
 DROP TABLE IF EXISTS `posts`;
@@ -305,12 +333,13 @@ CREATE TABLE `posts` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of posts
 -- ----------------------------
-INSERT INTO `posts` VALUES ('1', 'Giới thiệu trang web', 'asasd asd asd asd asd asd asd\r\n as\r\nd \r\nasd\r\n a\r\nsd', '<p>test thử coi sao&nbsp;test thử coi<strong>&nbsp;sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa</strong>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa<em>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;t</em>est thử coi sa<s>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;te</s>st thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;</p>\r\n', '1.jpg', '1', '2015-07-23 23:09:00', '3', '1', '2015-07-03 22:09:29', '2015-07-03 23:09:25', null);
+INSERT INTO `posts` VALUES ('1', 'Giới thiệu trang web', 'asasd asd asd asd asd asd asd\r\n as\r\nd \r\nasd\r\n a\r\nsd', '<p>test thử coi sao&nbsp;test thử coi<strong>&nbsp;sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa</strong>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa<em>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;t</em>est thử coi sa<s>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test t</s><a href=\"http://beta.dev/upload/images/posts/1.jpg\" target=\"_blank\"><img alt=\"asdasd\" src=\"http://beta.dev/upload/images/posts/1.jpg\" style=\"border-style:solid; border-width:1px; height:220px; width:350px\" /></a><s>hử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;te</s>st thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;</p>\r\n', '1.jpg', '1', '2015-07-23 23:09:00', '3', '1', '2015-07-03 22:09:29', '2015-07-04 06:45:50', null);
+INSERT INTO `posts` VALUES ('2', 'Cách tìm lại mã key bản quyền Bkav bị mất khi cài lại máy', 'Bạn cài lại Windows hoặc muốn cài lại hoặc nâng cấp phần mềm diệt virus Bkav nhưng lại quên mất mã key bản quyền. Bài viết sau sẽ hướng dẫn bạn cách tìm lại mã bản quyền Bkav đã bị mất', '<p><strong>C&oacute; nhiều c&aacute;ch để c&oacute; thể t&igrave;m v&agrave; lấy lại <a href=\"http://bb.com.vn/pro/sanpham/dietvirus-bkav.html\" target=\"_blank\">m&atilde; key bản quyền Bkav</a> bị mất. Bạn h&atilde;y &aacute;p dụng 1 trong c&aacute;c c&aacute;ch sau đ&acirc;y:</strong></p>\r\n\r\n<p><strong>C&aacute;ch 1:</strong> Bkav c&oacute; cơ chế Backup m&atilde; key bản quyền tự động bằng c&aacute;ch sao lưu file th&ocirc;ng tin bản quyền c&oacute; t&ecirc;n &quot;<strong>bkavsysinfo.sys</strong>&quot; l&ecirc;n thư mục gốc của tất cả c&aacute;c ổ đĩa. V&igrave; vậy, để t&igrave;m lại m&atilde; key bản quyền của Bkav, bạn chỉ việc Copy v&agrave; Backup lại file &quot;<strong>bkavsysinfo.sys</strong>&quot; n&agrave;y l&ecirc;n ổ đĩa USB. Sau đ&oacute;, l&uacute;c n&agrave;o muốn c&agrave;i lại phần mềm, bạn chỉ việc Copy file n&agrave;y v&agrave;o thư mục gốc của ổ C l&agrave; xong. Sau khi c&agrave;i xong Bkav, phần mềm sẽ tự động lấy lại c&aacute;c th&ocirc;ng tin bản quyền cũ từ file &quot;<strong>bkavsysinfo.sys</strong>&quot; n&agrave;y (bạn kh&ocirc;ng cần phải đăng k&yacute; hoặc nhập lại th&ocirc;ng tin nữa)</p>\r\n\r\n<p><strong>C&aacute;ch 2:</strong> Bạn cũng c&oacute; thể t&igrave;m lại key bản quyền Bkav bằng c&aacute;ch truy nhập chạy c&ocirc;ng cụ &quot;<strong>Regedit.exe</strong>&quot; (hoặc C:\\Windows\\SysWOW64\\regedit.exe đối với Windows 64bit) v&agrave; truy nhập theo đường dẫn sau: &quot;<strong>HKEY_LOCAL_MACHINE\\SOFTWARE\\Bkav</strong>&quot; sau đ&oacute; sao lưu kh&oacute;a &quot;<strong>Bkav</strong>&quot; n&agrave;y. Kh&oacute;a n&agrave;y ch&iacute;nh l&agrave; m&atilde; đang k&yacute; bản quyền để bạn c&oacute; thể sử dụng k&iacute;ch hoạt sau khi c&agrave;i đặt lại phần mềm bằng c&aacute;ch nh&aacute;y đ&uacute;p v&agrave;o file sao lưu để nhập n&oacute; v&agrave;o Registry của hệ thống</p>\r\n\r\n<p><strong>C&aacute;ch 3:</strong> Trường hợp bạn kh&ocirc;ng thể lấy lại Key bản quyền của Norton như 2 c&aacute;ch ở tr&ecirc;n (sau khi đ&atilde; format ổ cứng hoặc đ&atilde; x&oacute;a ổ C v&agrave; c&agrave;i lại Windows), bạn vẫn c&oacute; thể phục hồi lại m&atilde; bản quyền bằng c&aacute;ch gọi điện tới số hỗ trợ <strong>Hotline 1900.561.296 của Bkav</strong> sau đ&oacute; đọc số điện thoại bạn đ&atilde; sử dụng để đăng k&yacute; trong lần đầu ti&ecirc;n. Nếu đọc đ&uacute;ng th&ocirc;ng tin, Bkav sẽ cung cấp lại m&atilde; bản quyền để bạn c&oacute; thể c&agrave;i đặt lại phần mềm</p>\r\n\r\n<p>Ch&uacute;c bạn th&agrave;nh c&ocirc;ng!</p>\r\n', '2.jpg', '1', '2015-07-04 07:15:00', '3', '1', '2015-07-04 07:15:36', '2015-07-04 07:30:12', null);
 
 -- ----------------------------
 -- Table structure for `product_keys`

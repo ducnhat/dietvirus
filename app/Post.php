@@ -31,4 +31,18 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function comments(){
+        return $this->hasMany('App\PostComment', 'post_id');
+    }
+
+    public function getComments(){
+        $comments = $this->comments()->where('is_display', 1)->orderBy('created_at', 'desc')->get();
+
+        if($comments->count()){
+            return $comments;
+        }
+
+        return false;
+    }
 }

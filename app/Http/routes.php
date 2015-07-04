@@ -35,6 +35,13 @@ Route::resource('key', 'KeyController');
 //Contact Controller
 Route::resource('contact', 'ContactController');
 
+//Post Controller
+Route::get('post', 'PostController@index');
+Route::get('post/{id}-{slug}', 'PostController@show')
+    ->where(['id' => '[0-9]+', 'slug' => '[a-zA-Z0-9-]+']);
+Route::post('post/{id}-{slug}', 'PostController@store')
+    ->where(['id' => '[0-9]+', 'slug' => '[a-zA-Z0-9-]+']);
+
 //Admin prefix
 $admin_prefix = env('ADMIN_PREFIX');
 
@@ -54,5 +61,6 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('contact', 'ContactController');
     Route::resource('post-category', 'PostCategoryController');
     Route::resource('post', 'PostController');
+    Route::resource('post-comment', 'PostCommentController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
 });
