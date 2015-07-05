@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2015-07-03 18:07:33
+Date: 2015-07-05 20:55:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -146,6 +146,8 @@ INSERT INTO `migrations` VALUES ('2015_07_02_070738_edit_product_keys_table', '1
 INSERT INTO `migrations` VALUES ('2015_07_03_132850_create_contact_table', '11');
 INSERT INTO `migrations` VALUES ('2015_07_03_171250_create_post_categories_table', '12');
 INSERT INTO `migrations` VALUES ('2015_07_03_174856_create_posts_table', '13');
+INSERT INTO `migrations` VALUES ('2015_07_04_080915_create_post_comments_table', '14');
+INSERT INTO `migrations` VALUES ('2015_07_04_231251_create_pages_table', '15');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -253,6 +255,29 @@ INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '90930
 INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
+-- Table structure for `pages`
+-- ----------------------------
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE `pages` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `show_on_menu` tinyint(4) DEFAULT '0',
+  `is_published` tinyint(4) DEFAULT '1',
+  `publish_at` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of pages
+-- ----------------------------
+INSERT INTO `pages` VALUES ('1', 'Quy định bảo hành', '<ol>\r\n	<li>C&aacute;c trường hợp kh&ocirc;ng bảo h&agrave;nh:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lượng m&aacute;y quy định</li>\r\n		<li>Hết thời gian sử dụng</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh c&oacute; ph&iacute;:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lần cho ph&eacute;p (3 lần) th&igrave; t&iacute;nh theo bảng ph&iacute; sau:</li>\r\n		<li>\r\n		<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n			<tbody>\r\n				<tr>\r\n					<td><strong>Thời gian đ&atilde; sử dụng</strong></td>\r\n					<td><strong>Ph&iacute; bảo h&agrave;nh</strong></td>\r\n				</tr>\r\n				<tr>\r\n					<td>Dưới 1 th&aacute;ng</td>\r\n					<td>Miễn ph&iacute;</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ 1 đến 11 th&aacute;ng</td>\r\n					<td>(8% gi&aacute; mua mới) x (số th&aacute;ng sử dụng)</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ th&aacute;ng 12</td>\r\n					<td>100% gi&aacute; mua mới</td>\r\n				</tr>\r\n			</tbody>\r\n		</table>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh miễn ph&iacute;:\r\n	<ul>\r\n		<li>​M&atilde; bị lỗi\r\n		<p>&nbsp;</p>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n</ol>\r\n', '0', '1', '2015-07-04 23:52:00', '2015-07-04 23:56:43', '2015-07-05 10:27:48', null);
+INSERT INTO `pages` VALUES ('2', 'Giới thiệu', '<p><a href=\"http://phanmemquetvirut.com\" target=\"_blank\">Phần mềm qu&eacute;t virut</a></p>\r\n', '1', '1', '2015-07-05 10:14:00', '2015-07-05 10:14:51', '2015-07-05 10:14:51', null);
+
+-- ----------------------------
 -- Table structure for `password_resets`
 -- ----------------------------
 DROP TABLE IF EXISTS `password_resets`;
@@ -288,6 +313,33 @@ CREATE TABLE `post_categories` (
 INSERT INTO `post_categories` VALUES ('3', 'giới thiệu', '', '2015-07-03 17:43:49', '2015-07-03 17:43:49', null);
 
 -- ----------------------------
+-- Table structure for `post_comments`
+-- ----------------------------
+DROP TABLE IF EXISTS `post_comments`;
+CREATE TABLE `post_comments` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `is_display` tinyint(4) DEFAULT '0',
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `reply_message` text COLLATE utf8_unicode_ci,
+  `reply_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `post_comments_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of post_comments
+-- ----------------------------
+INSERT INTO `post_comments` VALUES ('1', '2', 'Trang', 'letrang508@gmail.com', 'test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, test lại coi nè, ', '1', '1', '', '2015-07-04 23:04:31', '2015-07-04 09:51:38', '2015-07-04 23:04:31', null);
+INSERT INTO `post_comments` VALUES ('2', '2', 'Nhật Đỗ ', 'ddnhat@gmail.com1', 'asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das asd asd asd a das ', '0', '1', 'trả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nètrả lời thử coi sao nè', '2015-07-04 10:10:05', '2015-07-04 09:52:06', '2015-07-04 10:10:05', null);
+
+-- ----------------------------
 -- Table structure for `posts`
 -- ----------------------------
 DROP TABLE IF EXISTS `posts`;
@@ -305,11 +357,13 @@ CREATE TABLE `posts` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of posts
 -- ----------------------------
+INSERT INTO `posts` VALUES ('1', 'Giới thiệu trang web', 'asasd asd asd asd asd asd asd\r\n as\r\nd \r\nasd\r\n a\r\nsd', '<p>test thử coi sao&nbsp;test thử coi<strong>&nbsp;sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa</strong>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sa<em>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;t</em>est thử coi sa<s>o&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test t</s><a href=\"http://beta.dev/upload/images/posts/1.jpg\" target=\"_blank\"><img alt=\"asdasd\" src=\"http://beta.dev/upload/images/posts/1.jpg\" style=\"border-style:solid; border-width:1px; height:220px; width:350px\" /></a><s>hử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;te</s>st thử coi sao&nbsp;test thử coi sao&nbsp;test thử coi sao&nbsp;</p>\r\n', '1.jpg', '1', '2015-07-23 23:09:00', '3', '1', '2015-07-03 22:09:29', '2015-07-04 06:45:50', null);
+INSERT INTO `posts` VALUES ('2', 'Cách tìm lại mã key bản quyền Bkav bị mất khi cài lại máy', 'Bạn cài lại Windows hoặc muốn cài lại hoặc nâng cấp phần mềm diệt virus Bkav nhưng lại quên mất mã key bản quyền. Bài viết sau sẽ hướng dẫn bạn cách tìm lại mã bản quyền Bkav đã bị mất', '<p><strong>C&oacute; nhiều c&aacute;ch để c&oacute; thể t&igrave;m v&agrave; lấy lại <a href=\"http://bb.com.vn/pro/sanpham/dietvirus-bkav.html\" target=\"_blank\">m&atilde; key bản quyền Bkav</a> bị mất. Bạn h&atilde;y &aacute;p dụng 1 trong c&aacute;c c&aacute;ch sau đ&acirc;y:</strong></p>\r\n\r\n<p><strong>C&aacute;ch 1:</strong> Bkav c&oacute; cơ chế Backup m&atilde; key bản quyền tự động bằng c&aacute;ch sao lưu file th&ocirc;ng tin bản quyền c&oacute; t&ecirc;n &quot;<strong>bkavsysinfo.sys</strong>&quot; l&ecirc;n thư mục gốc của tất cả c&aacute;c ổ đĩa. V&igrave; vậy, để t&igrave;m lại m&atilde; key bản quyền của Bkav, bạn chỉ việc Copy v&agrave; Backup lại file &quot;<strong>bkavsysinfo.sys</strong>&quot; n&agrave;y l&ecirc;n ổ đĩa USB. Sau đ&oacute;, l&uacute;c n&agrave;o muốn c&agrave;i lại phần mềm, bạn chỉ việc Copy file n&agrave;y v&agrave;o thư mục gốc của ổ C l&agrave; xong. Sau khi c&agrave;i xong Bkav, phần mềm sẽ tự động lấy lại c&aacute;c th&ocirc;ng tin bản quyền cũ từ file &quot;<strong>bkavsysinfo.sys</strong>&quot; n&agrave;y (bạn kh&ocirc;ng cần phải đăng k&yacute; hoặc nhập lại th&ocirc;ng tin nữa)</p>\r\n\r\n<p><strong>C&aacute;ch 2:</strong> Bạn cũng c&oacute; thể t&igrave;m lại key bản quyền Bkav bằng c&aacute;ch truy nhập chạy c&ocirc;ng cụ &quot;<strong>Regedit.exe</strong>&quot; (hoặc C:\\Windows\\SysWOW64\\regedit.exe đối với Windows 64bit) v&agrave; truy nhập theo đường dẫn sau: &quot;<strong>HKEY_LOCAL_MACHINE\\SOFTWARE\\Bkav</strong>&quot; sau đ&oacute; sao lưu kh&oacute;a &quot;<strong>Bkav</strong>&quot; n&agrave;y. Kh&oacute;a n&agrave;y ch&iacute;nh l&agrave; m&atilde; đang k&yacute; bản quyền để bạn c&oacute; thể sử dụng k&iacute;ch hoạt sau khi c&agrave;i đặt lại phần mềm bằng c&aacute;ch nh&aacute;y đ&uacute;p v&agrave;o file sao lưu để nhập n&oacute; v&agrave;o Registry của hệ thống</p>\r\n\r\n<p><strong>C&aacute;ch 3:</strong> Trường hợp bạn kh&ocirc;ng thể lấy lại Key bản quyền của Norton như 2 c&aacute;ch ở tr&ecirc;n (sau khi đ&atilde; format ổ cứng hoặc đ&atilde; x&oacute;a ổ C v&agrave; c&agrave;i lại Windows), bạn vẫn c&oacute; thể phục hồi lại m&atilde; bản quyền bằng c&aacute;ch gọi điện tới số hỗ trợ <strong>Hotline 1900.561.296 của Bkav</strong> sau đ&oacute; đọc số điện thoại bạn đ&atilde; sử dụng để đăng k&yacute; trong lần đầu ti&ecirc;n. Nếu đọc đ&uacute;ng th&ocirc;ng tin, Bkav sẽ cung cấp lại m&atilde; bản quyền để bạn c&oacute; thể c&agrave;i đặt lại phần mềm</p>\r\n\r\n<p>Ch&uacute;c bạn th&agrave;nh c&ocirc;ng!</p>\r\n', '2.jpg', '1', '2015-07-04 07:15:00', '3', '1', '2015-07-04 07:15:36', '2015-07-04 07:30:12', null);
 
 -- ----------------------------
 -- Table structure for `product_keys`

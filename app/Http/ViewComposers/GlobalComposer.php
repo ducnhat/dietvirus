@@ -4,7 +4,7 @@ namespace App\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Cart;
+use App\Page;
 
 class GlobalComposer {
 
@@ -18,9 +18,8 @@ class GlobalComposer {
     {
         $view->with('currentUser', Auth::user());
 
-        if(!Cart::isEmpty()){
-            $view->with('cart', Cart::class);
-        }
+        $pages = Page::where('show_on_menu', 1)->where('is_published', 1)->get();
+        $view->with('pages', $pages);
     }
 
 }

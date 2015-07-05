@@ -11,11 +11,11 @@ return [
     'category' => 'Danh mục',
     'is_published' => 'Được hiển thị',
     'author' => 'Người viết',
-    'delete' => 'Bạn muốn xóa bài viết này?',
+    'delete' => 'Bạn muốn xóa trang này?',
     'read_more' => 'Xem tiếp',
     'comment' => 'Bình luận',
     'add_comment' => 'Viết bình luận',
-    'name' => 'Họ tên',
+    'name' => 'Tên trang',
     'email' => 'Địa chỉ email',
     'required' => 'Bắt buộc',
     'required_not_display' => 'Bắt buộc, sẽ không hiển thị',
@@ -27,6 +27,7 @@ return [
     'reply' => 'Trả lời',
     'is_display' => 'Được hiển thị',
     'no_comments' => 'Chưa có bình luận nào',
+    'show_on_menu' => 'Đưa lên menu chính',
 
 ];
 

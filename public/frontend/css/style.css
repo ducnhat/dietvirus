@@ -114,6 +114,9 @@ body{
 .t_align_c{
 	text-align: center;
 }
+.t_align_j{
+	text-align: justify;
+}
 .t_align_r{
 	text-align: right;
 }
@@ -538,7 +541,7 @@ a,.tr_hover{
 a:hover,.color_dark,.bc_list a[class*="color"]:hover,.bc_list > li.current > a,
 .tweet_list a{
 	color:#292f38;
-    font-size: 16px;
+    /*font-size: 16px;*/
 }
 .color_grey{
 	color:#838a8f;

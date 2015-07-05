@@ -1,17 +1,17 @@
 @extends('_layout.admin')
 
 @section('content')
-    @include('admin.post.topbar')
+    @include('admin.page.topbar')
     <section id="content" class="table-layout animated fadeIn">
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-heading">
-                    {{ trans('post.create') }}
+                    {{ trans('page.create') }}
                 </div>
                 <div class="panel-body p20 pb10">
-                    {!! Form::open(['method' => 'post', 'action' => ['Admin\PostController@store'], 'files' => true]) !!}
+                    {!! Form::open(['method' => 'post', 'action' => ['Admin\PageController@store']]) !!}
 
-                    @include('admin.post.form')
+                    @include('admin.page.form')
 
                     {!! Form::close() !!}
                 </div>

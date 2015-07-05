@@ -8,60 +8,48 @@
 
 <div class="form-group">
 
-    {!! Form::Label('title', trans('post.title')) !!}
-    {!! Form::Text('title', null, ['class' => 'form-control']) !!}
+    {!! Form::Label('name', trans('page.name')) !!}
+    {!! Form::Text('name', null, ['class' => 'form-control']) !!}
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::Label('image', trans('post.image')) !!}
-    {!! Form::File('image') !!}
-    @if(isset($data->image))
-        <img height="100" src="{{ $data->image }}">
-    @endif
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::Label('description', trans('post.description')) !!}
-    {!! Form::Textarea('description', null, ['class' => 'form-control', 'rows' => '5']) !!}
-
-</div>
-
-<div class="form-group">
-
-    {!! Form::Label('content', trans('post.content')) !!}
+    {!! Form::Label('content', trans('page.content')) !!}
     {!! Form::Textarea('content', null, ['class' => 'form-control', 'rows' => '12', 'id' => 'ckeditor']) !!}
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::Label('publish_at', trans('post.publish_at')) !!}
+    {!! Form::Label('publish_at', trans('page.publish_at')) !!}
     {!! Form::Text('publish_at', (isset($data))? $data['publish_at']->format('d-m-Y H:i') : null, ['class' => 'form-control', 'id' => 'publish_at', 'readonly']) !!}
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::Label('category_id', trans('post.category')) !!}
-    {!! Form::Select('category_id', $categories, null, ['class' => 'form-control']) !!}
+    {!! Form::Label('show_on_menu', trans('page.show_on_menu')) !!}
+    {!! Form::Radio('show_on_menu', 1, ['class' => 'form-control']) !!}
+    {{ trans('form.yes') }}
+    {!! Form::Radio('show_on_menu', 0, ['class' => 'form-control']) !!}
+    {{ trans('form.no')}}
 
 </div>
 
 <div class="form-group">
 
-    {!! Form::Label('is_published', trans('post.is_published')) !!}
-    {!! Form::Checkbox('is_published', 1, ['class' => 'form-control']) !!}
+    {!! Form::Label('is_published', trans('page.is_published')) !!}
+    {!! Form::Radio('is_published', 1, ['class' => 'form-control']) !!}
+    {{ trans('form.yes') }}
+    {!! Form::Radio('is_published', 0, ['class' => 'form-control']) !!}
+    {{ trans('form.no')}}
 
 </div>
 
 <div class="form-group">
 
     <div class="col-md-3">
-        {!! Form::hidden('user_id', $currentUser->id) !!}
         {!! Form::Submit(trans('form.save'), ['class' => 'btn btn-primary form-control']) !!}
     </div>
 
@@ -109,7 +97,7 @@
             });
 
             $("button#cancel").click(function(){
-                window.location.href = "{{ action('Admin\PostController@index') }}";
+                window.location.href = "{{ action('Admin\PageController@index') }}";
             });
         });
     </script>

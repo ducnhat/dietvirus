@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostCategoryRequest;
-use App\PostCategory;
+use App\Http\Requests\PageRequest;
+use App\Page;
 
-class PostCategoryController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        $data = PostCategory::all();
+        $data = Page::orderBy('created_at', 'desc')->get();
 
-        return view('admin.post-category.index', compact(['data']));
+        return view('admin.page.index', compact(['data']));
     }
 
     /**
@@ -30,7 +30,7 @@ class PostCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.post-category.create');
+        return view('admin.page.create');
     }
 
     /**
@@ -38,12 +38,23 @@ class PostCategoryController extends Controller
      *
      * @return Response
      */
-    public function store(PostCategoryRequest $request)
+    public function store(PageRequest $request)
     {
         $input = $request->all();
-        PostCategory::create($input);
+        Page::create($input);
 
-        return redirect()->action('Admin\PostCategoryController@index');
+        return redirect()->action('Admin\PageController@index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+
     }
 
     /**
@@ -54,9 +65,9 @@ class PostCategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = PostCategory::findOrFail($id);
+        $data = Page::findOrFail($id);
 
-        return view('admin.post-category.edit', compact('data'));
+        return view('admin.page.edit', compact(['data']));
     }
 
     /**
@@ -65,14 +76,13 @@ class PostCategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, PostCategoryRequest $request)
+    public function update($id, PageRequest $request)
     {
-        $data = PostCategory::findOrFail($id);
         $input = $request->all();
+        $data = Page::findOrFail($id);
         $data->update($input);
-        $data->save();
 
-        return redirect()->action('Admin\PostCategoryController@index');
+        return redirect()->action('Admin\PageController@index');
     }
 
     /**
@@ -83,9 +93,9 @@ class PostCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = PostCategory::findOrFail($id);
+        $data = Page::findOrFail($id);
         $data->delete();
 
-        return redirect()->action('Admin\PostCategoryController@index');
+        return redirect()->action('Admin\PageController@index');
     }
 }

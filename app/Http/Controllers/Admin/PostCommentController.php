@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\PostComment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostCategoryRequest;
-use App\PostCategory;
 
-class PostCategoryController extends Controller
+class PostCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        $data = PostCategory::all();
+        $data = PostComment::orderBy('created_at', 'desc')->get();
 
-        return view('admin.post-category.index', compact(['data']));
+        return view('admin.post-comment.index', compact(['data']));
     }
 
     /**
@@ -30,7 +30,7 @@ class PostCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.post-category.create');
+        //
     }
 
     /**
@@ -38,12 +38,20 @@ class PostCategoryController extends Controller
      *
      * @return Response
      */
-    public function store(PostCategoryRequest $request)
+    public function store()
     {
-        $input = $request->all();
-        PostCategory::create($input);
+        //
+    }
 
-        return redirect()->action('Admin\PostCategoryController@index');
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -54,9 +62,9 @@ class PostCategoryController extends Controller
      */
     public function edit($id)
     {
-        $data = PostCategory::findOrFail($id);
+        $data = PostComment::findOrFail($id);
 
-        return view('admin.post-category.edit', compact('data'));
+        return view('admin.post-comment.edit', compact(['data']));
     }
 
     /**
@@ -65,14 +73,15 @@ class PostCategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, PostCategoryRequest $request)
+    public function update($id, Request $request)
     {
-        $data = PostCategory::findOrFail($id);
+        $data = PostComment::findOrFail($id);
         $input = $request->all();
+        $input['reply_at'] = Carbon::now()->toDateTimeString();
         $data->update($input);
         $data->save();
 
-        return redirect()->action('Admin\PostCategoryController@index');
+        return redirect()->action('Admin\PostCommentController@index');
     }
 
     /**
@@ -83,9 +92,6 @@ class PostCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = PostCategory::findOrFail($id);
-        $data->delete();
-
-        return redirect()->action('Admin\PostCategoryController@index');
+        //
     }
 }
