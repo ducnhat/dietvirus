@@ -150,6 +150,7 @@
                 </ul>
             </li>
 
+<<<<<<< HEAD
             <li class="sidebar-label pt20">{{ trans('link.page') }}</li>
             <li>
                 <a class="accordion-toggle" href="#">
@@ -169,6 +170,8 @@
                 </ul>
             </li>
 
+=======
+>>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
             <li class="sidebar-label pt20">{{ trans('link.support') }}</li>
             <li>
                 <a class="accordion-toggle" href="#">

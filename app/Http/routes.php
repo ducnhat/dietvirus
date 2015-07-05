@@ -42,10 +42,13 @@ Route::get('post/{id}-{slug}', 'PostController@show')
 Route::post('post/{id}-{slug}', 'PostController@store')
     ->where(['id' => '[0-9]+', 'slug' => '[a-zA-Z0-9-]+']);
 
+<<<<<<< HEAD
 //Page Controller
 Route::get('page/{slug}-{id}', 'PageController@show')
     ->where(['id' => '[0-9]+', 'slug' => '[a-zA-Z0-9-]+']);
 
+=======
+>>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
 //Admin prefix
 $admin_prefix = env('ADMIN_PREFIX');
 

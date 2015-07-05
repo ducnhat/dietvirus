@@ -2,15 +2,19 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50621
 File Encoding         : 65001
 
+<<<<<<< HEAD
 Date: 2015-07-05 20:55:34
+=======
+Date: 2015-07-05 00:06:26
+>>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -269,13 +273,21 @@ CREATE TABLE `pages` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+>>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
 
 -- ----------------------------
 -- Records of pages
 -- ----------------------------
+<<<<<<< HEAD
 INSERT INTO `pages` VALUES ('1', 'Quy định bảo hành', '<ol>\r\n	<li>C&aacute;c trường hợp kh&ocirc;ng bảo h&agrave;nh:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lượng m&aacute;y quy định</li>\r\n		<li>Hết thời gian sử dụng</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh c&oacute; ph&iacute;:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lần cho ph&eacute;p (3 lần) th&igrave; t&iacute;nh theo bảng ph&iacute; sau:</li>\r\n		<li>\r\n		<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n			<tbody>\r\n				<tr>\r\n					<td><strong>Thời gian đ&atilde; sử dụng</strong></td>\r\n					<td><strong>Ph&iacute; bảo h&agrave;nh</strong></td>\r\n				</tr>\r\n				<tr>\r\n					<td>Dưới 1 th&aacute;ng</td>\r\n					<td>Miễn ph&iacute;</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ 1 đến 11 th&aacute;ng</td>\r\n					<td>(8% gi&aacute; mua mới) x (số th&aacute;ng sử dụng)</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ th&aacute;ng 12</td>\r\n					<td>100% gi&aacute; mua mới</td>\r\n				</tr>\r\n			</tbody>\r\n		</table>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh miễn ph&iacute;:\r\n	<ul>\r\n		<li>​M&atilde; bị lỗi\r\n		<p>&nbsp;</p>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n</ol>\r\n', '0', '1', '2015-07-04 23:52:00', '2015-07-04 23:56:43', '2015-07-05 10:27:48', null);
 INSERT INTO `pages` VALUES ('2', 'Giới thiệu', '<p><a href=\"http://phanmemquetvirut.com\" target=\"_blank\">Phần mềm qu&eacute;t virut</a></p>\r\n', '1', '1', '2015-07-05 10:14:00', '2015-07-05 10:14:51', '2015-07-05 10:14:51', null);
+=======
+INSERT INTO `pages` VALUES ('1', 'Quy định bảo hành', '<ol>\r\n	<li>C&aacute;c trường hợp kh&ocirc;ng bảo h&agrave;nh:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lượng m&aacute;y quy định</li>\r\n		<li>Hết thời gian sử dụng</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh c&oacute; ph&iacute;:\r\n	<ul>\r\n		<li>K&iacute;ch hoạt qu&aacute; số lần cho ph&eacute;p (3 lần) th&igrave; t&iacute;nh theo bảng ph&iacute; sau:</li>\r\n		<li>\r\n		<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n			<tbody>\r\n				<tr>\r\n					<td><strong>Thời gian đ&atilde; sử dụng</strong></td>\r\n					<td><strong>Ph&iacute; bảo h&agrave;nh</strong></td>\r\n				</tr>\r\n				<tr>\r\n					<td>Dưới 1 th&aacute;ng</td>\r\n					<td>Miễn ph&iacute;</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ 1 đến 11 th&aacute;ng</td>\r\n					<td>(8% gi&aacute; mua mới) x (số th&aacute;ng sử dụng)</td>\r\n				</tr>\r\n				<tr>\r\n					<td>Từ th&aacute;ng 12</td>\r\n					<td>100% gi&aacute; mua mới</td>\r\n				</tr>\r\n			</tbody>\r\n		</table>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n	<li>C&aacute;c trường hợp bảo h&agrave;nh miễn ph&iacute;:\r\n	<ul>\r\n		<li>​M&atilde; bị lỗi\r\n		<p>&nbsp;</p>\r\n		</li>\r\n	</ul>\r\n	</li>\r\n</ol>\r\n', '0', '1', '2015-07-04 23:52:00', '2015-07-04 23:56:43', '2015-07-05 00:05:26', null);
+>>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
 
 -- ----------------------------
 -- Table structure for `password_resets`
