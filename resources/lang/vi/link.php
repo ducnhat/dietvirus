@@ -28,12 +28,9 @@ return [
     'create_post_category' => 'Tạo danh mục bài viết mới',
     'view_posts' => 'Xem các bài viết',
     'view_post_categories' => 'Xem các danh mục bài viết',
-<<<<<<< HEAD
     'page' => 'Trang',
     'create_page' => "Thêm trang mới",
     'view_pages' => 'Xem tất cả các trang',
-=======
->>>>>>> 5ebd2c5002fecd9296e71991955b38a6b8e76594
 ];
 
 ?>
