@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,12 @@ class AuthController extends Controller
      */
     public function index()
     {
-        //
+        $data = Order::where('email', Auth::user()->email)
+            ->orderBy('paid_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('user.order.index', compact(['data']));
     }
 
     /**
@@ -47,7 +54,15 @@ class AuthController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Order::where('email', Auth::user()->email)
+            ->where('id', $id)
+            ->first();
+
+        if(!$data){
+            abort(404);
+        }
+
+        return view('user.order.edit', compact(['data']));
     }
 
     /**

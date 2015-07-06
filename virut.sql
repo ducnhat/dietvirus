@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-06 20:58:46
+Date: 2015-07-07 00:28:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `contacts` (
 -- Records of contacts
 -- ----------------------------
 INSERT INTO `contacts` VALUES ('1', 'Thùy Trang', 'letrang580@gmail.com', 'asdasd', 'test\r\nthử coi\r\nsao\r\nnè', 'asdasdasd', '1', '1', '2015-07-03 16:11:38', '2015-07-03 15:57:08', '2015-07-03 16:11:38');
-INSERT INTO `contacts` VALUES ('2', 'Thùy Trang', 'ddnhat@gmail.com', 'asdasd', 'asd\r\nas\r\nda\r\ns\r\nd', null, '0', null, null, '2015-07-03 16:12:58', '2015-07-03 16:12:58');
+INSERT INTO `contacts` VALUES ('2', 'Thùy Trang', 'ddnhat@gmail.com', 'asdasd', 'asd\r\nas\r\nda\r\ns\r\nd', 'asd as asd asd', '1', '1', '2015-07-06 22:49:58', '2015-07-03 16:12:58', '2015-07-06 22:49:58');
 INSERT INTO `contacts` VALUES ('3', 'Nhật', 'nhatdo@Outlook.com', 'test thử', 'test thử\r\ntest thửtest thử\r\ntest thử', 'e bị khùng khùng khùng khùng khùng khùng khùng khùng', '1', '1', '2015-07-03 16:40:03', '2015-07-03 16:13:47', '2015-07-03 16:40:03');
 
 -- ----------------------------
@@ -107,14 +107,15 @@ CREATE TABLE `key_warranty` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `new_product_key_id` int(10) unsigned NOT NULL,
+  `new_product_key_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of key_warranty
 -- ----------------------------
 INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '1', '', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, '7');
+INSERT INTO `key_warranty` VALUES ('2', 'ddnhat@gmail.com', '3', '01229012202', '1', 'asdasdasd', '0', 'key kích hoạt quá số lượng máy cho phép', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, null);
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -245,15 +246,15 @@ INSERT INTO `orders` VALUES ('4', 'Đức Nhật', 'ddnhat@gmail.com', '12290122
 INSERT INTO `orders` VALUES ('5', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:14:33', '2015-06-28 09:14:33', null, null, null, null);
 INSERT INTO `orders` VALUES ('6', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:16:11', '2015-06-28 09:16:11', null, null, null, null);
 INSERT INTO `orders` VALUES ('7', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:17:39', '2015-06-28 09:17:39', null, null, null, null);
-INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:28', '2015-06-28 09:25:28', null, null, null, null);
+INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:25:28', '2015-06-28 09:25:28', null, null, null, '2015-06-29 20:25:19');
 INSERT INTO `orders` VALUES ('9', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:48', '2015-06-28 09:25:48', null, null, null, null);
 INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:28:02', '2015-06-28 09:28:02', null, null, null, null);
-INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null);
+INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null);
 INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null, null, null, null);
 INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null);
 INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com1', '987654321', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-30 07:18:20', null, null, null, null);
 INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', '2015-06-30 07:02:07', null, null, null);
-INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'letrang580@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
+INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'ddnhat@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
 
 -- ----------------------------
 -- Table structure for `pages`
@@ -447,5 +448,5 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$v13nJargZBUzyhY/dR4CH.8onlCa5mThuWkn70pThEgUYB9HVX8eu', '1', 'tDt2PXlJtYTOx1I4iu0k6BM0wpAl0M8izPEzB6ROJ51CqDYItCayHVwW2mj5', '2015-06-15 23:14:04', '2015-07-06 20:43:03', null, '2');
-INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', null, '2015-07-06 20:29:02', '2015-07-06 20:29:02', null, '0');
+INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$WF7Rm80cJglgt9Z8XVLjO.pPz9zpJPXk9cH2rsfyF2ulkIG5gprDm', '1', 'QYC7GEEuFrOLalfLctKby0CCPlLf5OzmbnoxL7yup5T1sKQzchA8OFXacjto', '2015-06-15 23:14:04', '2015-07-06 23:36:40', null, '2');
+INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'yfBtC7SirELYdgfEqEVMKVawQg6a7IPWfTLBEaoi5oPWmaJdJgRSbYNMhlLP', '2015-07-06 20:29:02', '2015-07-06 23:35:16', null, '1');

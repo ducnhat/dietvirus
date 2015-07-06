@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\Http\Requests\OrderRequest;
-use Route;
 
-class OrderController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $data = Order::orderBy('id', 'desc')->get();
-
-        return view('admin.order.index', compact(['data']));
+        return view('user.home.index');
     }
 
     /**
@@ -31,9 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $routes = Route::getRoutes();
-
-        dd($routes);
+        //
     }
 
     /**
@@ -54,9 +47,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $data = Order::findOrFail($id);
-
-        return view('admin.order.edit', compact(['data']));
+        //
     }
 
     /**
@@ -76,14 +67,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, OrderRequest $request)
+    public function update($id)
     {
-        $input = $request->all();
-        $data = Order::findOrFail($id);
-        $data->update($input);
-        $data->save();
-
-        return redirect()->action('Admin\OrderController@index');
+        //
     }
 
     /**

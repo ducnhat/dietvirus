@@ -16,7 +16,7 @@ class EditKeyWarrantyTable extends Migration
             $table->string('name');
             $table->softDeletes();
             $table->integer('product_key_id')->unsigned()->change();
-            $table->integer('new_product_key_id')->unsigned();
+            $table->integer('new_product_key_id')->unsigned()->nullable();
         });
     }
 

@@ -13,4 +13,7 @@ define('USER_ROLE_GUEST', 0);
 define('USER_ROLE_MEMBER', 1);
 define('USER_ROLE_ADMIN', 2);
 
+//Define Ref Code Begin From
+define('REF_CODE_FROM', 52);
+
 ?>

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
+use App\KeyWarranty;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Order;
-use App\Http\Requests\OrderRequest;
-use Route;
+use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class WarrantyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $data = Order::orderBy('id', 'desc')->get();
+        $data = KeyWarranty::where('email', Auth::user()->email)
+                ->orderBy('created_at', 'desc')
+                ->get();
 
-        return view('admin.order.index', compact(['data']));
+        return view('user.warranty.index', compact(['data']));
     }
 
     /**
@@ -31,9 +32,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $routes = Route::getRoutes();
-
-        dd($routes);
+        //
     }
 
     /**
@@ -54,9 +53,16 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $data = Order::findOrFail($id);
+        $data = KeyWarranty::where('email', Auth::user()->email)
+            ->where('id', $id)
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-        return view('admin.order.edit', compact(['data']));
+        if(!$data){
+            abort(404);
+        }
+
+        return view('user.warranty.edit', compact(['data']));
     }
 
     /**
@@ -76,14 +82,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, OrderRequest $request)
+    public function update($id)
     {
-        $input = $request->all();
-        $data = Order::findOrFail($id);
-        $data->update($input);
-        $data->save();
-
-        return redirect()->action('Admin\OrderController@index');
+        //
     }
 
     /**

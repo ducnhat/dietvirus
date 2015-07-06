@@ -28,9 +28,9 @@ function phone_format($number){
 
     if(  preg_match( '/9(\d{2})(\d{3})(\d{3})$/', $number,  $matches ) )
     {
-        $result = "9" . $matches[1] . '-' .$matches[2] . '-' . $matches[3];
+        $result = "9" . $matches[1] . ' ' .$matches[2] . ' ' . $matches[3];
     }else if(  preg_match( '/(\d{1})(\d{2})(\d{3})(\d{4})$/', $number,  $matches ) ){
-        $result = $matches[1] .$matches[2] . '-' . $matches[3] . '-' . $matches[4];
+        $result = $matches[1] .$matches[2] . ' ' . $matches[3] . ' ' . $matches[4];
     }
 
     return "0$result";

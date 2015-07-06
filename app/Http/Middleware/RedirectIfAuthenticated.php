@@ -35,7 +35,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect('/home');
+            if($this->auth->user()->role == USER_ROLE_ADMIN){
+                return redirect()->action('Admin\OrderController@index');
+            }else if($this->auth->user()->role >= USER_ROLE_MEMBER){
+                return redirect()->action('User\HomeController@index');
+            }
         }
 
         return $next($request);

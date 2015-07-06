@@ -43,7 +43,7 @@
         {{--</div>--}}
 
         <!-- end .form-header section -->
-        <form method="post" action="{{ action('Admin\Auth\AuthController@getLogin') }}" id="contact">
+        <form method="post" action="{{ action('Auth\AuthController@getLogin') }}" id="contact">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="panel-body bg-light p30">
                 <div class="row">
