@@ -8,4 +8,9 @@ define('COUPON_TARGET_ITEM', 2);
 define('KEY_USE_FOR_SELL', 0);
 define('KEY_USE_FOR_WARRANTY', 1);
 
+//Define User Role
+define('USER_ROLE_GUEST', 0);
+define('USER_ROLE_MEMBER', 1);
+define('USER_ROLE_ADMIN', 2);
+
 ?>

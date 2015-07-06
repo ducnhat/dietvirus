@@ -50,11 +50,15 @@ Route::get('page/{slug}-{id}', 'PageController@show')
 $admin_prefix = env('ADMIN_PREFIX');
 
 // Authentication routes...
-Route::get($admin_prefix . '/auth/login', 'Admin\Auth\AuthController@getLogin');
-Route::post($admin_prefix . '/auth/login', 'Admin\Auth\AuthController@postLogin');
-Route::get($admin_prefix . '/auth/logout', 'Admin\Auth\AuthController@getLogout');
+Route::get('/auth/login', 'Admin\Auth\AuthController@getLogin');
+Route::post('/auth/login', 'Admin\Auth\AuthController@postLogin');
+Route::get('/auth/logout', 'Admin\Auth\AuthController@getLogout');
 
-Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+Route::filter('admin', function($route, $request){
+    dd(Auth::user());
+});
+
+Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' => 'auth', 'before' => 'admin'], function(){
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
     Route::resource('product-key', 'ProductKeyController');
@@ -67,4 +71,8 @@ Route::group(['prefix' => $admin_prefix, 'namespace' => 'Admin', 'middleware' =>
     Route::resource('post-comment', 'PostCommentController');
     Route::resource('page', 'PageController');
     Route::get('home', array('as' => 'home', 'uses' => 'HomeController@index'));
+});
+
+Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
+
 });
