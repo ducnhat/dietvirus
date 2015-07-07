@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserWasRegistered;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -9,6 +10,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Contracts\Auth\Registrar;
+use Event;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -63,12 +66,39 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $input = [
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'active_code' => Str::random(60),
-            'password' => Hash::make($data['password']),
-        ]);
+            'password' => bcrypt($data['password']),
+        ];
+
+        $user = User::create($input);
+
+        Event::fire(new UserWasRegistered($user));
+
+        return $user;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+        return redirect()->action('Auth\AuthController@getLogin');
     }
 }

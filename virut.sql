@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-07 08:08:10
+Date: 2015-07-07 23:37:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,7 +82,7 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
@@ -151,6 +151,8 @@ INSERT INTO `migrations` VALUES ('2015_07_04_080915_create_post_comments_table',
 INSERT INTO `migrations` VALUES ('2015_07_04_231251_create_pages_table', '15');
 INSERT INTO `migrations` VALUES ('2015_07_06_201747_add_role_column_on_users_table', '16');
 INSERT INTO `migrations` VALUES ('2015_07_07_065029_add_is_actived_and_active_code_and_actived_at_columns_on_users_table', '17');
+INSERT INTO `migrations` VALUES ('2015_07_07_205003_add_ref_id_on_orders_table', '18');
+INSERT INTO `migrations` VALUES ('2015_07_07_211629_add_ref_value_on_users_table', '19');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -234,28 +236,30 @@ CREATE TABLE `orders` (
   `payment_id` int(11) DEFAULT NULL,
   `payment_type` tinyint(4) DEFAULT NULL,
   `sent_at` datetime DEFAULT NULL,
+  `ref_id` int(10) unsigned DEFAULT NULL,
+  `ref_value` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '906578610', '170000', '0', null, '170000', null, '2015-06-25 22:43:09', '2015-06-26 00:05:19', null, null, null, null);
-INSERT INTO `orders` VALUES ('2', 'Đức Nhật', 'nhatdo@outlook.com', '906578610', '600000', '120000', 'KHAITRUONG20%', '480000', null, '2015-06-27 23:55:20', '2015-06-28 23:04:39', null, null, null, null);
-INSERT INTO `orders` VALUES ('3', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:03:43', '2015-06-28 09:03:43', null, null, null, null);
-INSERT INTO `orders` VALUES ('4', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:11:35', '2015-06-28 09:11:35', null, null, null, null);
-INSERT INTO `orders` VALUES ('5', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:14:33', '2015-06-28 09:14:33', null, null, null, null);
-INSERT INTO `orders` VALUES ('6', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:16:11', '2015-06-28 09:16:11', null, null, null, null);
-INSERT INTO `orders` VALUES ('7', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:17:39', '2015-06-28 09:17:39', null, null, null, null);
-INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:25:28', '2015-06-28 09:25:28', null, null, null, '2015-06-29 20:25:19');
-INSERT INTO `orders` VALUES ('9', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:48', '2015-06-28 09:25:48', null, null, null, null);
-INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:28:02', '2015-06-28 09:28:02', null, null, null, null);
-INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null);
-INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null, null, null, null);
-INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null);
-INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com1', '987654321', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-30 07:18:20', null, null, null, null);
-INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', '2015-06-30 07:02:07', null, null, null);
-INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'ddnhat@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28');
+INSERT INTO `orders` VALUES ('1', 'Nhật Đỗ', 'ddnhat@gmail.com', '906578610', '170000', '0', null, '170000', null, '2015-06-25 22:43:09', '2015-06-26 00:05:19', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('2', 'Đức Nhật', 'nhatdo@outlook.com', '906578610', '600000', '120000', 'KHAITRUONG20%', '480000', null, '2015-06-27 23:55:20', '2015-06-28 23:04:39', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('3', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:03:43', '2015-06-28 09:03:43', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('4', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:11:35', '2015-06-28 09:11:35', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('5', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:14:33', '2015-06-28 09:14:33', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('6', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:16:11', '2015-06-28 09:16:11', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('7', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:17:39', '2015-06-28 09:17:39', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('8', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:25:28', '2015-06-28 09:25:28', null, null, null, '2015-06-29 20:25:19', null, '0');
+INSERT INTO `orders` VALUES ('9', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:25:48', '2015-06-28 09:25:48', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('10', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:28:02', '2015-06-28 09:28:02', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('11', 'Đức Nhật', 'nhatdo@outlook.com', '1229012202', '100000', '0', null, '100000', '2015-06-29 20:25:19', '2015-06-28 09:52:24', '2015-06-28 09:52:24', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('12', 'Đức Nhật', 'ddnhat@gmail.com', '1229012202', '100000', '0', null, '100000', null, '2015-06-28 09:55:11', '2015-06-28 09:55:11', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('13', 'DO DUC NHAT', 'ddnhat@gmail.com', '1229012202', '170000', '0', null, '170000', null, '2015-06-28 11:14:15', '2015-06-28 11:14:15', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('14', 'DO DUC NHAT', 'ddnhat@gmail.com1', '987654321', '170000', '0', null, '170000', null, '2015-06-28 11:20:59', '2015-06-30 07:18:20', null, null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('15', 'Thùy Trang', 'letrang580@gmail.com', '909308401', '430000', '0', null, '430000', null, '2015-06-28 15:02:26', '2015-06-28 15:02:26', '2015-06-30 07:02:07', null, null, null, null, '0');
+INSERT INTO `orders` VALUES ('16', 'Thùy Trang', 'ddnhat@gmail.com', '906578610', '600000', '0', null, '600000', '2015-06-29 20:25:19', '2015-06-28 23:09:25', '2015-06-29 20:25:28', null, null, null, '2015-06-29 20:25:28', null, '0');
 
 -- ----------------------------
 -- Table structure for `pages`
@@ -445,14 +449,16 @@ CREATE TABLE `users` (
   `is_activated` tinyint(4) DEFAULT '0',
   `active_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `activated_at` datetime DEFAULT NULL,
+  `ref_value` int(11) DEFAULT '5',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'OrqTfHyEDXQ4oO6A2E5A6RT6R3Zp3VNAARrPEof2Y5SV0dwAaUwX52wVWgtA', '2015-06-15 23:14:04', '2015-07-07 07:30:01', null, '2', '1', null, null);
-INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'dqXgvH89CNQT05epCDBQb1zXBDHsamvzSRWSozIgnVUPMReqfNn2eQ7nC6W5', '2015-07-06 20:29:02', '2015-07-07 08:06:59', null, '1', '1', null, null);
-INSERT INTO `users` VALUES ('3', 'Nhật', '0906578610', 'nhatdo@outlook.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'vLSkkKe5Q1eYhu9bANgK4AiN6W34AMEciHKDo1CkZI6B1aJvHG3cK0A27IQf', '2015-07-07 08:01:54', '2015-07-07 08:05:11', null, '1', '1', 'yUUwzi3GOq9QQT488v0DiL6AQLZIHZZJimqxIzWRKdq70LAYoXn7HthauMr1', null);
-INSERT INTO `users` VALUES ('4', 'Nhật Đỗ', '01229012202', 'ddnhat@gmail.com1', '$2y$10$lnrMSu3Y976hkymImZBzRuWhyddqxwtKVf2GHNjxoGxSNE90.CxMu', '0', 'y76gPTfIqNwr8THxYHoqBmbQmw0jqNId9zfT7e0Gw9QbgBc3DgcQQn9ys3T0', '2015-07-07 08:05:33', '2015-07-07 08:05:34', null, '0', '0', '3Y2xJmHe1XECswbxqz9GyKxW83ag1F36RqYEeinhFk0KxXTfAQWUgKCOoiMw', null);
+INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'h0yuzreXhPMooDuLEcx6maJ7CY6dIcSgaE63AB17Yw22OiXOTcDaqG3LJ6dG', '2015-06-15 23:14:04', '2015-07-07 23:31:42', null, '2', '1', null, null, '5');
+INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'dqXgvH89CNQT05epCDBQb1zXBDHsamvzSRWSozIgnVUPMReqfNn2eQ7nC6W5', '2015-07-06 20:29:02', '2015-07-07 08:06:59', null, '1', '1', null, null, '5');
+INSERT INTO `users` VALUES ('3', 'Nhật', '0906578610', 'nhatdo@outlook.com1', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', '5BgnnX3LzBortEGcn2nDkErWmdsyqksnbXHCMUL0bvLjhXqETNGvunkXSpC3', '2015-07-07 08:01:54', '2015-07-07 22:13:36', null, '1', '1', 'yUUwzi3GOq9QQT488v0DiL6AQLZIHZZJimqxIzWRKdq70LAYoXn7HthauMr1', null, '5');
+INSERT INTO `users` VALUES ('4', 'Nhật Đỗ', '01229012202', 'ddnhat@gmail.com1', '$2y$10$lnrMSu3Y976hkymImZBzRuWhyddqxwtKVf2GHNjxoGxSNE90.CxMu', '0', 'y76gPTfIqNwr8THxYHoqBmbQmw0jqNId9zfT7e0Gw9QbgBc3DgcQQn9ys3T0', '2015-07-07 08:05:33', '2015-07-07 08:05:34', null, '0', '0', '3Y2xJmHe1XECswbxqz9GyKxW83ag1F36RqYEeinhFk0KxXTfAQWUgKCOoiMw', null, '5');
+INSERT INTO `users` VALUES ('8', 'Nhật Đỗ', '12345798', 'nhatdo@Outlook.com', '$2y$10$UV7MKHAmtRpYKp7xw.z2TeBuKBYrXYNtMgNzU.AvMY5jh3RYp9ao2', '1', 'goUR4yxkSUi6Umk6HqVWh4GfvUb7xJ5WFXuImKuOjj5Pb7ouiyjaVSueO5CO', '2015-07-07 23:29:33', '2015-07-07 23:33:09', null, '1', '1', '26I2S2HjTtX0RLjNTZlUAOD6HTg37oO3ysUV4mtRAkSlYnhqyLXvxN8Dk3MH', '2015-07-07 23:30:14', '5');

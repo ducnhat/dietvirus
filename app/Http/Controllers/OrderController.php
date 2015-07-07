@@ -51,6 +51,11 @@ class OrderController extends Controller
             $input['coupon'] = Cart::getCondition('promo')->getAttributes()['coupon'];
         }
 
+        if($request->session()->has('ref_id')){
+            $input['ref_id'] = $request->session()->get('ref_id');
+            $input['ref_value'] = $request->session()->get('ref_value');
+        }
+
         $order = Order::create($input);
 
         $items = Cart::getContent();

@@ -11,8 +11,38 @@
 |
 */
 
+//Test route
+Route::get('test', function(){
+//    $user = \App\User::orderBy('id', 'desc')->first();
+//
+//    return view('emails.active', compact(['user']));
+
+    dd(\Illuminate\Support\Facades\Hash::make('festival'));
+});
+
 //Homepage
 Route::get('/', 'HomeController@index');
+
+//Active user
+Route::get('/member/active', ['as' => 'active_user', function(\Illuminate\Http\Request $request){
+    $email = $request->get('email');
+    $active_code = $request->get('active_code');
+
+    $user = \App\User::where('email', $email)
+        ->where('active_code', $active_code)
+        ->where('is_activated', 0)
+        ->first();
+
+    if($user){
+        $user->is_activated = 1;
+        $user->activated_at = \Carbon\Carbon::now()->toDateTimeString();
+        $user->status = 1;
+        $user->role = USER_ROLE_MEMBER;
+        $user->save();
+    }
+
+    return redirect()->action('Auth\AuthController@getLogin');
+}]);
 
 //Cart Controller
 Route::resource('cart', 'CartController');
@@ -34,6 +64,18 @@ Route::resource('key', 'KeyController');
 
 //Contact Controller
 Route::resource('contact', 'ContactController');
+
+//Reference Controller
+Route::get('ref/{id}', function($id){
+    $id = $id - REF_CODE_FROM;
+
+    $user = \App\User::findOrFail($id);
+
+    session()->put('ref_id', $user->id);
+    session()->put('ref_value', $user->ref_value);
+
+    return Redirect::action('HomeController@index');
+})->where(['id' => '[0-9]+']);
 
 //Post Controller
 Route::get('post', 'PostController@index');

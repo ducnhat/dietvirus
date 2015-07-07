@@ -6,19 +6,19 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ProductKeyWasWarranted extends Event
+class UserWasRegistered extends Event
 {
     use SerializesModels;
 
-    public  $keyWarranty;
+    public $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($keyWarranty)
+    public function __construct($user)
     {
-        $this->keyWarranty = $keyWarranty;
+        $this->user = $user;
     }
 
     /**
