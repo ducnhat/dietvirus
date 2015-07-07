@@ -14,6 +14,8 @@ use App\Events\ProductKeyWasWarranted;
 use App\Listeners\SendNewProductKeyEmail;
 use App\Events\ContactWasReplied;
 use App\Listeners\SendReplyContactMessageEmail;
+use App\Events\UserWasRegistered;
+use App\Listeners\SendUserActiveEmail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ContactWasReplied::class => [
             SendReplyContactMessageEmail::class
+        ],
+        UserWasRegistered::class => [
+            SendUserActiveEmail::class
         ]
     ];
 

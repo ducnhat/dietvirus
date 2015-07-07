@@ -35,6 +35,18 @@ Route::resource('key', 'KeyController');
 //Contact Controller
 Route::resource('contact', 'ContactController');
 
+//Reference Controller
+Route::get('ref/{id}', function($id){
+    $id = $id - REF_CODE_FROM;
+
+    $user = \App\User::findOrFail($id);
+
+    session()->put('ref_id', $user->id);
+    session()->put('ref_value', $user->ref_value);
+
+    return Redirect::action('HomeController@index');
+})->where(['id' => '[0-9]+']);
+
 //Post Controller
 Route::get('post', 'PostController@index');
 Route::get('post/{id}-{slug}', 'PostController@show')
