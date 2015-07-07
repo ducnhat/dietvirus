@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : virut
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-07 21:27:31
+Date: 2015-07-07 23:37:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,7 +82,7 @@ CREATE TABLE `jobs` (
   `available_at` int(10) unsigned NOT NULL,
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of jobs
@@ -452,12 +452,13 @@ CREATE TABLE `users` (
   `ref_value` int(11) DEFAULT '5',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'OrqTfHyEDXQ4oO6A2E5A6RT6R3Zp3VNAARrPEof2Y5SV0dwAaUwX52wVWgtA', '2015-06-15 23:14:04', '2015-07-07 07:30:01', null, '2', '1', null, null, '5');
+INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'h0yuzreXhPMooDuLEcx6maJ7CY6dIcSgaE63AB17Yw22OiXOTcDaqG3LJ6dG', '2015-06-15 23:14:04', '2015-07-07 23:31:42', null, '2', '1', null, null, '5');
 INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'dqXgvH89CNQT05epCDBQb1zXBDHsamvzSRWSozIgnVUPMReqfNn2eQ7nC6W5', '2015-07-06 20:29:02', '2015-07-07 08:06:59', null, '1', '1', null, null, '5');
-INSERT INTO `users` VALUES ('3', 'Nhật', '0906578610', 'nhatdo@outlook.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'vLSkkKe5Q1eYhu9bANgK4AiN6W34AMEciHKDo1CkZI6B1aJvHG3cK0A27IQf', '2015-07-07 08:01:54', '2015-07-07 08:05:11', null, '1', '1', 'yUUwzi3GOq9QQT488v0DiL6AQLZIHZZJimqxIzWRKdq70LAYoXn7HthauMr1', null, '5');
+INSERT INTO `users` VALUES ('3', 'Nhật', '0906578610', 'nhatdo@outlook.com1', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', '5BgnnX3LzBortEGcn2nDkErWmdsyqksnbXHCMUL0bvLjhXqETNGvunkXSpC3', '2015-07-07 08:01:54', '2015-07-07 22:13:36', null, '1', '1', 'yUUwzi3GOq9QQT488v0DiL6AQLZIHZZJimqxIzWRKdq70LAYoXn7HthauMr1', null, '5');
 INSERT INTO `users` VALUES ('4', 'Nhật Đỗ', '01229012202', 'ddnhat@gmail.com1', '$2y$10$lnrMSu3Y976hkymImZBzRuWhyddqxwtKVf2GHNjxoGxSNE90.CxMu', '0', 'y76gPTfIqNwr8THxYHoqBmbQmw0jqNId9zfT7e0Gw9QbgBc3DgcQQn9ys3T0', '2015-07-07 08:05:33', '2015-07-07 08:05:34', null, '0', '0', '3Y2xJmHe1XECswbxqz9GyKxW83ag1F36RqYEeinhFk0KxXTfAQWUgKCOoiMw', null, '5');
+INSERT INTO `users` VALUES ('8', 'Nhật Đỗ', '12345798', 'nhatdo@Outlook.com', '$2y$10$UV7MKHAmtRpYKp7xw.z2TeBuKBYrXYNtMgNzU.AvMY5jh3RYp9ao2', '1', 'goUR4yxkSUi6Umk6HqVWh4GfvUb7xJ5WFXuImKuOjj5Pb7ouiyjaVSueO5CO', '2015-07-07 23:29:33', '2015-07-07 23:33:09', null, '1', '1', '26I2S2HjTtX0RLjNTZlUAOD6HTg37oO3ysUV4mtRAkSlYnhqyLXvxN8Dk3MH', '2015-07-07 23:30:14', '5');
