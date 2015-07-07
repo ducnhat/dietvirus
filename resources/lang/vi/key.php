@@ -16,6 +16,7 @@ return [
     'yes' => 'Có',
     'no' => 'Không',
     'message' => 'Lý do',
+    'new_key' => 'Mã bản quyền mới',
 ];
 
 ?>

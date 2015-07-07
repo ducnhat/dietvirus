@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-07-07 00:28:59
+Date: 2015-07-07 08:08:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -115,7 +115,7 @@ CREATE TABLE `key_warranty` (
 -- Records of key_warranty
 -- ----------------------------
 INSERT INTO `key_warranty` VALUES ('1', 'nhatdo@outlook.com', '5', '0906578610', '1', 'asdasdasd', '1', '', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, '7');
-INSERT INTO `key_warranty` VALUES ('2', 'ddnhat@gmail.com', '3', '01229012202', '1', 'asdasdasd', '0', 'key kích hoạt quá số lượng máy cho phép', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, null);
+INSERT INTO `key_warranty` VALUES ('2', 'ddnhat@gmail.com', '3', '01229012202', '1', 'asdasdasd', '0', 'key kích hoạt quá số lượng máy cho phép', '2015-07-03 12:09:24', '1', '2015-07-01 15:13:24', '2015-07-03 12:09:26', 'Nhật', null, '6');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -150,6 +150,7 @@ INSERT INTO `migrations` VALUES ('2015_07_03_174856_create_posts_table', '13');
 INSERT INTO `migrations` VALUES ('2015_07_04_080915_create_post_comments_table', '14');
 INSERT INTO `migrations` VALUES ('2015_07_04_231251_create_pages_table', '15');
 INSERT INTO `migrations` VALUES ('2015_07_06_201747_add_role_column_on_users_table', '16');
+INSERT INTO `migrations` VALUES ('2015_07_07_065029_add_is_actived_and_active_code_and_actived_at_columns_on_users_table', '17');
 
 -- ----------------------------
 -- Table structure for `order_items`
@@ -441,12 +442,17 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `role` tinyint(4) DEFAULT '0',
+  `is_activated` tinyint(4) DEFAULT '0',
+  `active_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$WF7Rm80cJglgt9Z8XVLjO.pPz9zpJPXk9cH2rsfyF2ulkIG5gprDm', '1', 'QYC7GEEuFrOLalfLctKby0CCPlLf5OzmbnoxL7yup5T1sKQzchA8OFXacjto', '2015-06-15 23:14:04', '2015-07-06 23:36:40', null, '2');
-INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'yfBtC7SirELYdgfEqEVMKVawQg6a7IPWfTLBEaoi5oPWmaJdJgRSbYNMhlLP', '2015-07-06 20:29:02', '2015-07-06 23:35:16', null, '1');
+INSERT INTO `users` VALUES ('1', 'Đức Nhật', '0906578610', 'ddnhat@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'OrqTfHyEDXQ4oO6A2E5A6RT6R3Zp3VNAARrPEof2Y5SV0dwAaUwX52wVWgtA', '2015-06-15 23:14:04', '2015-07-07 07:30:01', null, '2', '1', null, null);
+INSERT INTO `users` VALUES ('2', 'admin', '0909308401', 'letrang580@gmail.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'dqXgvH89CNQT05epCDBQb1zXBDHsamvzSRWSozIgnVUPMReqfNn2eQ7nC6W5', '2015-07-06 20:29:02', '2015-07-07 08:06:59', null, '1', '1', null, null);
+INSERT INTO `users` VALUES ('3', 'Nhật', '0906578610', 'nhatdo@outlook.com', '$2y$10$eGANUC28ES6Dyp7wMKNUfu.tRkxPaMQqF38ZWoE5BjWExMr03/AfC', '1', 'vLSkkKe5Q1eYhu9bANgK4AiN6W34AMEciHKDo1CkZI6B1aJvHG3cK0A27IQf', '2015-07-07 08:01:54', '2015-07-07 08:05:11', null, '1', '1', 'yUUwzi3GOq9QQT488v0DiL6AQLZIHZZJimqxIzWRKdq70LAYoXn7HthauMr1', null);
+INSERT INTO `users` VALUES ('4', 'Nhật Đỗ', '01229012202', 'ddnhat@gmail.com1', '$2y$10$lnrMSu3Y976hkymImZBzRuWhyddqxwtKVf2GHNjxoGxSNE90.CxMu', '0', 'y76gPTfIqNwr8THxYHoqBmbQmw0jqNId9zfT7e0Gw9QbgBc3DgcQQn9ys3T0', '2015-07-07 08:05:33', '2015-07-07 08:05:34', null, '0', '0', '3Y2xJmHe1XECswbxqz9GyKxW83ag1F36RqYEeinhFk0KxXTfAQWUgKCOoiMw', null);

@@ -18,6 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+//        dd(Auth::user());
         $data = Order::where('email', Auth::user()->email)
             ->orderBy('paid_at', 'desc')
             ->orderBy('created_at', 'desc')

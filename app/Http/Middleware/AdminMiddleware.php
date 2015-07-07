@@ -33,12 +33,14 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest() || $this->auth->user()->role != USER_ROLE_ADMIN) {
+        if ($this->auth->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->action('Auth\AuthController@getLogin');
+            }else {
+                return redirect()->guest('auth/login');
             }
+        }else if($this->auth->user()->role != USER_ROLE_ADMIN || !$this->auth->user()->status || !$this->auth->user()->is_activated){
+            return redirect()->action('User\HomeController@index');
         }
 
         return $next($request);

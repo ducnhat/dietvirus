@@ -31,6 +31,8 @@ return [
     'page' => 'Trang',
     'create_page' => "Thêm trang mới",
     'view_pages' => 'Xem tất cả các trang',
+    'login' => 'Đăng nhập',
+    'register' => 'Đăng ký',
 ];
 
 ?>

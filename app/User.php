@@ -15,7 +15,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     use Authenticatable, CanResetPassword;
     use SoftDeletes;
 
-    protected $dates = ['created_at', 'updated_at', 'delete_at'];
+    protected $dates = ['created_at', 'updated_at', 'delete_at', 'activated_at'];
 
     /**
      * The database table used by the model.
@@ -29,7 +29,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone', 'email', 'password', 'status', 'role'];
+    protected $fillable = ['name', 'phone', 'email', 'password', 'status', 'role', 'is_activated', 'active_code', 'activated_at'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -37,6 +37,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    protected $casts = [
+        'is_activated' => 'boolean',
+        'status' => 'boolean',
+    ];
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::make($password);

@@ -93,16 +93,16 @@
 
 </div>
 
+@if($data->is_warranted)
 <div class="form-group">
 
-    {!! Form::Label('resolve_user', trans('key.resolve_user'), ['class' => 'col-lg-2 control-label']) !!}
+    {!! Form::Label('new_key', trans('key.new_key'), ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-5">
-        <p class="form-control-static text-muted">
-            <strong>{{ $data->user->name }}</strong>
-        </p>
+        {!! Form::Label('new_key', $data->productKey->key, ['class' => 'form-control']) !!}
     </div>
 
 </div>
+@endif
 
 <div class="form-group">
 
@@ -111,6 +111,8 @@
     </div>
 
 </div>
+
+
 
 @section('script')
     <script>
