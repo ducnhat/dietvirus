@@ -53,7 +53,7 @@
                                     <img height="80px" src="{{ $row->image }}" />
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($row->price) }}
+                                    {{ fmoney($row->price) }}
                                 </td>
                                 <td class="text-center">
                                     {{ $row->manufacturer }}

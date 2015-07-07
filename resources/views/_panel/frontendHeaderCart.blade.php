@@ -4,7 +4,7 @@
             <i class="fa fa-shopping-cart"></i>
             <span class="count tr_delay_hover type_2 circle t_align_c">{{ (!Cart::isEmpty()) ? Cart::getContent()->count() : 0 }}</span>
         </span>
-        <b>{{ (!Cart::isEmpty()) ? money_format(Cart::getTotal()) : 0 }}</b>
+        <b>{{ (!Cart::isEmpty()) ? fmoney(Cart::getTotal()) : 0 }}</b>
     </a>
     <div class="shopping_cart top_arrow tr_all_hover r_corners">
         <div class="f_size_medium sc_header">{{ trans((!Cart::isEmpty()) ? 'cart.list_items' : 'cart.empty') }}</div>
@@ -30,7 +30,7 @@
                     <!--product price-->
                     <div class="f_left f_size_medium">
                         <div class="clearfix">
-                            {{ $item->quantity }} x <b class="color_dark">{{ money_format($item->price) }}</b>
+                            {{ $item->quantity }} x <b class="color_dark">{{ fmoney($item->price) }}</b>
 
                         </div>
                     </div>
@@ -45,14 +45,14 @@
             <li class="m_bottom_10">
                 {{ trans('coupon.discount') }}:
                 <span class="f_size_large sc_price t_align_l d_inline_b m_left_15">
-                    {{ money_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubtotal())) }}
+                    {{ fmoney(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubtotal())) }}
                 </span>
             </li>
             @endif
             <li>
                 {{ trans('cart.total') }}:
                 <b class="f_size_large bold scheme_color sc_price t_align_l d_inline_b m_left_15">
-                    {{ (!Cart::isEmpty()) ? money_format(Cart::getTotal()) : 0 }}
+                    {{ (!Cart::isEmpty()) ? fmoney(Cart::getTotal()) : 0 }}
                 </b>
             </li>
         </ul>

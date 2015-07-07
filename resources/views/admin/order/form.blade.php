@@ -38,7 +38,7 @@
     {!! Form::Label('subtotal', trans('order.subtotal'), ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-5">
         <p class="form-control-static text-muted">
-            <strong>{{ money_format($data->subtotal) }}</strong>
+            <strong>{{ fmoney($data->subtotal) }}</strong>
         </p>
     </div>
 
@@ -60,7 +60,7 @@
     {!! Form::Label('discount', trans('order.discount'), ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-5">
         <p class="form-control-static text-muted">
-            <strong>{{ money_format($data->discount) }}</strong>
+            <strong>{{ fmoney($data->discount) }}</strong>
         </p>
     </div>
 
@@ -71,7 +71,7 @@
     {!! Form::Label('total', trans('order.total'), ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-5">
         <p class="form-control-static text-muted">
-            <strong>{{ money_format($data->total) }}</strong>
+            <strong>{{ fmoney($data->total) }}</strong>
         </p>
     </div>
 

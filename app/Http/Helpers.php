@@ -1,6 +1,6 @@
 <?php
 
-function money_format($number, $suffix = null){
+function fmoney($number, $suffix = null){
     if($suffix == null){
         $suffix = env('MONEY_SUFFIX');
     }
