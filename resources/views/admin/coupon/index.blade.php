@@ -49,16 +49,16 @@
                                     {{ $row->coupon }}
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($row->condition) }}
+                                    {{ fmoney($row->condition) }}
                                 </td>
                                 <td class="text-right">
                                     {{ $row->value }}
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($row->quantity, ' ') }}
+                                    {{ fmoney($row->quantity, ' ') }}
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($row->is_used, ' ') }}
+                                    {{ fmoney($row->is_used, ' ') }}
                                 </td>
                                 <td class="text-left">
                                     {{ $row->start_date->format('d/m/Y') }}

@@ -37,7 +37,7 @@
                     <!--product price-->
                     <td class="t_align_r" data-title="Price">
                         {{--<s>150.000đ</s>--}}
-                        <p class="f_size_large color_dark">{{ money_format($item->price) }}</p>
+                        <p class="f_size_large color_dark">{{ fmoney($item->price) }}</p>
                     </td>
                     <!--quanity-->
                     <td data-title="Quantity">
@@ -49,7 +49,7 @@
                     </td>
                     <!--subtotal-->
                     <td class="t_align_r" data-title="Subtotal">
-                        <p class="f_size_large fw_medium scheme_color">{{ money_format($item->getPriceSum()) }}</p>
+                        <p class="f_size_large fw_medium scheme_color">{{ fmoney($item->getPriceSum()) }}</p>
                     </td>
                 </tr>
                 @endforeach
@@ -67,7 +67,7 @@
                         <p class="fw_medium f_size_large t_align_r t_xs_align_c">{{ trans('cart.subtotal') }}:</p>
                     </td>
                     <td class="t_align_r" colspan="1">
-                        <p class="fw_medium f_size_large color_dark">{{ money_format(Cart::getSubtotal()) }}</p>
+                        <p class="fw_medium f_size_large color_dark">{{ fmoney(Cart::getSubtotal()) }}</p>
                     </td>
 
                 </tr>
@@ -77,7 +77,7 @@
                         <p class="fw_medium f_size_large t_align_r t_xs_align_c">{{ trans('coupon.discount') }}:</p>
                     </td>
                     <td class="t_align_r" colspan="1">
-                        <p class="fw_medium f_size_large color_dark">-{{ money_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubtotal())) }}</p>
+                        <p class="fw_medium f_size_large color_dark">-{{ fmoney(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubtotal())) }}</p>
                     </td>
                 </tr>
                 @endif

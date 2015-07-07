@@ -52,10 +52,10 @@
                                     {{ $item->quantity }}
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($item->price) }}
+                                    {{ fmoney($item->price) }}
                                 </td>
                                 <td class="text-right">
-                                    {{ money_format($item->price * $item->quantity) }}
+                                    {{ fmoney($item->price * $item->quantity) }}
                                 </td>
 
                             </tr>
