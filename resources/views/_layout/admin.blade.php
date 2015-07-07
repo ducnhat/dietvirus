@@ -26,6 +26,10 @@
     <!-- Datatable -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/datatable.css') }}">
 
+    <!-- Summernote CSS  -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/editors/summernote/summernote.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/editors/summernote/summernote-bs3.css') }}">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/img/favicon.ico') }}">
 

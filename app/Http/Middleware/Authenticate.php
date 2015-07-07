@@ -38,8 +38,10 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('admin/auth/login');
+                return redirect()->guest('auth/login');
             }
+        }else if(!$this->auth->user()->status || !$this->auth->user()->is_activated){
+            return redirect()->guest('auth/logout');
         }
 
         return $next($request);

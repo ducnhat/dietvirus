@@ -6,28 +6,24 @@
         <div class="tray tray-center p25 va-t posr">
             <div class="panel mb25 mt5">
                 <div class="panel-body p20 pb10">
-                    <table id="datatable" class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <table id="datatable5" class="table admin-form theme-warning tc-checkbox-1 fs13">
                         <thead>
                             <tr class="bg-light">
                                 <th class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select-all">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
-                                </th>
-                                <th>
                                     {{ trans('form.product_key') }}
+                                    {!! Form::Text('coupon', null, ['class' => 'form-control', 'placeholder' => 'XXXXX-XXXXX-XXXXX-XXXXX']) !!}
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     {{ trans('form.product_name') }}
+                                    {!! Form::Text('coupon', null, ['class' => 'form-control', 'placeholder' => trans('form.product_name')]) !!}
                                 </th>
-                                <th>
+                                <th class="text-center">
                                     {{ trans('form.created_by_user') }}
+                                    {!! Form::Text('coupon', null, ['class' => 'form-control', 'placeholder' => trans('form.name')]) !!}
                                 </th>
-                                <th class="text-right">
+                                <th class="text-center">
                                     {{ trans('form.created_at') }}
+                                    {!! Form::Text('coupon', null, ['class' => 'form-control', 'placeholder' => trans('form.created_at')]) !!}
                                 </th>
                                 <th class="text-right">
                                     {{ trans('form.tools') }}
@@ -38,25 +34,17 @@
                         <tbody>
                             @foreach($data as $row)
                             <tr>
-                                <td class="text-center">
-                                    <div class="mb15">
-                                        <label class="field option block">
-                                            <input type="checkbox" id="select" name="{{ $row->id }}">
-                                            <span class="checkbox"></span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
+                                <td class="text-left">
                                     {{ $row->key }}
                                 </td>
                                 <td class="text-left">
-                                    {{ $row->product_id }}
-                                </td>
-                                <td class="text-left">
-                                    {{ $row->user_id }}
+                                    {{ $row->product->name }}
                                 </td>
                                 <td class="text-center">
-                                    {{ $row->created_at->format('d/m/Y') }}
+                                    {{ $row->user->name }}
+                                </td>
+                                <td data-search="{{ $row->created_at }}" class="text-center">
+                                    {{ $row->created_at->format('H:i d/m/Y') }}
                                 </td>
                                 <td class="text-right">
                                     <div class="btn-group text-right">

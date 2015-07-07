@@ -9,11 +9,15 @@
         </div>
 
         <div class="col-xs-6 text-right va-b pr5">
-            {{--<div class="login-links">--}}
-                {{--<a href="{{ action('Admin\Auth\AuthController@getLogin') }}" class="active" title="Sign In">Đăng nhập</a>--}}
-                {{--<span class="text-white"> | </span>--}}
-                {{--<a href="{{ action('Admin\Auth\AuthController@getRegister') }}" class="" title="Register">Đăng ký</a>--}}
-            {{--</div>--}}
+            <div class="login-links">
+                <a href="{{ action('Auth\AuthController@getLogin') }}" class="active" title="Sign In">
+                    {{ trans('link.login') }}
+                </a>
+                <span class="text-white"> | </span>
+                <a href="{{ action('Auth\AuthController@getRegister') }}" class="" title="Register">
+                    {{ trans('link.register') }}
+                </a>
+            </div>
 
         </div>
 
@@ -43,7 +47,7 @@
         {{--</div>--}}
 
         <!-- end .form-header section -->
-        <form method="post" action="{{ action('Admin\Auth\AuthController@getLogin') }}" id="contact">
+        <form method="post" action="{{ action('Auth\AuthController@getLogin') }}" id="contact">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="panel-body bg-light p30">
                 <div class="row">

@@ -20,30 +20,37 @@
                             <!--main menu-->
                             <nav role="navigation" class="f_left f_xs_none d_xs_none m_right_35 m_md_right_30 m_sm_right_0">
                                 <ul class="horizontal_list main_menu type_2 clearfix">
-                                    <li class="current relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="{{ action('HomeController@index') }}" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>{{ trans('menu.home') }}</b></a>
+                                    <li id="menu-item" data-id="0" class="current relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0">
+                                        <a href="{{ action('HomeController@index') }}" class="tr_delay_hover color_dark tt_uppercase r_corners">
+                                            <b>
+                                                {{ trans('menu.home') }}
+                                            </b>
+                                        </a>
 
                                     </li>
-
-                                    <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="blog.html" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>Blog</b></a>
-                                        <!--sub menu-->
-                                        <div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">
-                                            <ul class="sub_menu">
-                                                <li><a class="color_dark tr_delay_hover" href="blog.html">Blog page</a></li>
-                                                <li><a class="color_dark tr_delay_hover" href="blog_post.html">Single Blog Post page</a></li>
-                                            </ul>
-                                        </div>
+                                    @foreach($pages as $key => $page)
+                                    <li id="menu-item" data-id="{{ ($key + 1) }}" class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0">
+                                        <a href="{{ action('PageController@show', ['slug' => convertStringToSlug($page->name), 'id' => $page->id]) }}" class="tr_delay_hover color_dark tt_uppercase r_corners">
+                                            <b>
+                                                {{ $page->name }}
+                                            </b>
+                                        </a>
                                     </li>
-
-                                    <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="blog.html" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>Features</b></a>
-                                        <!--sub menu-->
-                                        <div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">
-                                            <ul class="sub_menu">
-                                                <li><a class="color_dark tr_delay_hover" href="features_shortcodes.html">Shortcodes</a></li>
-                                                <li><a class="color_dark tr_delay_hover" href="features_typography.html">Typography</a></li>
-                                            </ul>
-                                        </div>
+                                    @endforeach
+                                    <li id="menu-item" data-id="{{ (count($pages) + 1) }}" class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0">
+                                        <a href="{{ action('KeyController@warranty') }}" class="tr_delay_hover color_dark tt_uppercase r_corners">
+                                            <b>
+                                                {{ trans('link.warranty') }}
+                                            </b>
+                                        </a>
                                     </li>
-                                    <li class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0"><a href="contact.html" class="tr_delay_hover color_dark tt_uppercase r_corners"><b>Contact</b></a></li>
+                                    <li id="menu-item" data-id="{{ (count($pages) + 2) }}" class="relative f_xs_none m_xs_bottom_5 m_left_10 m_xs_left_0">
+                                        <a href="{{ action('ContactController@index') }}" class="tr_delay_hover color_dark tt_uppercase r_corners">
+                                            <b>
+                                                {{ trans('contact.contact') }}
+                                            </b>
+                                        </a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

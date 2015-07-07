@@ -26,7 +26,7 @@ class Coupon extends Model
      * @param $value
      */
     public function setStartDateAttribute($value){
-        $this->attributes['start_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->toDateTimeString();;
+        $this->attributes['start_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->toDateTimeString();
     }
 
     /**
@@ -34,7 +34,7 @@ class Coupon extends Model
      * @param $value
      */
     public function setEndDateAttribute($value){
-        $this->attributes['end_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->toDateTimeString();;
+        $this->attributes['end_date'] = Carbon::createFromFormat('d-m-Y H:i', $value)->toDateTimeString();
     }
 
     public function getTargetAttribute($value){

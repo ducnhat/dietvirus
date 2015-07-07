@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Product;
 
 use App\Http\Requests;
-use App\Http\Controllers\Admin\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Storage;
 use App\Http\Requests\ProductRequest;

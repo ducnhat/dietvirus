@@ -8,14 +8,29 @@ function money_format($number, $suffix = null){
     return number_format($number, 0, ',', '.') . $suffix;
 }
 
+function convertStringToSlug($str) {
+    $str = strtolower($str);
+    $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+    $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+    $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+    $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+    $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+    $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+    $str = preg_replace("/(đ)/", 'd', $str);
+//Khoảng trắng thành -
+    $str = preg_replace("/( )/", '-', $str);
+
+    return $str; // Trả về chuỗi đã chuyển
+}
+
 function phone_format($number){
     $result = $number;
 
     if(  preg_match( '/9(\d{2})(\d{3})(\d{3})$/', $number,  $matches ) )
     {
-        $result = "9" . $matches[1] . '-' .$matches[2] . '-' . $matches[3];
+        $result = "9" . $matches[1] . ' ' .$matches[2] . ' ' . $matches[3];
     }else if(  preg_match( '/(\d{1})(\d{2})(\d{3})(\d{4})$/', $number,  $matches ) ){
-        $result = $matches[1] .$matches[2] . '-' . $matches[3] . '-' . $matches[4];
+        $result = $matches[1] .$matches[2] . ' ' . $matches[3] . ' ' . $matches[4];
     }
 
     return "0$result";

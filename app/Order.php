@@ -43,10 +43,9 @@ class Order extends Model
         foreach($this->orderItems as $item){
             $count = ProductKey::countProductKey($item->product_id)->first();
 
-            if(empty($count) || ($count->quantity < $item->quantity)){
+            if(($count->quantity < $item->quantity)){
                 $f = false;
             }
-//            dd($count);
         }
 
         return $f;
@@ -73,7 +72,9 @@ class Order extends Model
             foreach($keys as $key){
                 $result[] = $key;
                 $key->sold_at = Carbon::now()->toDateTimeString();
+                $key->use_for = KEY_USE_FOR_SELL;
                 $key->save();
+
                 OrderSentKey::create(['order_id' => $this->id, 'product_key_id' => $key->id]);
             }
         }

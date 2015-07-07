@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Cart;
 use App\OrderItems as OrderItem;
-use App\Jobs\SendOrderConfirmEmail;
 use Event;
 use App\Events\OrderWasAdded;
 
@@ -23,7 +22,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        echo 'asd';
+//        echo 'asd';
     }
 
     /**

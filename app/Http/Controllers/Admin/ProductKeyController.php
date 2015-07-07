@@ -6,7 +6,7 @@ use App\Product;
 use App\Http\Requests\ProductKeyRequest;
 
 use App\Http\Requests;
-use App\Http\Controllers\Admin\Controller;
+use App\Http\Controllers\Controller;
 use App\ProductKey;
 
 class ProductKeyController extends Controller
@@ -18,9 +18,8 @@ class ProductKeyController extends Controller
      */
     public function index()
     {
-        $data = ProductKey::all();
+        $data = ProductKey::orderBy('id', 'desc')->get();
 
-//        dd($data);
         return view('admin.product-key.index', compact(['data']));
     }
 

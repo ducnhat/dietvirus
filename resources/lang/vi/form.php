@@ -18,6 +18,9 @@ return [
     'created_at'    => 'Ngày thêm',
     'created_by_user'   => 'Người thêm',
     'tools'             => 'Công cụ',
+    'go_back' => 'Quay lại',
+    'save' => 'Lưu lại',
+    'cancel' => 'Hủy',
 ];
 
 ?>
